@@ -33,6 +33,9 @@ replace (
 	github.com/google/cel-go => github.com/google/cel-go v0.11.2
 	// update docker to be compatible with version used by pack and removes invalid pseudo-version
 	github.com/openshift/source-to-image => github.com/boson-project/source-to-image v1.3.2
+
+	// Enforce a version for CVE-2022-21698
+	github.com/prometheus/client_golang => github.com/prometheus/client_golang v1.11.1
 	// Pin k8s.io dependencies to align with Knative and Tekton needs
 	k8s.io/api => k8s.io/api v0.22.5
 	k8s.io/apimachinery => k8s.io/apimachinery v0.22.5
