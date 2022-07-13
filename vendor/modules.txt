@@ -1,4 +1,4 @@
-# cloud.google.com/go/compute v1.1.0
+# cloud.google.com/go/compute v1.3.0
 cloud.google.com/go/compute/metadata
 # contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d
 contrib.go.opencensus.io/exporter/ocagent
@@ -21,6 +21,8 @@ github.com/Azure/go-autorest/tracing
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
+# github.com/Shopify/sarama v1.30.1
+github.com/Shopify/sarama
 # github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211221011931-643d94fcab96
 github.com/antlr/antlr4/runtime/Go/antlr
 # github.com/beorn7/perks v1.0.1
@@ -63,8 +65,13 @@ github.com/cloudevents/sdk-go/v2/types
 github.com/cpuguy83/go-md2man/v2/md2man
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/eapache/go-resiliency v1.2.0
+github.com/eapache/go-resiliency/breaker
+# github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21
+github.com/eapache/go-xerial-snappy
+# github.com/eapache/queue v1.1.0
+github.com/eapache/queue
 # github.com/emicklei/go-restful v2.15.0+incompatible
-## explicit
 github.com/emicklei/go-restful
 github.com/emicklei/go-restful/log
 # github.com/evanphx/json-patch v4.12.0+incompatible
@@ -73,6 +80,8 @@ github.com/evanphx/json-patch
 github.com/evanphx/json-patch/v5
 # github.com/fsnotify/fsnotify v1.5.1
 github.com/fsnotify/fsnotify
+# github.com/ghodss/yaml v1.0.0
+github.com/ghodss/yaml
 # github.com/go-errors/errors v1.0.1
 github.com/go-errors/errors
 # github.com/go-kit/log v0.1.0
@@ -105,6 +114,8 @@ github.com/golang/protobuf/ptypes/any
 github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 github.com/golang/protobuf/ptypes/wrappers
+# github.com/golang/snappy v0.0.4
+github.com/golang/snappy
 # github.com/google/btree v1.0.1
 github.com/google/btree
 # github.com/google/go-cmp v0.5.7
@@ -136,6 +147,8 @@ github.com/gregjones/httpcache/diskcache
 github.com/grpc-ecosystem/grpc-gateway/internal
 github.com/grpc-ecosystem/grpc-gateway/runtime
 github.com/grpc-ecosystem/grpc-gateway/utilities
+# github.com/hashicorp/go-uuid v1.0.2
+github.com/hashicorp/go-uuid
 # github.com/hashicorp/golang-lru v0.5.4
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
@@ -154,12 +167,60 @@ github.com/hashicorp/hcl/json/token
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
+# github.com/jcmturner/aescts/v2 v2.0.0
+github.com/jcmturner/aescts/v2
+# github.com/jcmturner/dnsutils/v2 v2.0.0
+github.com/jcmturner/dnsutils/v2
+# github.com/jcmturner/gofork v1.0.0
+github.com/jcmturner/gofork/encoding/asn1
+github.com/jcmturner/gofork/x/crypto/pbkdf2
+# github.com/jcmturner/gokrb5/v8 v8.4.2
+github.com/jcmturner/gokrb5/v8/asn1tools
+github.com/jcmturner/gokrb5/v8/client
+github.com/jcmturner/gokrb5/v8/config
+github.com/jcmturner/gokrb5/v8/credentials
+github.com/jcmturner/gokrb5/v8/crypto
+github.com/jcmturner/gokrb5/v8/crypto/common
+github.com/jcmturner/gokrb5/v8/crypto/etype
+github.com/jcmturner/gokrb5/v8/crypto/rfc3961
+github.com/jcmturner/gokrb5/v8/crypto/rfc3962
+github.com/jcmturner/gokrb5/v8/crypto/rfc4757
+github.com/jcmturner/gokrb5/v8/crypto/rfc8009
+github.com/jcmturner/gokrb5/v8/gssapi
+github.com/jcmturner/gokrb5/v8/iana
+github.com/jcmturner/gokrb5/v8/iana/addrtype
+github.com/jcmturner/gokrb5/v8/iana/adtype
+github.com/jcmturner/gokrb5/v8/iana/asnAppTag
+github.com/jcmturner/gokrb5/v8/iana/chksumtype
+github.com/jcmturner/gokrb5/v8/iana/errorcode
+github.com/jcmturner/gokrb5/v8/iana/etypeID
+github.com/jcmturner/gokrb5/v8/iana/flags
+github.com/jcmturner/gokrb5/v8/iana/keyusage
+github.com/jcmturner/gokrb5/v8/iana/msgtype
+github.com/jcmturner/gokrb5/v8/iana/nametype
+github.com/jcmturner/gokrb5/v8/iana/patype
+github.com/jcmturner/gokrb5/v8/kadmin
+github.com/jcmturner/gokrb5/v8/keytab
+github.com/jcmturner/gokrb5/v8/krberror
+github.com/jcmturner/gokrb5/v8/messages
+github.com/jcmturner/gokrb5/v8/pac
+github.com/jcmturner/gokrb5/v8/types
+# github.com/jcmturner/rpc/v2 v2.0.3
+github.com/jcmturner/rpc/v2/mstypes
+github.com/jcmturner/rpc/v2/ndr
 # github.com/josharian/intern v1.0.0
 github.com/josharian/intern
 # github.com/json-iterator/go v1.1.12
 github.com/json-iterator/go
 # github.com/kelseyhightower/envconfig v1.4.0
 github.com/kelseyhightower/envconfig
+# github.com/klauspost/compress v1.14.2
+github.com/klauspost/compress
+github.com/klauspost/compress/fse
+github.com/klauspost/compress/huff0
+github.com/klauspost/compress/internal/snapref
+github.com/klauspost/compress/zstd
+github.com/klauspost/compress/zstd/internal/xxhash
 # github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de
 github.com/liggitt/tabwriter
 # github.com/magiconair/properties v1.8.5
@@ -170,6 +231,15 @@ github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
 # github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369
 github.com/matttproud/golang_protobuf_extensions/pbutil
+# github.com/maximilien/kn-source-pkg v0.6.3
+## explicit
+github.com/maximilien/kn-source-pkg/pkg/client
+github.com/maximilien/kn-source-pkg/pkg/commands/source
+github.com/maximilien/kn-source-pkg/pkg/core
+github.com/maximilien/kn-source-pkg/pkg/factories
+github.com/maximilien/kn-source-pkg/pkg/types
+github.com/maximilien/kn-source-pkg/pkg/types/typesfakes
+github.com/maximilien/kn-source-pkg/test/e2e
 # github.com/mitchellh/go-homedir v1.1.0
 ## explicit
 github.com/mitchellh/go-homedir
@@ -187,6 +257,9 @@ github.com/openzipkin/zipkin-go/model
 github.com/pelletier/go-toml
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 github.com/peterbourgon/diskv
+# github.com/pierrec/lz4 v2.6.1+incompatible
+github.com/pierrec/lz4
+github.com/pierrec/lz4/internal/xxh32
 # github.com/pkg/errors v0.9.1
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
@@ -208,6 +281,8 @@ github.com/prometheus/procfs/internal/util
 # github.com/prometheus/statsd_exporter v0.21.0
 github.com/prometheus/statsd_exporter/pkg/mapper
 github.com/prometheus/statsd_exporter/pkg/mapper/fsm
+# github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
+github.com/rcrowley/go-metrics
 # github.com/rickb777/date v1.13.0
 github.com/rickb777/date/period
 # github.com/rickb777/plural v1.2.1
@@ -242,6 +317,10 @@ github.com/spf13/viper/internal/encoding/yaml
 github.com/stretchr/testify/assert
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
+# github.com/thediveo/enumflag v0.10.0
+github.com/thediveo/enumflag
+# github.com/wavesoftware/go-ensure v1.0.0
+github.com/wavesoftware/go-ensure
 # github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca
 github.com/xlab/treeprint
 # go.opencensus.io v0.23.0
@@ -283,6 +362,8 @@ go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
 # golang.org/x/crypto v0.0.0-20220214200702-86341886e292
+golang.org/x/crypto/md4
+golang.org/x/crypto/pbkdf2
 golang.org/x/crypto/pkcs12
 golang.org/x/crypto/pkcs12/internal/rc2
 # golang.org/x/mod v0.5.1
@@ -298,7 +379,9 @@ golang.org/x/net/http2
 golang.org/x/net/http2/h2c
 golang.org/x/net/http2/hpack
 golang.org/x/net/idna
+golang.org/x/net/internal/socks
 golang.org/x/net/internal/timeseries
+golang.org/x/net/proxy
 golang.org/x/net/trace
 # golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
 golang.org/x/oauth2
@@ -351,7 +434,7 @@ golang.org/x/xerrors
 golang.org/x/xerrors/internal
 # gomodules.xyz/jsonpatch/v2 v2.2.0
 gomodules.xyz/jsonpatch/v2
-# google.golang.org/api v0.65.0
+# google.golang.org/api v0.70.0
 google.golang.org/api/support/bundler
 # google.golang.org/appengine v1.6.7
 google.golang.org/appengine
@@ -364,7 +447,7 @@ google.golang.org/appengine/internal/modules
 google.golang.org/appengine/internal/remote_api
 google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/urlfetch
-# google.golang.org/genproto v0.0.0-20220126215142-9970aeb2e350
+# google.golang.org/genproto v0.0.0-20220222213610-43724f9ea8cf
 google.golang.org/genproto/googleapis/api/httpbody
 google.golang.org/genproto/googleapis/rpc/status
 google.golang.org/genproto/protobuf/field_mask
@@ -519,6 +602,7 @@ k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/typed/apiextensions/v1
 # k8s.io/apimachinery v0.22.5
 ## explicit
+k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
 k8s.io/apimachinery/pkg/api/meta
@@ -771,6 +855,7 @@ k8s.io/utils/trace
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/duck/v1
+knative.dev/eventing/pkg/apis/duck/v1alpha1
 knative.dev/eventing/pkg/apis/eventing
 knative.dev/eventing/pkg/apis/eventing/v1
 knative.dev/eventing/pkg/apis/eventing/v1beta1
@@ -794,9 +879,41 @@ knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1/fake
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta2
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta2/fake
+# knative.dev/eventing-kafka v0.28.1-0.20220308195206-2bd431802505
+knative.dev/eventing-kafka/pkg/apis/bindings
+knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
+knative.dev/eventing-kafka/pkg/apis/kafka
+knative.dev/eventing-kafka/pkg/apis/kafka/v1alpha1
+knative.dev/eventing-kafka/pkg/apis/messaging
+knative.dev/eventing-kafka/pkg/apis/messaging/v1beta1
+knative.dev/eventing-kafka/pkg/apis/sources/config
+knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
+knative.dev/eventing-kafka/pkg/client/clientset/versioned/scheme
+knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1
+knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1/fake
+knative.dev/eventing-kafka/pkg/common/constants
 # knative.dev/hack v0.0.0-20220224013837-e1785985d364
 ## explicit
 knative.dev/hack
+# knative.dev/kn-plugin-event v0.30.1 => github.com/openshift-knative/kn-plugin-event v0.29.1-0.20220712135411-e518a460bb1e
+## explicit
+knative.dev/kn-plugin-event/internal/cli/cmd
+knative.dev/kn-plugin-event/pkg/cli
+knative.dev/kn-plugin-event/pkg/cli/ics
+knative.dev/kn-plugin-event/pkg/cli/retcode
+knative.dev/kn-plugin-event/pkg/configuration
+knative.dev/kn-plugin-event/pkg/event
+knative.dev/kn-plugin-event/pkg/k8s
+knative.dev/kn-plugin-event/pkg/metadata
+knative.dev/kn-plugin-event/pkg/plugin
+knative.dev/kn-plugin-event/pkg/sender
+# knative.dev/kn-plugin-source-kafka v0.30.0
+## explicit
+knative.dev/kn-plugin-source-kafka/pkg/client
+knative.dev/kn-plugin-source-kafka/pkg/factories
+knative.dev/kn-plugin-source-kafka/pkg/root
+knative.dev/kn-plugin-source-kafka/pkg/types
+knative.dev/kn-plugin-source-kafka/plugin
 # knative.dev/networking v0.0.0-20220302134042-e8b2eb995165
 ## explicit
 knative.dev/networking/pkg
@@ -805,13 +922,15 @@ knative.dev/networking/pkg/apis/networking/v1alpha1
 knative.dev/networking/pkg/client/clientset/versioned
 knative.dev/networking/pkg/client/clientset/versioned/scheme
 knative.dev/networking/pkg/client/clientset/versioned/typed/networking/v1alpha1
-# knative.dev/pkg v0.0.0-20220301181942-2fdd5f232e77
+# knative.dev/pkg v0.0.0-20220310195447-38af013b30ff
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
 knative.dev/pkg/apis/duck/ducktypes
 knative.dev/pkg/apis/duck/v1
+knative.dev/pkg/apis/duck/v1alpha1
 knative.dev/pkg/apis/duck/v1beta1
+knative.dev/pkg/apis/testing/fuzzer
 knative.dev/pkg/changeset
 knative.dev/pkg/client/injection/ducks/duck/v1/addressable
 knative.dev/pkg/codegen/cmd/injection-gen
@@ -855,6 +974,7 @@ knative.dev/pkg/tracing/config
 knative.dev/pkg/tracing/propagation
 knative.dev/pkg/tracing/propagation/tracecontextb3
 knative.dev/pkg/tracker
+knative.dev/pkg/webhook/resourcesemantics
 # knative.dev/serving v0.30.0
 ## explicit
 knative.dev/serving/pkg/apis/autoscaling
@@ -973,3 +1093,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit
 sigs.k8s.io/yaml
+# knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.29.1-0.20220712135411-e518a460bb1e

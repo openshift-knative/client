@@ -1,0 +1,13 @@
+plugins:
+  - name: kn-plugin-source-kafka
+    module: knative.dev/kn-plugin-source-kafka
+    pluginImportPath: knative.dev/kn-plugin-source-kafka/plugin
+    version: knative-v1.3.0
+  - name: kn-plugin-event
+    module: knative.dev/kn-plugin-event
+    pluginImportPath: knative.dev/kn-plugin-event/pkg/plugin
+    version: knative-v1.3.0
+  # - name: kn-plugin-func
+  #   module: knative.dev/kn-plugin-func
+  #   pluginImportPath: knative.dev/kn-plugin-func/plugin
+  #   version: v0.25.0
