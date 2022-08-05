@@ -3,6 +3,7 @@ module knative.dev/client
 go 1.16
 
 require (
+	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
 	github.com/google/go-cmp v0.5.7
 	github.com/maximilien/kn-source-pkg v0.6.3
 	github.com/mitchellh/go-homedir v1.1.0
@@ -30,6 +31,8 @@ require (
 )
 
 replace (
+	// Enforce a version for CVE-2022-1996
+	github.com/emicklei/go-restful => github.com/emicklei/go-restful/v3 v3.8.0
 	// Tekton Triggers imports old google/cel-go, should be fixed with tektoncd/cli >=v0.24.x transitively
 	github.com/google/cel-go => github.com/google/cel-go v0.11.2
 	// update docker to be compatible with version used by pack and removes invalid pseudo-version
