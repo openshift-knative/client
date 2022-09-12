@@ -3,6 +3,10 @@ plugins:
     module: knative.dev/kn-plugin-source-kafka
     pluginImportPath: knative.dev/kn-plugin-source-kafka/plugin
     version: knative-v1.4.0
+  - name: kn-plugin-workflow
+    module: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow
+    pluginImportPath: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin
+    version: v0.23.0
   # - name: kn-plugin-event
   #   module: knative.dev/kn-plugin-event
   #   pluginImportPath: knative.dev/kn-plugin-event/pkg/plugin
