@@ -5,8 +5,9 @@ go 1.17
 require (
 	github.com/emicklei/go-restful v2.15.0+incompatible // indirect
 	github.com/google/go-cmp v0.5.9
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
-	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/hashicorp/golang-lru v0.5.4
+	github.com/hashicorp/hcl v1.0.0
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.23.1
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.8.0 // indirect
 	github.com/spf13/cobra v1.4.0
@@ -15,17 +16,18 @@ require (
 	golang.org/x/mod v0.5.1
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 	gotest.tools/v3 v3.1.0
-	k8s.io/api v0.23.5
-	k8s.io/apiextensions-apiserver v0.23.4
-	k8s.io/apimachinery v0.23.5
+	k8s.io/api v0.23.9
+	k8s.io/apiextensions-apiserver v0.23.9
+	k8s.io/apimachinery v0.23.9
 	k8s.io/cli-runtime v0.23.4
-	k8s.io/client-go v0.23.5
-	k8s.io/code-generator v0.23.5
-	knative.dev/eventing v0.31.0
-	knative.dev/hack v0.0.0-20220411131823-6ffd8417de7c
-	knative.dev/networking v0.0.0-20220412163509-1145ec58c8be
-	knative.dev/pkg v0.0.0-20220412134708-e325df66cb51
-	knative.dev/serving v0.31.0
+	k8s.io/client-go v0.23.9
+	k8s.io/code-generator v0.23.9
+	knative.dev/eventing v0.34.1
+	knative.dev/hack v0.0.0-20220823140917-8d1e4ccf9dc3
+	knative.dev/kn-plugin-event v1.4.0
+	knative.dev/networking v0.0.0-20220818010248-e51df7cdf571
+	knative.dev/pkg v0.0.0-20220818004048-4a03844c0b15
+	knative.dev/serving v0.34.0
 	sigs.k8s.io/yaml v1.3.0
 )
 
@@ -47,7 +49,7 @@ require (
 	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cloudevents/sdk-go/sql/v2 v2.8.0 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.8.0 // indirect
+	github.com/cloudevents/sdk-go/v2 v2.10.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/evanphx/json-patch v4.12.0+incompatible // indirect
@@ -107,13 +109,12 @@ require (
 	go.opencensus.io v0.23.0 // indirect
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
-	go.uber.org/goleak v1.1.12 // indirect
-	go.uber.org/multierr v1.6.0 // indirect
-	go.uber.org/zap v1.19.1 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
+	go.uber.org/zap v1.21.0 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
 	golang.org/x/sys v0.0.0-20220804214406-8e32c043e418 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
@@ -128,9 +129,9 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	k8s.io/gengo v0.0.0-20220307231824-4627b89bbf1b // indirect
-	k8s.io/klog/v2 v2.60.1-0.20220317184644-43cc75f9ae89 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+	k8s.io/gengo v0.0.0-20220613173612-397b4ae3bce7 // indirect
+	k8s.io/klog/v2 v2.70.2-0.20220707122935-0990e81f1a8f // indirect
 	k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
 	knative.dev/kn-plugin-source-kafka v0.31.0
@@ -140,17 +141,14 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 )
 
-require github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.23.0
-
 require (
 	github.com/Shopify/sarama v1.30.1 // indirect
-	github.com/briandowns/spinner v1.18.1 // indirect
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/dgraph-io/ristretto v0.0.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
-	github.com/fatih/color v1.13.0 // indirect
+	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
@@ -159,11 +157,14 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/klauspost/compress v1.14.4 // indirect
-	github.com/mattn/go-colorable v0.1.12 // indirect
-	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/maximilien/kn-source-pkg v0.6.3 // indirect
 	github.com/ory/viper v1.7.5 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
 	knative.dev/eventing-kafka v0.31.0 // indirect
 )
+
+// Points at: https://github.com/openshift-knative/kn-plugin-event/commit/329eae156fd4b1dbdf35ea15e0cbc511cc19b1f2
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.31.1-0.20220421003552-329eae156fd4
