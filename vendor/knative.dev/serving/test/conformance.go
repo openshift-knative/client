@@ -74,27 +74,12 @@ const (
 	MinSplitPercentage = 0.25
 )
 
-type Options struct {
-	Namespace        string
-	DisableLogStream bool
-}
-
 // Setup creates client to run Knative Service requests
-func Setup(t testing.TB, opts ...Options) *Clients {
-	var o Options
-	switch len(opts) {
-	case 1:
-		o = opts[0]
-	case 0:
-		o = Options{}
-	default:
-		t.Fatalf("multiple Options supplied to Setup")
-	}
-
+func Setup(t testing.TB, namespace ...string) *Clients {
 	t.Helper()
 	logging.InitializeLogger()
 
-	if !ServingFlags.DisableLogStream && !o.DisableLogStream {
+	if !ServingFlags.DisableLogStream {
 		cancel := logstream.Start(t)
 		t.Cleanup(cancel)
 	}
@@ -105,8 +90,8 @@ func Setup(t testing.TB, opts ...Options) *Clients {
 	}
 
 	ns := ServingFlags.TestNamespace
-	if len(o.Namespace) > 0 {
-		ns = o.Namespace
+	if len(namespace) > 0 {
+		ns = namespace[0]
 	}
 
 	clients, err := NewClients(cfg, ns)

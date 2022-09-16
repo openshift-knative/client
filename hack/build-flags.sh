@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 function build_flags() {
   local base="${1}"
   local now rev
@@ -32,8 +33,10 @@ function build_flags() {
   # major and minor versions are the same as client version
   # patch version is from each technical version
   technical_version_serving=$(grep "knative.dev/serving " "${base}/go.mod" \
+    | tail -1 \
     | sed -s 's/.* \(v.[\.0-9]*\).*/\1/')
   technical_version_eventing=$(grep "knative.dev/eventing " "${base}/go.mod" \
+    | tail -1 \
     | sed -s 's/.* \(v.[\.0-9]*\).*/\1/')
   local version_serving version_eventing
   if [[ -n "${major_minor}" ]]; then
