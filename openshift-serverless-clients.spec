@@ -7,6 +7,7 @@
 %global kn_release 1
 %global kn_cli_version v%{kn_version}
 %global kn_event_image %{nil}
+%global kn_func_image %{nil}
 %global source_dir knative-client
 %global source_tar %{source_dir}-%{kn_version}-%{kn_release}.tar.gz
 
@@ -31,6 +32,7 @@ Client kn provides developer experience to work with Knative Serving APIs.
 %build
 TAG=%{kn_cli_version} \
 KN_PLUGIN_EVENT_SENDER_IMAGE=%{kn_event_image} \
+KN_PLUGIN_FUNC_SOCAT_IMAGE=%{kn_func_image} \
 make build-cross
 
 %install
