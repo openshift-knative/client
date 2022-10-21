@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/emicklei/go-restful v2.15.0+incompatible // indirect
-	github.com/google/go-cmp v0.5.7
+	github.com/google/go-cmp v0.5.9
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hashicorp/hcl v1.0.0
 	github.com/mitchellh/go-homedir v1.1.0
