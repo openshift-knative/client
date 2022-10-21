@@ -137,3 +137,12 @@ require (
 	sigs.k8s.io/kustomize/kyaml v0.13.0 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 )
+
+replace (
+	// Pin knative.dev modules to prevent newer version from plugins
+	knative.dev/eventing => knative.dev/eventing v0.32.0
+	knative.dev/hack => knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
+	knative.dev/networking => knative.dev/networking v0.0.0-20220524205304-22d1b933cf73
+	knative.dev/pkg => knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
+	knative.dev/serving => knative.dev/serving v0.32.0
+)
