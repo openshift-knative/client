@@ -283,7 +283,7 @@ github.com/json-iterator/go
 # github.com/kelseyhightower/envconfig v1.4.0
 ## explicit
 github.com/kelseyhightower/envconfig
-# github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.23.1
+# github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0
 ## explicit; go 1.19
 github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/command
 github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/common

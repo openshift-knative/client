@@ -151,7 +151,7 @@ require (
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
-	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.23.1
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0
 	github.com/klauspost/compress v1.14.4 // indirect
 	github.com/maximilien/kn-source-pkg v0.6.3 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
