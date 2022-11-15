@@ -297,6 +297,7 @@ replace (
 	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf
 	// Points at: https://github.com/openshift-knative/kn-plugin-func/commit/2434677faa83f8d38efbe68080141d9f476b5302
 	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221111203335-2434677faa83
+	sigs.k8s.io/json => sigs.k8s.io/json v0.0.0-20220525155127-227cbc7cc124
 	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.10.1
 	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.13.0
 )
