@@ -295,8 +295,8 @@ replace (
 	k8s.io/client-go => k8s.io/client-go v0.23.5
 	k8s.io/code-generator => k8s.io/code-generator v0.23.5
 	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf
-	// Points at: https://github.com/openshift-knative/kn-plugin-func/commit/2434677faa83f8d38efbe68080141d9f476b5302
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221111203335-2434677faa83
+	// Points at: https://github.com/openshift-knative/kn-plugin-func/commit/65b6d34081d8fa1e36283a05ad34213795cfa0ff
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221121172006-65b6d34081d8
 	sigs.k8s.io/json => sigs.k8s.io/json v0.0.0-20220525155127-227cbc7cc124
 	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.10.1
 	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.13.0
