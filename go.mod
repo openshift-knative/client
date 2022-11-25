@@ -21,7 +21,7 @@ require (
 	k8s.io/client-go v1.5.2
 	k8s.io/code-generator v0.23.9
 	knative.dev/eventing v0.35.0
-	knative.dev/func v1.8.0
+	knative.dev/func v1.8.1
 	knative.dev/hack v0.0.0-20221010154335-3fdc50b9c24a
 	knative.dev/networking v0.0.0-20221012062251-58f3e6239b4f
 	knative.dev/pkg v0.0.0-20221011175852-714b7630a836
@@ -295,8 +295,8 @@ replace (
 	k8s.io/client-go => k8s.io/client-go v0.23.5
 	k8s.io/code-generator => k8s.io/code-generator v0.23.5
 	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf
-	// Points at: https://github.com/openshift-knative/kn-plugin-func/commit/65b6d34081d8fa1e36283a05ad34213795cfa0ff
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221121172006-65b6d34081d8
+	// Points at: https://github.com/openshift-knative/kn-plugin-func/commit/e3c10352ae3e52403e66a2913c4d08c560870611
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221125145031-e3c10352ae3e
 	sigs.k8s.io/json => sigs.k8s.io/json v0.0.0-20220525155127-227cbc7cc124
 	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.10.1
 	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.13.0
