@@ -135,7 +135,7 @@ require (
 
 require (
 	github.com/maximilien/kn-source-pkg v0.6.3
-	knative.dev/func v0.35.1
+	knative.dev/func v1.8.1
 )
 
 require (
@@ -185,7 +185,7 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
-	github.com/emicklei/go-restful/v3 v3.8.0 // indirect
+	github.com/emicklei/go-restful v2.16.0+incompatible // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/gdamore/encoding v1.0.0 // indirect
@@ -196,7 +196,6 @@ require (
 	github.com/go-git/go-git/v5 v5.4.2 // indirect
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/google/cel-go v0.12.5 // indirect
-	github.com/google/gnostic v0.6.9 // indirect
 	github.com/hako/durafmt v0.0.0-20210608085754-5c1018a4e16b // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -225,6 +224,7 @@ require (
 	github.com/openshift/source-to-image v1.3.1 // indirect
 	github.com/ory/viper v1.7.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
@@ -232,6 +232,7 @@ require (
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/src-d/gcfg v1.4.0 // indirect
 	github.com/stoewer/go-strcase v1.2.0 // indirect
+	github.com/stretchr/testify v1.8.0 // indirect
 	github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635 // indirect
 	github.com/tektoncd/cli v0.27.0 // indirect
 	github.com/tektoncd/pipeline v0.40.2 // indirect
@@ -269,6 +270,7 @@ require (
 // Plugin kn-plugin-event from midstream
 replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221208191544-357a00c00bec
 
+// Plugin kn-plugin-func from midstream
 replace (
 	github.com/cloudevents/sdk-go/sql/v2 => github.com/cloudevents/sdk-go/sql/v2 v2.0.0-20220930150014-52b12276cc4a
 	github.com/openshift/source-to-image => github.com/boson-project/source-to-image v1.3.2
@@ -278,11 +280,15 @@ replace (
 	k8s.io/cli-runtime => k8s.io/cli-runtime v0.23.4
 	k8s.io/client-go => k8s.io/client-go v0.23.8
 	k8s.io/code-generator => k8s.io/code-generator v0.23.8
-	knative.dev/eventing => knative.dev/eventing v0.33.0
+	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf
 	// Pin knative.dev modules to prevent newer version from plugins
+	knative.dev/eventing => knative.dev/eventing v0.33.0
 	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20221201193510-08b197abd391
 	knative.dev/hack => knative.dev/hack v0.0.0-20220701014203-65c463ac8c98
 	knative.dev/networking => knative.dev/networking v0.0.0-20220705142707-f087178076e4
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20220705130606-e60d250dc637
 	knative.dev/serving => knative.dev/serving v0.33.0
+	sigs.k8s.io/json => sigs.k8s.io/json v0.0.0-20220525155127-227cbc7cc124
+	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.10.1
+	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.13.0
 )
