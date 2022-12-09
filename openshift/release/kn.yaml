@@ -15,11 +15,11 @@ plugins:
       - module: knative.dev/kn-plugin-event
         moduleSource: github.com/openshift-knative/kn-plugin-event
         version: release-1.6
-  # - name: kn-plugin-func
-  #   module: knative.dev/func
-  #   pluginImportPath: knative.dev/func/plugin
-  #   version: v1.8.1
-  #   replace:
-  #     - module: knative.dev/func
-  #       moduleSource: github.com/openshift-knative/kn-plugin-func
-  #       version: release-next
+  - name: kn-plugin-func
+    module: knative.dev/func
+    pluginImportPath: knative.dev/func/plugin
+    version: v1.8.1
+    replace:
+      - module: knative.dev/func
+        moduleSource: github.com/openshift-knative/kn-plugin-func
+        version: serverless-1.26.0
