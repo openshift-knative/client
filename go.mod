@@ -142,6 +142,12 @@ require (
 require github.com/maximilien/kn-source-pkg v0.6.3
 
 require (
+	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+)
+
+require (
 	github.com/Shopify/sarama v1.30.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -157,4 +163,7 @@ require (
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	knative.dev/eventing-kafka v0.33.0 // indirect
+	knative.dev/kn-plugin-event v1.6.0
 )
+
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221208191544-357a00c00bec
