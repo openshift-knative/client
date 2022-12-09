@@ -1,0 +1,25 @@
+plugins:
+  - name: kn-plugin-source-kafka
+    module: knative.dev/kn-plugin-source-kafka
+    pluginImportPath: knative.dev/kn-plugin-source-kafka/plugin
+    version: knative-v1.6.0
+  # - name: kn-plugin-workflow
+  #   module: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow
+  #   pluginImportPath: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin
+  #   version: v0.23.1
+  # - name: kn-plugin-event
+  #   module: knative.dev/kn-plugin-event
+  #   pluginImportPath: knative.dev/kn-plugin-event/pkg/plugin
+  #   version: v1.6.0
+  #   replace:
+  #     - module: knative.dev/kn-plugin-event
+  #       moduleSource: github.com/openshift-knative/kn-plugin-event
+  #       version: release-1.6
+  # - name: kn-plugin-func
+  #   module: knative.dev/func
+  #   pluginImportPath: knative.dev/func/plugin
+  #   version: v1.8.1
+  #   replace:
+  #     - module: knative.dev/func
+  #       moduleSource: github.com/openshift-knative/kn-plugin-func
+  #       version: release-next
