@@ -9,12 +9,12 @@ require (
 	github.com/hashicorp/hcl v1.0.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.8.0 // indirect
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.10.1
 	golang.org/x/mod v0.5.1
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
-	gotest.tools/v3 v3.1.0
+	gotest.tools/v3 v3.3.0
 	k8s.io/api v0.23.8
 	k8s.io/apiextensions-apiserver v0.23.8
 	k8s.io/apimachinery v0.23.8
@@ -48,7 +48,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cloudevents/sdk-go/sql/v2 v2.8.0 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.10.1 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/evanphx/json-patch v4.12.0+incompatible // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
@@ -73,7 +73,7 @@ require (
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
@@ -113,11 +113,11 @@ require (
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
+	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
 	golang.org/x/tools v0.1.9 // indirect
-	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
 	google.golang.org/api v0.70.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
@@ -142,7 +142,10 @@ require (
 require github.com/maximilien/kn-source-pkg v0.6.3
 
 require (
+	github.com/cespare/xxhash v1.1.0 // indirect
+	github.com/dgraph-io/ristretto v0.0.1 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/ory/viper v1.7.5 // indirect
 	github.com/thediveo/enumflag v0.10.0 // indirect
 	github.com/wavesoftware/go-ensure v1.0.0 // indirect
 )
@@ -159,6 +162,7 @@ require (
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0
 	github.com/klauspost/compress v1.14.4 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
