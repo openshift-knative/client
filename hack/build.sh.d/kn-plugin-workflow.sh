@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly quarkus_version="2.7.6.Final-redhat-00006"
+readonly quarkus_version="2.13.5.Final-redhat-00002"
 readonly quarkus_platform_group_id="com.redhat.quarkus.platform"
 export EXTERNAL_LD_FLAGS="${EXTERNAL_LD_FLAGS:-} \
 -X github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/metadata.QuarkusVersion=${quarkus_version} \
