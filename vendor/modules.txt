@@ -108,6 +108,9 @@ github.com/evanphx/json-patch/v5
 # github.com/fsnotify/fsnotify v1.5.1
 ## explicit; go 1.13
 github.com/fsnotify/fsnotify
+# github.com/ghodss/yaml v1.0.0
+## explicit
+github.com/ghodss/yaml
 # github.com/go-errors/errors v1.0.1
 ## explicit
 github.com/go-errors/errors
@@ -406,6 +409,12 @@ github.com/stretchr/testify/require
 # github.com/subosito/gotenv v1.2.0
 ## explicit
 github.com/subosito/gotenv
+# github.com/thediveo/enumflag v0.10.0
+## explicit; go 1.13
+github.com/thediveo/enumflag
+# github.com/wavesoftware/go-ensure v1.0.0
+## explicit; go 1.13
+github.com/wavesoftware/go-ensure
 # github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca
 ## explicit
 github.com/xlab/treeprint
@@ -1040,6 +1049,18 @@ knative.dev/eventing-kafka/pkg/common/constants
 # knative.dev/hack v0.0.0-20220823140917-8d1e4ccf9dc3
 ## explicit; go 1.17
 knative.dev/hack
+# knative.dev/kn-plugin-event v1.7.0 => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221209112041-6b59db10102f
+## explicit; go 1.18
+knative.dev/kn-plugin-event/internal/cli/cmd
+knative.dev/kn-plugin-event/pkg/cli
+knative.dev/kn-plugin-event/pkg/cli/ics
+knative.dev/kn-plugin-event/pkg/cli/retcode
+knative.dev/kn-plugin-event/pkg/configuration
+knative.dev/kn-plugin-event/pkg/event
+knative.dev/kn-plugin-event/pkg/k8s
+knative.dev/kn-plugin-event/pkg/metadata
+knative.dev/kn-plugin-event/pkg/plugin
+knative.dev/kn-plugin-event/pkg/sender
 # knative.dev/kn-plugin-source-kafka v0.34.0
 ## explicit; go 1.17
 knative.dev/kn-plugin-source-kafka/pkg/client
@@ -1242,3 +1263,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
+# knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221209112041-6b59db10102f
