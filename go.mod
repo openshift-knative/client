@@ -156,4 +156,13 @@ require (
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	knative.dev/eventing-kafka v0.34.0 // indirect
+	knative.dev/kn-plugin-event v1.7.0
 )
+
+require (
+	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+)
+
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221209112041-6b59db10102f
