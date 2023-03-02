@@ -7,9 +7,10 @@ require (
 	github.com/google/go-cmp v0.5.7
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hashicorp/hcl v1.0.0
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0 //TODO: update to next release tag when available
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.8.0 // indirect
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.4.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.10.1
 	golang.org/x/mod v0.5.1
@@ -113,7 +114,7 @@ require (
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
-	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
+	golang.org/x/sys v0.0.0-20220804214406-8e32c043e418 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
 	golang.org/x/tools v0.1.9 // indirect
@@ -163,6 +164,12 @@ require (
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/thediveo/enumflag v0.10.0 // indirect
 	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+)
+
+require (
+	github.com/cespare/xxhash v1.1.0 // indirect
+	github.com/dgraph-io/ristretto v0.0.1 // indirect
+	github.com/ory/viper v1.7.5 // indirect
 )
 
 replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20221209112041-6b59db10102f
