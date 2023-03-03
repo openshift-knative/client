@@ -6,7 +6,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hashicorp/hcl v1.0.0
-	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0 //TODO: update to next release tag when available
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.25.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cobra v1.6.1
@@ -216,7 +216,7 @@ require (
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/google/cel-go v0.12.5 // indirect
 	github.com/hako/durafmt v0.0.0-20210608085754-5c1018a4e16b // indirect
-	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/heroku/color v0.0.6 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
