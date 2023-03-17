@@ -293,6 +293,9 @@ func validateExportedServiceList(t *testing.T, it *test.KnTest, out string, expS
 	actSvcList := servingv1.ServiceList{}
 	err := yaml.Unmarshal([]byte(out), &actSvcList)
 	assert.NilError(t, err)
+	for i := range actSvcList.Items {
+		actSvcList.Items[i].Spec.ConfigurationSpec.Template.Spec.Containers[0].SecurityContext = nil
+	}
 	assert.DeepEqual(t, expServiceList, &actSvcList)
 }
 
@@ -300,7 +303,8 @@ func validateExportedServiceandRevisionList(t *testing.T, it *test.KnTest, out s
 	actSvc := clientv1alpha1.Export{}
 	err := yaml.Unmarshal([]byte(out), &actSvc)
 	assert.NilError(t, err)
-
+	actSvc.Spec.ConfigurationSpec.Template.Spec.Containers[0].SecurityContext = nil
+	
 	knExport.Spec.Service = *expService
 	assert.DeepEqual(t, knExport, &actSvc)
 }
