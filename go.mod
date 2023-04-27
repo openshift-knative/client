@@ -22,6 +22,7 @@ require (
 	k8s.io/code-generator v0.25.2
 	knative.dev/eventing v0.35.0
 	knative.dev/hack v0.0.0-20221010154335-3fdc50b9c24a
+	knative.dev/kn-plugin-event v1.8.1
 	knative.dev/kn-plugin-source-kafka v0.35.1
 	knative.dev/networking v0.0.0-20221012062251-58f3e6239b4f
 	knative.dev/pkg v0.0.0-20230224191730-67fb5f6e6735
@@ -52,6 +53,7 @@ require (
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
+	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
@@ -103,6 +105,10 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-commandline v1.0.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+	github.com/wavesoftware/go-retcode v1.0.0 // indirect
 	github.com/xlab/treeprint v1.1.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.starlark.net v0.0.0-20220817180228-f738f5508c12 // indirect
@@ -128,9 +134,9 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/gengo v0.0.0-20220613173612-397b4ae3bce7 // indirect
-	k8s.io/klog/v2 v2.70.2-0.20220707122935-0990e81f1a8f // indirect
+	k8s.io/klog/v2 v2.80.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 // indirect
-	k8s.io/utils v0.0.0-20220728103510-ee6ede2d64ed // indirect
+	k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73 // indirect
 	sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 // indirect
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
@@ -149,9 +155,11 @@ require (
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
-	github.com/klauspost/compress v1.15.8 // indirect
+	github.com/klauspost/compress v1.15.9 // indirect
 	github.com/maximilien/kn-source-pkg v0.6.3 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	knative.dev/eventing-kafka v0.35.1 // indirect
 )
+
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230427120021-56309859a41a
