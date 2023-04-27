@@ -205,11 +205,10 @@ install_knative_eventing_branch() {
 install_serverless_operator_branch() {
   local branch=$1
   local repository="https://github.com/openshift-knative/serverless-operator.git"
-  git ls-remote --heads --exit-code "$repository" "$branch" >/dev/null 2>&1;
-  local repo_exists=$?
-  if [[ $repo_exists == 2 ]]; then
-    echo "Release branch doesn't exist yet, using main"
-    branch="main"
+  
+  if ! git ls-remote --heads --exit-code "$repository" "$branch" &>/dev/null; then
+      echo "Release branch doesn't exist yet, using main"
+      branch="main"
   fi
 
   local operator_dir=/tmp/serverless-operator
