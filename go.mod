@@ -235,7 +235,7 @@ require (
 	k8s.io/klog/v2 v2.90.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20230123231816-1cb3ae25d79a // indirect
 	k8s.io/utils v0.0.0-20230115233650-391b47cb4029 // indirect
-	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2
+	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
@@ -256,6 +256,7 @@ require (
 	github.com/jcmturner/gofork v1.7.6 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.3 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.0
 	github.com/klauspost/compress v1.15.15 // indirect
 	github.com/maximilien/kn-source-pkg v0.6.3 // indirect
 	github.com/moby/sys/mount v0.3.3 // indirect
