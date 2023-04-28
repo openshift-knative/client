@@ -843,6 +843,13 @@ github.com/kelseyhightower/envconfig
 # github.com/kevinburke/ssh_config v1.2.0
 ## explicit
 github.com/kevinburke/ssh_config
+# github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.0
+## explicit; go 1.19
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/command
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/common
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/metadata
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/root
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin
 # github.com/klauspost/compress v1.15.15
 ## explicit; go 1.17
 github.com/klauspost/compress
@@ -1837,7 +1844,6 @@ knative.dev/client-pkg/pkg/config
 knative.dev/client-pkg/pkg/errors
 knative.dev/client-pkg/pkg/eventing/v1
 knative.dev/client-pkg/pkg/kn/flags
-knative.dev/client-pkg/pkg/kn/plugin
 knative.dev/client-pkg/pkg/serving
 knative.dev/client-pkg/pkg/serving/v1
 knative.dev/client-pkg/pkg/util
