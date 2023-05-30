@@ -287,7 +287,7 @@ replace (
 
 	//Pin Knative versions
 	knative.dev/eventing => knative.dev/eventing v0.35.0
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20230518120745-5da93a6152e6
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20230530151125-3fd47bb18722
 	knative.dev/hack => knative.dev/hack v0.0.0-20221010154335-3fdc50b9c24a
 	knative.dev/networking => knative.dev/networking v0.0.0-20221012062251-58f3e6239b4f
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20230224191730-67fb5f6e6735
