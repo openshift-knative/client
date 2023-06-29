@@ -16,8 +16,7 @@
 
 package metadata
 
-var QuarkusPlatformGroupId string
-var QuarkusVersion string
+var QuarkusPlatformGroupId, QuarkusVersion string
 
 type DependenciesVersion struct {
 	QuarkusPlatformGroupId string
