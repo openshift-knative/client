@@ -1,0 +1,6 @@
+plugins:
+  - name: kn-plugin-workflow
+    module: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow
+    pluginImportPath: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin
+    version: v0.30.1
+    
