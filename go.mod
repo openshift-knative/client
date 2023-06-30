@@ -20,6 +20,7 @@ require (
 	k8s.io/cli-runtime v0.25.2
 	k8s.io/client-go v0.27.2
 	k8s.io/code-generator v0.26.5
+	knative.dev/client-pkg v0.0.0-20230120062501-d4ab4e492526
 	knative.dev/eventing v0.36.7
 	knative.dev/hack v0.0.0-20230217102752-199139daec7e
 	knative.dev/networking v0.0.0-20230225001731-5e096d63b0cb
@@ -105,6 +106,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
+	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
@@ -150,4 +152,12 @@ replace (
 	k8s.io/cli-runtime => k8s.io/cli-runtime v0.25.4
 	k8s.io/client-go => k8s.io/client-go v0.25.4
 	k8s.io/code-generator => k8s.io/code-generator v0.25.4
+
+	//Pin Knative versions
+	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20230406095919-cefc018a310d
+	knative.dev/eventing => knative.dev/eventing v0.36.7
+	knative.dev/hack => knative.dev/hack v0.0.0-20230217102752-199139daec7e
+	knative.dev/networking => knative.dev/networking v0.0.0-20230225001731-5e096d63b0cb
+	knative.dev/pkg => knative.dev/pkg v0.0.0-20230224205330-75da922ef055
+	knative.dev/serving => knative.dev/serving v0.36.4
 )
