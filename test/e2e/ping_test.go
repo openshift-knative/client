@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -38,7 +39,7 @@ func TestSourcePing(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	t.Log("Creating a testservice")
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 
 	t.Log("create Ping sources with a sink to a service")
 
@@ -53,7 +54,7 @@ func TestSourcePing(t *testing.T) {
 
 	t.Log("update Ping source sink service")
 	pingSourceCreate(r, "testpingsource2", "* * * * */1", "ping", "ksvc:testsvc0")
-	test.ServiceCreate(r, "testsvc1")
+	e2e.ServiceCreate(r, "testsvc1")
 	pingSourceUpdateSink(r, "testpingsource2", "ksvc:testsvc1")
 	jpSinkRefNameInSpec := "jsonpath={.spec.sink.ref.name}"
 	out, err := test.GetResourceFieldsWithJSONPath(t, it, "pingsource", "testpingsource2", jpSinkRefNameInSpec)

@@ -19,6 +19,7 @@ package e2e
 
 import (
 	"encoding/json"
+	"knative.dev/client/lib/test/e2e"
 	"os"
 	"strings"
 	"testing"
@@ -61,153 +62,153 @@ func TestServiceExport(t *testing.T) {
 		userImage = ""
 	}
 	t.Log("export service-revision1 and compare")
-	serviceExport(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExport(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 		servingtest.WithBYORevisionName("hello-rev1"),
-		test.WithRevisionAnnotations(map[string]string{"client.knative.dev/user-image": userImage}),
+		e2e.WithRevisionAnnotations(map[string]string{"client.knative.dev/user-image": userImage}),
 	), "--mode", "replay", "-o", "json")
 
 	t.Log("update service - add env variable")
-	test.ServiceUpdate(r, "hello", "--env", "a=mouse", "--revision-name", "rev2", "--no-lock-to-digest")
-	serviceExport(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	e2e.ServiceUpdate(r, "hello", "--env", "a=mouse", "--revision-name", "rev2", "--no-lock-to-digest")
+	serviceExport(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 		servingtest.WithBYORevisionName("hello-rev2"),
 		servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 	), "--mode", "replay", "-o", "json")
 
 	t.Log("export service-revision2 with kubernetes-resources")
-	serviceExportWithServiceList(r, "hello", test.BuildServiceListWithOptions(
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithServiceList(r, "hello", e2e.BuildServiceListWithOptions(
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev2"),
-			test.WithTrafficSpec([]string{"latest"}, []int{100}, []string{""}),
+			e2e.WithTrafficSpec([]string{"latest"}, []int{100}, []string{""}),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		)),
 	), "--with-revisions", "--mode", "replay", "-o", "yaml")
 
 	t.Log("export service-revision2 with revisions-only")
-	serviceExportWithRevisionList(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithRevisionList(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 		servingtest.WithBYORevisionName("hello-rev2"),
-		test.WithTrafficSpec([]string{"latest"}, []int{100}, []string{""}),
+		e2e.WithTrafficSpec([]string{"latest"}, []int{100}, []string{""}),
 		servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
-	), test.BuildKNExportWithOptions(), "--with-revisions", "--mode", "export", "-o", "yaml")
+	), e2e.BuildKNExportWithOptions(), "--with-revisions", "--mode", "export", "-o", "yaml")
 
 	t.Log("update service with tag and split traffic")
-	test.ServiceUpdate(r, "hello", "--tag", "hello-rev1=candidate", "--traffic", "candidate=2%,@latest=98%")
+	e2e.ServiceUpdate(r, "hello", "--tag", "hello-rev1=candidate", "--traffic", "candidate=2%,@latest=98%")
 
 	t.Log("export service-revision2 after tagging kubernetes-resources")
-	serviceExportWithServiceList(r, "hello", test.BuildServiceListWithOptions(
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithServiceList(r, "hello", e2e.BuildServiceListWithOptions(
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev1"),
-			test.WithRevisionAnnotations(map[string]string{
+			e2e.WithRevisionAnnotations(map[string]string{
 				"client.knative.dev/user-image": userImage,
 				"serving.knative.dev/routes":    "hello",
 			}),
 		)),
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev2"),
-			test.WithTrafficSpec([]string{"latest", "hello-rev1"}, []int{98, 2}, []string{"", "candidate"}),
+			e2e.WithTrafficSpec([]string{"latest", "hello-rev1"}, []int{98, 2}, []string{"", "candidate"}),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		)),
 	), "--with-revisions", "--mode", "replay", "-o", "yaml")
 
 	t.Log("export service-revision2 after tagging with revisions-only")
-	serviceExportWithRevisionList(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithRevisionList(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 		servingtest.WithBYORevisionName("hello-rev2"),
-		test.WithTrafficSpec([]string{"latest", "hello-rev1"}, []int{98, 2}, []string{"", "candidate"}),
+		e2e.WithTrafficSpec([]string{"latest", "hello-rev1"}, []int{98, 2}, []string{"", "candidate"}),
 		servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
-	), test.BuildKNExportWithOptions(
-		test.WithKNRevision(*(test.BuildRevision("hello-rev1",
+	), e2e.BuildKNExportWithOptions(
+		e2e.WithKNRevision(*(e2e.BuildRevision("hello-rev1",
 			servingtest.WithRevisionAnn("client.knative.dev/user-image", userImage),
 			servingtest.WithRevisionAnn("serving.knative.dev/routes", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configuration", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configurationGeneration", "1"),
 			servingtest.WithRevisionLabel("serving.knative.dev/routingState", "active"),
 			servingtest.WithRevisionLabel("serving.knative.dev/service", "hello"),
-			test.WithRevisionImage(pkgtest.ImagePath("helloworld")),
+			e2e.WithRevisionImage(pkgtest.ImagePath("helloworld")),
 		))),
 	), "--with-revisions", "--mode", "export", "-o", "yaml")
 
 	t.Log("update service - untag, add env variable, traffic split and system revision name")
-	test.ServiceUpdate(r, "hello", "--untag", "candidate")
-	test.ServiceUpdate(r, "hello", "--env", "b=cat", "--revision-name", "hello-rev3", "--traffic", "hello-rev1=30,hello-rev2=30,hello-rev3=40")
+	e2e.ServiceUpdate(r, "hello", "--untag", "candidate")
+	e2e.ServiceUpdate(r, "hello", "--env", "b=cat", "--revision-name", "hello-rev3", "--traffic", "hello-rev1=30,hello-rev2=30,hello-rev3=40")
 
 	t.Log("export service-revision3 with kubernetes-resources")
-	serviceExportWithServiceList(r, "hello", test.BuildServiceListWithOptions(
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
-			test.WithRevisionAnnotations(map[string]string{
+	serviceExportWithServiceList(r, "hello", e2e.BuildServiceListWithOptions(
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
+			e2e.WithRevisionAnnotations(map[string]string{
 				"client.knative.dev/user-image": userImage,
 				"serving.knative.dev/routes":    "hello",
 			}),
 			servingtest.WithBYORevisionName("hello-rev1"),
 		),
 		),
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev2"),
-			test.WithRevisionAnnotations(map[string]string{
+			e2e.WithRevisionAnnotations(map[string]string{
 				"serving.knative.dev/routes": "hello",
 			}),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		),
 		),
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev3"),
-			test.WithTrafficSpec([]string{"hello-rev1", "hello-rev2", "hello-rev3"}, []int{30, 30, 40}, []string{"", "", ""}),
+			e2e.WithTrafficSpec([]string{"hello-rev1", "hello-rev2", "hello-rev3"}, []int{30, 30, 40}, []string{"", "", ""}),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}, corev1.EnvVar{Name: "b", Value: "cat"}),
 		),
 		)), "--with-revisions", "--mode", "replay", "-o", "yaml")
 
 	t.Log("export service-revision3 with revisions-only")
-	serviceExportWithRevisionList(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
-		test.WithTrafficSpec([]string{"hello-rev1", "hello-rev2", "hello-rev3"}, []int{30, 30, 40}, []string{"", "", ""}),
+	serviceExportWithRevisionList(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
+		e2e.WithTrafficSpec([]string{"hello-rev1", "hello-rev2", "hello-rev3"}, []int{30, 30, 40}, []string{"", "", ""}),
 		servingtest.WithBYORevisionName("hello-rev3"),
 		servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}, corev1.EnvVar{Name: "b", Value: "cat"}),
-	), test.BuildKNExportWithOptions(
-		test.WithKNRevision(*(test.BuildRevision("hello-rev1",
+	), e2e.BuildKNExportWithOptions(
+		e2e.WithKNRevision(*(e2e.BuildRevision("hello-rev1",
 			servingtest.WithRevisionAnn("client.knative.dev/user-image", userImage),
 			servingtest.WithRevisionAnn("serving.knative.dev/routes", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configuration", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configurationGeneration", "1"),
 			servingtest.WithRevisionLabel("serving.knative.dev/routingState", "active"),
 			servingtest.WithRevisionLabel("serving.knative.dev/service", "hello"),
-			test.WithRevisionImage(pkgtest.ImagePath("helloworld")),
+			e2e.WithRevisionImage(pkgtest.ImagePath("helloworld")),
 		))),
-		test.WithKNRevision(*(test.BuildRevision("hello-rev2",
+		e2e.WithKNRevision(*(e2e.BuildRevision("hello-rev2",
 			servingtest.WithRevisionAnn("serving.knative.dev/routes", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configuration", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configurationGeneration", "2"),
 			servingtest.WithRevisionLabel("serving.knative.dev/routingState", "active"),
 			servingtest.WithRevisionLabel("serving.knative.dev/service", "hello"),
-			test.WithRevisionImage(pkgtest.ImagePath("helloworld")),
-			test.WithRevisionEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
+			e2e.WithRevisionImage(pkgtest.ImagePath("helloworld")),
+			e2e.WithRevisionEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		))),
 	), "--with-revisions", "--mode", "export", "-o", "yaml")
 
 	t.Log("send all traffic to revision 2")
-	test.ServiceUpdate(r, "hello", "--traffic", "hello-rev2=100")
+	e2e.ServiceUpdate(r, "hello", "--traffic", "hello-rev2=100")
 
 	t.Log("export kubernetes-resources - all traffic to revision 2")
-	serviceExportWithServiceList(r, "hello", test.BuildServiceListWithOptions(
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithServiceList(r, "hello", e2e.BuildServiceListWithOptions(
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 			servingtest.WithBYORevisionName("hello-rev2"),
-			test.WithRevisionAnnotations(map[string]string{
+			e2e.WithRevisionAnnotations(map[string]string{
 				"serving.knative.dev/routes": "hello",
 			}),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		),
 		),
-		test.WithService(test.BuildServiceWithOptions("hello",
-			servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
-			test.WithTrafficSpec([]string{"hello-rev2"}, []int{100}, []string{""}),
+		e2e.WithService(e2e.BuildServiceWithOptions("hello",
+			servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
+			e2e.WithTrafficSpec([]string{"hello-rev2"}, []int{100}, []string{""}),
 			servingtest.WithBYORevisionName("hello-rev3"),
 			servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}, corev1.EnvVar{Name: "b", Value: "cat"}),
 		),
@@ -215,20 +216,20 @@ func TestServiceExport(t *testing.T) {
 	), "--with-revisions", "--mode", "replay", "-o", "yaml")
 
 	t.Log("export revisions-only - all traffic to revision 2")
-	serviceExportWithRevisionList(r, "hello", test.BuildServiceWithOptions("hello",
-		servingtest.WithConfigSpec(test.BuildConfigurationSpec()),
+	serviceExportWithRevisionList(r, "hello", e2e.BuildServiceWithOptions("hello",
+		servingtest.WithConfigSpec(e2e.BuildConfigurationSpec()),
 		servingtest.WithBYORevisionName("hello-rev3"),
-		test.WithTrafficSpec([]string{"hello-rev2"}, []int{100}, []string{""}),
+		e2e.WithTrafficSpec([]string{"hello-rev2"}, []int{100}, []string{""}),
 		servingtest.WithEnv(corev1.EnvVar{Name: "a", Value: "mouse"}, corev1.EnvVar{Name: "b", Value: "cat"}),
-	), test.BuildKNExportWithOptions(
-		test.WithKNRevision(*(test.BuildRevision("hello-rev2",
+	), e2e.BuildKNExportWithOptions(
+		e2e.WithKNRevision(*(e2e.BuildRevision("hello-rev2",
 			servingtest.WithRevisionAnn("serving.knative.dev/routes", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configuration", "hello"),
 			servingtest.WithRevisionLabel("serving.knative.dev/configurationGeneration", "2"),
 			servingtest.WithRevisionLabel("serving.knative.dev/routingState", "active"),
 			servingtest.WithRevisionLabel("serving.knative.dev/service", "hello"),
-			test.WithRevisionImage(pkgtest.ImagePath("helloworld")),
-			test.WithRevisionEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
+			e2e.WithRevisionImage(pkgtest.ImagePath("helloworld")),
+			e2e.WithRevisionEnv(corev1.EnvVar{Name: "a", Value: "mouse"}),
 		))),
 	), "--with-revisions", "--mode", "export", "-o", "yaml")
 

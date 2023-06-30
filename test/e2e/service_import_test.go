@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"os"
 	"path/filepath"
 	"testing"
@@ -44,10 +45,10 @@ func TestServiceImport(t *testing.T) {
 	testFile := filepath.Join(tempDir, "foo-with-revisions")
 
 	serviceCreateWithOptions(r, "foo", "--revision-name", "foo-rev-1")
-	test.ServiceUpdate(r, "foo", "--env", "TARGET=v2", "--revision-name", "foo-rev-2")
-	test.ServiceUpdate(r, "foo", "--traffic", "foo-rev-1=50,foo-rev-2=50")
+	e2e.ServiceUpdate(r, "foo", "--env", "TARGET=v2", "--revision-name", "foo-rev-2")
+	e2e.ServiceUpdate(r, "foo", "--traffic", "foo-rev-1=50,foo-rev-2=50")
 	serviceExportToFile(r, "foo", testFile, true)
-	test.ServiceDelete(r, "foo")
+	e2e.ServiceDelete(r, "foo")
 	serviceImport(r, testFile)
 
 	t.Log("import existing service foo error")

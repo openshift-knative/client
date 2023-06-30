@@ -17,6 +17,7 @@ package service
 import (
 	"context"
 	"encoding/json"
+	libtest "knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"knative.dev/client/pkg/serving"
@@ -24,7 +25,6 @@ import (
 	"gotest.tools/v3/assert"
 
 	v1 "k8s.io/api/core/v1"
-	libtest "knative.dev/client/lib/test"
 	clientv1alpha1 "knative.dev/client/pkg/apis/client/v1alpha1"
 	knclient "knative.dev/client/pkg/serving/v1"
 	"knative.dev/client/pkg/util/mock"

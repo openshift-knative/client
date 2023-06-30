@@ -19,6 +19,7 @@ package e2e
 
 import (
 	"fmt"
+	"knative.dev/client/lib/test/e2e"
 	"strings"
 	"testing"
 
@@ -50,7 +51,7 @@ func TestSourceApiServer(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	setupForSourceAPIServer(t, it)
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 
 	t.Log("create apiserver sources with a sink to a service")
 	apiServerSourceCreate(r, "testapisource0", "Event:v1:key1=value1", "testsa", "ksvc:testsvc0")
@@ -76,7 +77,7 @@ func TestSourceApiServer(t *testing.T) {
 
 	t.Log("update apiserver source sink service")
 	apiServerSourceCreate(r, "testapisource3", "Event:v1", "testsa", "ksvc:testsvc0")
-	test.ServiceCreate(r, "testsvc1")
+	e2e.ServiceCreate(r, "testsvc1")
 	apiServerSourceUpdateSink(r, "testapisource3", "ksvc:testsvc1")
 	jpSinkRefNameInSpec := "jsonpath={.spec.sink.ref.name}"
 	out, err := test.GetResourceFieldsWithJSONPath(t, it, "apiserversource.sources.knative.dev", "testapisource3", jpSinkRefNameInSpec)

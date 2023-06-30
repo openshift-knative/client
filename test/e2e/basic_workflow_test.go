@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -38,23 +39,23 @@ func TestBasicWorkflow(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	t.Log("returns no service before running tests")
-	test.ServiceListEmpty(r)
+	e2e.ServiceListEmpty(r)
 
 	t.Log("create hello service and return no error")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 
 	t.Log("return valid info about hello service")
-	test.ServiceList(r, "hello")
-	test.ServiceDescribe(r, "hello")
+	e2e.ServiceList(r, "hello")
+	e2e.ServiceDescribe(r, "hello")
 
 	t.Log("return list --output name about hello service")
-	test.ServiceListOutput(r, "hello")
+	e2e.ServiceListOutput(r, "hello")
 
 	t.Log("update hello service's configuration and return no error")
-	test.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
+	e2e.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
 
 	t.Log("create another service and return no error")
-	test.ServiceCreate(r, "svc2")
+	e2e.ServiceCreate(r, "svc2")
 
 	t.Log("return a list of revisions associated with hello and svc2 services")
 	test.RevisionListForService(r, "hello")
@@ -64,11 +65,11 @@ func TestBasicWorkflow(t *testing.T) {
 	test.RevisionDescribe(r, "hello")
 
 	t.Log("delete hello and svc2 services and return no error")
-	test.ServiceDelete(r, "hello")
-	test.ServiceDelete(r, "svc2")
+	e2e.ServiceDelete(r, "hello")
+	e2e.ServiceDelete(r, "svc2")
 
 	t.Log("return no service after completing tests")
-	test.ServiceListEmpty(r)
+	e2e.ServiceListEmpty(r)
 }
 
 func TestWrongCommand(t *testing.T) {

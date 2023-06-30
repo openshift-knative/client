@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package test
+package e2e
 
 import (
 	"context"
 	"encoding/json"
+	"knative.dev/client/lib/test"
 	"strings"
 
 	"knative.dev/pkg/kmap"
@@ -45,28 +46,28 @@ type ExpectedRevisionListOption func(*servingv1.RevisionList)
 type ExpectedKNExportOption func(*clientv1alpha1.Export)
 
 // ServiceCreate verifies given service creation in sync mode and also verifies output
-func ServiceCreate(r *KnRunResultCollector, serviceName string) {
+func ServiceCreate(r *test.KnRunResultCollector, serviceName string) {
 	out := r.KnTest().Kn().Run("service", "create", serviceName, "--image", pkgtest.ImagePath("helloworld"))
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAllIgnoreCase(out.Stdout, "service", serviceName, "creating", "namespace", r.KnTest().Kn().Namespace(), "ready"))
 }
 
 // ServiceListEmpty verifies that there are no services present
-func ServiceListEmpty(r *KnRunResultCollector) {
+func ServiceListEmpty(r *test.KnRunResultCollector) {
 	out := r.KnTest().Kn().Run("service", "list")
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAll(out.Stdout, "No services found."))
 }
 
 // ServiceList verifies if given service exists
-func ServiceList(r *KnRunResultCollector, serviceName string) {
+func ServiceList(r *test.KnRunResultCollector, serviceName string) {
 	out := r.KnTest().Kn().Run("service", "list", serviceName)
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAll(out.Stdout, serviceName))
 }
 
 // ServiceDescribe describes given service and verifies the keys in the output
-func ServiceDescribe(r *KnRunResultCollector, serviceName string) {
+func ServiceDescribe(r *test.KnRunResultCollector, serviceName string) {
 	out := r.KnTest().Kn().Run("service", "describe", serviceName)
 	r.AssertNoError(out)
 	assert.Assert(r.T(), util.ContainsAll(out.Stdout, serviceName, r.KnTest().Kn().Namespace(), pkgtest.ImagePath("helloworld")))
@@ -75,14 +76,14 @@ func ServiceDescribe(r *KnRunResultCollector, serviceName string) {
 }
 
 // ServiceListOutput verifies listing given service using '--output name' flag
-func ServiceListOutput(r *KnRunResultCollector, serviceName string) {
+func ServiceListOutput(r *test.KnRunResultCollector, serviceName string) {
 	out := r.KnTest().Kn().Run("service", "list", serviceName, "--output", "name")
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAll(out.Stdout, serviceName, "service.serving.knative.dev"))
 }
 
 // ServiceUpdate verifies service update operation with given arguments in sync mode
-func ServiceUpdate(r *KnRunResultCollector, serviceName string, args ...string) {
+func ServiceUpdate(r *test.KnRunResultCollector, serviceName string, args ...string) {
 	fullArgs := append([]string{}, "service", "update", serviceName)
 	fullArgs = append(fullArgs, args...)
 	out := r.KnTest().Kn().Run(fullArgs...)
@@ -92,7 +93,7 @@ func ServiceUpdate(r *KnRunResultCollector, serviceName string, args ...string) 
 
 // ServiceUpdateWithError verifies service update operation with given arguments in sync mode
 // when expecting an error
-func ServiceUpdateWithError(r *KnRunResultCollector, serviceName string, args ...string) {
+func ServiceUpdateWithError(r *test.KnRunResultCollector, serviceName string, args ...string) {
 	fullArgs := append([]string{}, "service", "update", serviceName)
 	fullArgs = append(fullArgs, args...)
 	out := r.KnTest().Kn().Run(fullArgs...)
@@ -100,21 +101,21 @@ func ServiceUpdateWithError(r *KnRunResultCollector, serviceName string, args ..
 }
 
 // ServiceDelete verifies service deletion in sync mode
-func ServiceDelete(r *KnRunResultCollector, serviceName string) {
+func ServiceDelete(r *test.KnRunResultCollector, serviceName string) {
 	out := r.KnTest().Kn().Run("service", "delete", serviceName, "--wait")
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAll(out.Stdout, "Service", serviceName, "successfully deleted in namespace", r.KnTest().Kn().Namespace()))
 }
 
 // ServiceDescribeWithJSONPath returns output of given JSON path by describing the service
-func ServiceDescribeWithJSONPath(r *KnRunResultCollector, serviceName, jsonpath string) string {
+func ServiceDescribeWithJSONPath(r *test.KnRunResultCollector, serviceName, jsonpath string) string {
 	out := r.KnTest().Kn().Run("service", "describe", serviceName, "-o", jsonpath)
 	r.AssertNoError(out)
 	return out.Stdout
 }
 
 // ValidateServiceResources validates cpu and mem resources
-func ValidateServiceResources(r *KnRunResultCollector, serviceName string, requestsMemory, requestsCPU, limitsMemory, limitsCPU string) {
+func ValidateServiceResources(r *test.KnRunResultCollector, serviceName string, requestsMemory, requestsCPU, limitsMemory, limitsCPU string) {
 	var err error
 	rlist := corev1.ResourceList{}
 	rlist[corev1.ResourceCPU], err = resource.ParseQuantity(requestsCPU)
@@ -143,7 +144,7 @@ func ValidateServiceResources(r *KnRunResultCollector, serviceName string, reque
 
 // GetServiceFromKNServiceDescribe runs the kn service describe command
 // decodes it into a ksvc and returns it.
-func GetServiceFromKNServiceDescribe(r *KnRunResultCollector, serviceName string) servingv1.Service {
+func GetServiceFromKNServiceDescribe(r *test.KnRunResultCollector, serviceName string) servingv1.Service {
 	out := r.KnTest().Kn().Run("service", "describe", serviceName, "-ojson")
 	data := json.NewDecoder(strings.NewReader(out.Stdout))
 	data.UseNumber()

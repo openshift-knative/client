@@ -20,6 +20,7 @@ package e2e
 import (
 	"encoding/json"
 	"fmt"
+	"knative.dev/client/lib/test/e2e"
 	"os"
 	"strings"
 	"testing"
@@ -60,7 +61,7 @@ func TestService(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	t.Log("create hello service, delete, and try to create duplicate and get service already exists error")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 	serviceCreatePrivate(r, "hello-private")
 	serviceCreateDuplicate(r, "hello-private")
 
@@ -68,24 +69,24 @@ func TestService(t *testing.T) {
 	serviceDescribeWithPrintFlags(r, "hello")
 
 	t.Log("delete hello service repeatedly and get an error")
-	test.ServiceDelete(r, "hello")
+	e2e.ServiceDelete(r, "hello")
 	serviceDeleteNonexistent(r, "hello")
 
 	t.Log("delete two services with a service nonexistent")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 	serviceMultipleDelete(r, "hello", "bla123")
 
 	t.Log("create service private and make public")
 	serviceCreatePrivateUpdatePublic(r, "hello-private-public")
 
 	t.Log("error message from --untag with tag that doesn't exist")
-	test.ServiceCreate(r, "untag")
+	e2e.ServiceCreate(r, "untag")
 	serviceUntagTagThatDoesNotExist(r, "untag")
 
 	t.Log("delete all services in a namespace")
-	test.ServiceCreate(r, "svc1")
-	test.ServiceCreate(r, "service2")
-	test.ServiceCreate(r, "ksvc3")
+	e2e.ServiceCreate(r, "svc1")
+	e2e.ServiceCreate(r, "service2")
+	e2e.ServiceCreate(r, "ksvc3")
 	serviceDeleteAll(r)
 
 	t.Log("create services with volume mounts and subpaths")

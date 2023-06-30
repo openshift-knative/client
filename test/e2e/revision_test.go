@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -37,7 +38,7 @@ func TestRevision(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	t.Log("create hello service and return no error")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 
 	t.Log("describe revision from hello service with print flags")
 	revName := test.FindRevision(r, "hello")
@@ -45,13 +46,13 @@ func TestRevision(t *testing.T) {
 	test.RevisionDescribeWithPrintFlags(r, revName)
 
 	t.Log("update hello service and increase revision count to 2")
-	test.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
+	e2e.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
 
 	t.Log("show a list of revisions sorted by the count of configuration generation")
 	test.RevisionListWithService(r, "hello")
 
 	t.Log("update hello service and increase revision count to 3")
-	test.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "9000")
+	e2e.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "9000")
 
 	t.Log("delete three revisions with one revision a nonexistent")
 	existRevision1 := test.FindRevisionByGeneration(r, "hello", 1)
@@ -60,28 +61,28 @@ func TestRevision(t *testing.T) {
 	test.RevisionMultipleDelete(r, existRevision1, existRevision2, nonexistRevision)
 
 	t.Log("update hello service and increase revision count to 4")
-	test.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
+	e2e.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "8888")
 	t.Log("delete all unreferenced revision from hello service and return no error")
 	unRefRevision := test.FindRevisionByGeneration(r, "hello", 3)
 	test.RevisionDeleteWithPruneOption(r, "hello", unRefRevision)
 
 	t.Log("update hello service and increase revision count to 5")
-	test.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "9000")
+	e2e.ServiceUpdate(r, "hello", "--env", "TARGET=kn", "--port", "9000")
 	t.Log("create hello service and return no error")
-	test.ServiceCreate(r, "hello1")
+	e2e.ServiceCreate(r, "hello1")
 	t.Log("update hello1 service and increase revision count to 2")
-	test.ServiceUpdate(r, "hello1", "--env", "TARGET=kn", "--port", "8888")
+	e2e.ServiceUpdate(r, "hello1", "--env", "TARGET=kn", "--port", "8888")
 	t.Log("delete all unreferenced revisions return no error")
 	unRefRevision1 := test.FindRevisionByGeneration(r, "hello", 4)
 	unRefRevision2 := test.FindRevisionByGeneration(r, "hello1", 1)
 	test.RevisionDeleteWithPruneAllOption(r, unRefRevision1, unRefRevision2)
 	t.Log("delete hello1 service and return no error")
-	test.ServiceDelete(r, "hello1")
+	e2e.ServiceDelete(r, "hello1")
 
 	t.Log("delete latest revision from hello service and return no error")
 	revName = test.FindRevision(r, "hello")
 	test.RevisionDelete(r, revName)
 
 	t.Log("delete hello service and return no error")
-	test.ServiceDelete(r, "hello")
+	e2e.ServiceDelete(r, "hello")
 }

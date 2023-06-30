@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -40,8 +41,8 @@ func TestBrokerTrigger(t *testing.T) {
 	test.BrokerCreate(r, "default")
 	defer test.BrokerDelete(r, "default", false)
 
-	test.ServiceCreate(r, "sinksvc0")
-	test.ServiceCreate(r, "sinksvc1")
+	e2e.ServiceCreate(r, "sinksvc0")
+	e2e.ServiceCreate(r, "sinksvc1")
 
 	t.Log("create triggers and list them")
 	triggerCreate(r, "trigger1", "sinksvc0", []string{"a=b"})

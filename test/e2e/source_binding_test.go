@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -37,7 +38,7 @@ func TestSourceBinding(t *testing.T) {
 	r := test.NewKnRunResultCollector(t, it)
 	defer r.DumpIfFailed()
 
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 
 	t.Log("create source binding")
 	sourceBindingCreate(r, "my-binding0", "Deployment:apps/v1:myapp", "ksvc:testsvc0")
@@ -48,7 +49,7 @@ func TestSourceBinding(t *testing.T) {
 
 	t.Log("update source binding")
 	sourceBindingCreate(r, "my-binding1", "Deployment:apps/v1:myapp", "ksvc:testsvc0")
-	test.ServiceCreate(r, "testsvc1")
+	e2e.ServiceCreate(r, "testsvc1")
 	sourceBindingUpdate(r, "my-binding1", "Deployment:apps/v1:myapp", "ksvc:testsvc1")
 	jpSinkRefNameInSpec := "jsonpath={.spec.sink.ref.name}"
 	out, err := test.GetResourceFieldsWithJSONPath(t, it, "sinkbindings.sources.knative.dev", "my-binding1", jpSinkRefNameInSpec)

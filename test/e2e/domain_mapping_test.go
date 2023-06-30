@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 	"time"
 
@@ -47,14 +48,14 @@ func TestDomain(t *testing.T) {
 	domainName := "hello.example.com"
 
 	t.Log("create domain mapping to hello ksvc")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 	domainCreate(r, domainName, "hello")
 
 	t.Log("list domain mappings")
 	domainList(r, domainName)
 
 	t.Log("update domain mapping Knative service reference")
-	test.ServiceCreate(r, "foo")
+	e2e.ServiceCreate(r, "foo")
 	domainUpdate(r, domainName, "foo")
 
 	t.Log("describe domain mappings")

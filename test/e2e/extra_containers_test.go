@@ -21,6 +21,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"knative.dev/client/lib/test/e2e"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -51,14 +52,14 @@ func TestMultiContainers(t *testing.T) {
 	container := addContainer(r, "sidecar", pkgtest.ImagePath("sidecarcontainer"))
 	test.CreateFile("sidecar.yaml", container.Stdout, tempDir, test.FileModeReadWrite)
 	createServiceWithSidecar(r, "testsvc0", filepath.Join(tempDir, "sidecar.yaml"))
-	test.ServiceDelete(r, "testsvc0")
+	e2e.ServiceDelete(r, "testsvc0")
 
 	t.Log("Creating a multicontainer service from os.Stdin")
 	container = addContainer(r, "sidecar", pkgtest.ImagePath("sidecarcontainer"))
 	out := createServiceWithPipeInput(r, "testsvc1", container.Stdout)
 	r.AssertNoError(out)
 	assert.Check(r.T(), util.ContainsAllIgnoreCase(out.Stdout, "service", "testsvc1", "creating", "namespace", r.KnTest().Kn().Namespace(), "ready"))
-	test.ServiceDelete(r, "testsvc1")
+	e2e.ServiceDelete(r, "testsvc1")
 
 	t.Log("Creating a multicontainer service from os.Stdin with EOF error")
 	out = createServiceWithPipeInput(r, "testsvc2", "")
