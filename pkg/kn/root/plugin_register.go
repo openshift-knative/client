@@ -19,6 +19,7 @@ package root
 import (
 	// Add #plugins# import here. Don't remove this line, it triggers an automatic replacement.
 	_ "github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin"
+	_ "knative.dev/kn-plugin-source-kafka/plugin"
 )
 
 // RegisterInlinePlugins is an empty function which however forces the
