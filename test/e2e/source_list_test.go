@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -55,7 +56,7 @@ func TestSourceList(t *testing.T) {
 
 	defer r.DumpIfFailed()
 	setupForSourceAPIServer(t, it)
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 
 	t.Log("List sources empty case")
 	output := sourceList(r)

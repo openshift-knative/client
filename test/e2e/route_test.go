@@ -19,6 +19,7 @@ package e2e
 
 import (
 	"fmt"
+	"knative.dev/client/lib/test/e2e"
 	"strings"
 	"testing"
 
@@ -40,7 +41,7 @@ func TestRoute(t *testing.T) {
 	defer r.DumpIfFailed()
 
 	t.Log("create hello service and return no error")
-	test.ServiceCreate(r, "hello")
+	e2e.ServiceCreate(r, "hello")
 
 	t.Log("return a list of routes")
 	routeList(r)
@@ -61,7 +62,7 @@ func TestRoute(t *testing.T) {
 	routeDescribeWithPrintFlags(r, "hello")
 
 	t.Log("delete hello service and return no error")
-	test.ServiceDelete(r, "hello")
+	e2e.ServiceDelete(r, "hello")
 }
 
 func routeList(r *test.KnRunResultCollector) {

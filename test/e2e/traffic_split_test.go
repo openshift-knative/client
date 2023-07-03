@@ -19,6 +19,7 @@ package e2e
 
 import (
 	"fmt"
+	"knative.dev/client/lib/test/e2e"
 	"strconv"
 	"strings"
 	"testing"
@@ -91,22 +92,22 @@ func TestTrafficSplit(t *testing.T) {
 			defer r.DumpIfFailed()
 
 			serviceName := test.GetNextServiceName(serviceBase)
-			test.ServiceCreate(r, serviceName)
+			e2e.ServiceCreate(r, serviceName)
 
 			rev1 := fmt.Sprintf("%s-rev-1", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev1)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			tflags := []string{"--tag", fmt.Sprintf("%s=v1,%s=v2", rev1, rev2),
 				"--traffic", "v1=50,v2=50"}
-			test.ServiceUpdate(r, serviceName, tflags...)
+			e2e.ServiceUpdate(r, serviceName, tflags...)
 
 			// make ordered fields per tflags (tag, revision, percent, latest)
 			expectedTargets := []TargetFields{newTargetFields("v1", rev1, 50, false), newTargetFields("v2", rev2, 50, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("20:80",
@@ -116,19 +117,19 @@ func TestTrafficSplit(t *testing.T) {
 			defer r.DumpIfFailed()
 
 			serviceName := test.GetNextServiceName(serviceBase)
-			test.ServiceCreate(r, serviceName)
+			e2e.ServiceCreate(r, serviceName)
 
 			rev1 := fmt.Sprintf("%s-rev-1", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev1)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
-			test.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=20,%s=80", rev1, rev2))
+			e2e.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=20,%s=80", rev1, rev2))
 
 			expectedTargets := []TargetFields{newTargetFields("", rev1, 20, false), newTargetFields("", rev2, 80, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("45:55 automatic traffic split", func(t *testing.T) {
@@ -137,16 +138,16 @@ func TestTrafficSplit(t *testing.T) {
 		defer r.DumpIfFailed()
 
 		serviceName := test.GetNextServiceName(serviceBase)
-		test.ServiceCreate(r, serviceName)
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "80")
+		e2e.ServiceCreate(r, serviceName)
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "80")
 
 		rev1 := fmt.Sprintf("%s-00001", serviceName)
 		rev2 := fmt.Sprintf("%s-00002", serviceName)
 
-		test.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=45", rev1))
+		e2e.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=45", rev1))
 		expectedTargets := []TargetFields{newTargetFields("", rev1, 45, false), newTargetFields("", rev2, 55, false)}
 		verifyTargets(r, serviceName, expectedTargets, false)
-		test.ServiceDelete(r, serviceName)
+		e2e.ServiceDelete(r, serviceName)
 	})
 	t.Run("45:55 automatic traffic split to new @latest and previous revision after mutation", func(t *testing.T) {
 		t.Log("direct 45% traffic explicitly to newly created revision (@latest) and remaining 55 will automatically be directed to previous revision")
@@ -155,16 +156,16 @@ func TestTrafficSplit(t *testing.T) {
 
 		serviceName := test.GetNextServiceName(serviceBase)
 
-		test.ServiceCreate(r, serviceName)
+		e2e.ServiceCreate(r, serviceName)
 
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "@latest=45")
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "@latest=45")
 
 		rev1 := fmt.Sprintf("%s-00001", serviceName)
 		rev2 := fmt.Sprintf("%s-00002", serviceName)
 
 		expectedTargets := []TargetFields{newTargetFields("", rev2, 45, true), newTargetFields("", rev1, 55, false)}
 		verifyTargets(r, serviceName, expectedTargets, false)
-		test.ServiceDelete(r, serviceName)
+		e2e.ServiceDelete(r, serviceName)
 	})
 	t.Run("45:55 automatic traffic split to @latest after mutation", func(t *testing.T) {
 		t.Log("direct 45% traffic explicitly to previous revision and remaining 55 will automatically be directed to @latest")
@@ -173,15 +174,15 @@ func TestTrafficSplit(t *testing.T) {
 
 		serviceName := test.GetNextServiceName(serviceBase)
 
-		test.ServiceCreate(r, serviceName)
+		e2e.ServiceCreate(r, serviceName)
 
 		rev1 := fmt.Sprintf("%s-00001", serviceName)
 		rev2 := fmt.Sprintf("%s-00002", serviceName)
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", fmt.Sprintf("%s=%d", rev1, 45))
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", fmt.Sprintf("%s=%d", rev1, 45))
 
 		expectedTargets := []TargetFields{newTargetFields("", rev2, 55, true), newTargetFields("", rev1, 45, false)}
 		verifyTargets(r, serviceName, expectedTargets, false)
-		test.ServiceDelete(r, serviceName)
+		e2e.ServiceDelete(r, serviceName)
 	})
 	t.Run("automatic traffic split failure", func(t *testing.T) {
 		t.Log("direct 50% traffic to one of the three revisions. Remaining will not be automatically redirected as only one revision should be missing from spec")
@@ -193,13 +194,13 @@ func TestTrafficSplit(t *testing.T) {
 		rev1 := fmt.Sprintf("%s-00001", serviceName)
 		rev2 := fmt.Sprintf("%s-00002", serviceName)
 
-		test.ServiceCreate(r, serviceName)
+		e2e.ServiceCreate(r, serviceName)
 
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "40")
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--traffic", fmt.Sprintf("%s=%d,%s=%d", rev1, 10, rev2, 20))
-		test.ServiceUpdateWithError(r, serviceName, "--traffic", fmt.Sprintf("%s=%d", rev1, 50))
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "40")
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--traffic", fmt.Sprintf("%s=%d,%s=%d", rev1, 10, rev2, 20))
+		e2e.ServiceUpdateWithError(r, serviceName, "--traffic", fmt.Sprintf("%s=%d", rev1, 50))
 
-		test.ServiceDelete(r, serviceName)
+		e2e.ServiceDelete(r, serviceName)
 	})
 	t.Run("automatic traffic split failure with @latest", func(t *testing.T) {
 		t.Log("direct 50% traffic to @latest of the three revisions. Remaining will not be automatically redirected as only one revision should be missing from spec")
@@ -208,12 +209,12 @@ func TestTrafficSplit(t *testing.T) {
 
 		serviceName := test.GetNextServiceName(serviceBase)
 
-		test.ServiceCreate(r, serviceName)
+		e2e.ServiceCreate(r, serviceName)
 
-		test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "20")
-		test.ServiceUpdateWithError(r, serviceName, "--env", "TARGET=v2", "--traffic", "@latest=50")
+		e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--traffic", "20")
+		e2e.ServiceUpdateWithError(r, serviceName, "--env", "TARGET=v2", "--traffic", "@latest=50")
 
-		test.ServiceDelete(r, serviceName)
+		e2e.ServiceDelete(r, serviceName)
 	})
 	t.Run("TagCandidate",
 		func(t *testing.T) {
@@ -226,14 +227,14 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev2)
 
 			// no traffic, append new target with tag in traffic block
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=%s", rev1, "candidate"))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=%s", rev1, "candidate"))
 
 			expectedTargets := []TargetFields{newTargetFields("", rev2, 100, true), newTargetFields("candidate", rev1, 0, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagCandidate:2:98",
@@ -247,16 +248,16 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v1", "--revision-name", rev2)
 
 			// traffic by tag name and use % at the end
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--tag", fmt.Sprintf("%s=%s", rev1, "candidate"),
 				"--traffic", "candidate=2%,@latest=98%")
 
 			expectedTargets := []TargetFields{newTargetFields("", rev2, 98, true), newTargetFields("candidate", rev1, 2, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagCurrent",
@@ -271,17 +272,17 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			rev3 := fmt.Sprintf("%s-rev-3", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v3", "--revision-name", rev3) //note that this gives 100% traffic to latest revision (rev3)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v3", "--revision-name", rev3) //note that this gives 100% traffic to latest revision (rev3)
 
 			// make existing state: tag current and candidate exist in traffic block
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=current,%s=candidate", rev1, rev2))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=current,%s=candidate", rev1, rev2))
 
 			// desired state of tags: update tag of revision (rev2) from candidate to current (which is present on rev1)
 			//untag first to update
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--untag", "current,candidate",
 				"--tag", fmt.Sprintf("%s=current", rev2))
 
@@ -289,7 +290,7 @@ func TestTrafficSplit(t *testing.T) {
 			// target for rev1 is removed as it had no traffic and we untagged it's tag current
 			expectedTargets := []TargetFields{newTargetFields("", rev3, 100, true), newTargetFields("current", rev2, 0, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagStagingLatest",
@@ -303,14 +304,14 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// make existing state: tag @latest as testing
-			test.ServiceUpdate(r, serviceName, "--tag", "@latest=testing")
+			e2e.ServiceUpdate(r, serviceName, "--tag", "@latest=testing")
 
 			// desired state: change tag from testing to staging
-			test.ServiceUpdate(r, serviceName, "--untag", "testing", "--tag", "@latest=staging")
+			e2e.ServiceUpdate(r, serviceName, "--untag", "testing", "--tag", "@latest=staging")
 
 			expectedTargets := []TargetFields{newTargetFields("staging", rev1, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagStagingNonLatest",
@@ -324,18 +325,18 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			// make existing state: tag a revision as testing
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=testing", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=testing", rev1))
 
 			// desired state: change tag from testing to staging
-			test.ServiceUpdate(r, serviceName, "--untag", "testing", "--tag", fmt.Sprintf("%s=staging", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--untag", "testing", "--tag", fmt.Sprintf("%s=staging", rev1))
 
 			expectedTargets := []TargetFields{newTargetFields("", rev2, 100, true),
 				newTargetFields("staging", rev1, 0, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	// test reducing number of targets from traffic blocked
@@ -350,19 +351,19 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			// existing state: traffic block having a revision with tag old and some traffic
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--tag", fmt.Sprintf("%s=old", rev1),
 				"--traffic", "old=2,@latest=98")
 
 			// desired state: remove revision with tag old
-			test.ServiceUpdate(r, serviceName, "--untag", "old", "--traffic", "@latest=100")
+			e2e.ServiceUpdate(r, serviceName, "--untag", "old", "--traffic", "@latest=100")
 
 			expectedTargets := []TargetFields{newTargetFields("", rev2, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagStable:50:50",
@@ -376,16 +377,16 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// existing state: traffic block having two targets
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", serviceName+"-rev-2")
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", serviceName+"-rev-2")
 
 			// desired state: tag non-@latest revision with two tags and 50-50% traffic each
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--tag", fmt.Sprintf("%s=stable,%s=current", rev1, rev1),
 				"--traffic", "stable=50%,current=50%")
 
 			expectedTargets := []TargetFields{newTargetFields("stable", rev1, 50, false), newTargetFields("current", rev1, 50, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("RevertToLatest",
@@ -399,17 +400,17 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			// existing state: latest ready revision not getting any traffic
-			test.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=100", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--traffic", fmt.Sprintf("%s=100", rev1))
 
 			// desired state: revert traffic to latest ready revision
-			test.ServiceUpdate(r, serviceName, "--traffic", "@latest=100")
+			e2e.ServiceUpdate(r, serviceName, "--traffic", "@latest=100")
 
 			expectedTargets := []TargetFields{newTargetFields("", rev2, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagLatestAsCurrent",
@@ -424,11 +425,11 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// desired state: tag latest ready revision as 'current'
-			test.ServiceUpdate(r, serviceName, "--tag", "@latest=current")
+			e2e.ServiceUpdate(r, serviceName, "--tag", "@latest=current")
 
 			expectedTargets := []TargetFields{newTargetFields("current", rev1, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagLatestAsCurrentWithoutKey",
@@ -443,11 +444,11 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// desired state: tag latest ready revision as 'current'
-			test.ServiceUpdate(r, serviceName, "--tag", "current")
+			e2e.ServiceUpdate(r, serviceName, "--tag", "current")
 
 			expectedTargets := []TargetFields{newTargetFields("current", rev1, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagMisspelledLatestAsCurrent",
@@ -462,11 +463,11 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// desired state: tag latest ready revision as 'current'
-			test.ServiceUpdateWithError(r, serviceName, "--tag", "@ltest=current")
+			e2e.ServiceUpdateWithError(r, serviceName, "--tag", "@ltest=current")
 
 			expectedTargets := []TargetFields{newTargetFields("", rev1, 100, true)}
 			verifyTargets(r, serviceName, expectedTargets, true)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("UpdateTag:100:0",
@@ -480,23 +481,23 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			// existing state: two revision exists with traffic share and
 			// each revision has tag and traffic portions
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--tag", fmt.Sprintf("@latest=current,%s=candidate", rev1),
 				"--traffic", "current=90,candidate=10")
 
 			// desired state: update tag for rev1 as testing (from candidate) with 100% traffic
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--untag", "candidate", "--tag", fmt.Sprintf("%s=testing", rev1),
 				"--traffic", "testing=100")
 
 			expectedTargets := []TargetFields{newTargetFields("current", rev2, 0, true),
 				newTargetFields("testing", rev1, 100, false)}
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("TagReplace",
@@ -510,13 +511,13 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			rev2 := fmt.Sprintf("%s-rev-2", serviceName)
-			test.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
+			e2e.ServiceUpdate(r, serviceName, "--env", "TARGET=v2", "--revision-name", rev2)
 
 			// existing state: a revision exist with latest tag
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
 
 			// desired state of revision tags: rev1=old rev2=latest
-			test.ServiceUpdate(r, serviceName,
+			e2e.ServiceUpdate(r, serviceName,
 				"--untag", "latest",
 				"--tag", fmt.Sprintf("%s=old,%s=latest", rev1, rev2))
 
@@ -528,7 +529,7 @@ func TestTrafficSplit(t *testing.T) {
 				newTargetFields("latest", rev2, 0, false)}
 
 			verifyTargets(r, serviceName, expectedTargets, false)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("CreateWithTag",
@@ -546,7 +547,7 @@ func TestTrafficSplit(t *testing.T) {
 			}
 
 			verifyTargets(r, serviceName, expectedTargets, true)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("UntagNonExistentTag",
@@ -560,11 +561,11 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// existing state: a revision exist with latest tag
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
 
 			// desired state of revision tags: rev1=latest
 			// attempt to untag a tag that does not exist for the service's revisions
-			test.ServiceUpdateWithError(r, serviceName, "--untag", "foo")
+			e2e.ServiceUpdateWithError(r, serviceName, "--untag", "foo")
 
 			// state should remain the same as error from --untag will stop service update
 			expectedTargets := []TargetFields{
@@ -573,7 +574,7 @@ func TestTrafficSplit(t *testing.T) {
 			}
 
 			verifyTargets(r, serviceName, expectedTargets, true)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 	t.Run("UntagNonExistentTagAndValidTag",
@@ -587,12 +588,12 @@ func TestTrafficSplit(t *testing.T) {
 			serviceCreateWithOptions(r, serviceName, "--revision-name", rev1)
 
 			// existing state: a revision exist with latest tag
-			test.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
+			e2e.ServiceUpdate(r, serviceName, "--tag", fmt.Sprintf("%s=latest", rev1))
 
 			// desired state of revision tags: rev1=latest
 			// attempt to untag a tag that does not exist for the service's revisions (foo)
 			// and also untag a tag that exists (latest)
-			test.ServiceUpdateWithError(r, serviceName, "--untag", "latest", "--untag", "foo")
+			e2e.ServiceUpdateWithError(r, serviceName, "--untag", "latest", "--untag", "foo")
 
 			// state should remain the same as error from --untag will stop service update
 			expectedTargets := []TargetFields{
@@ -601,13 +602,13 @@ func TestTrafficSplit(t *testing.T) {
 			}
 
 			verifyTargets(r, serviceName, expectedTargets, true)
-			test.ServiceDelete(r, serviceName)
+			e2e.ServiceDelete(r, serviceName)
 		},
 	)
 }
 
 func verifyTargets(r *test.KnRunResultCollector, serviceName string, expectedTargets []TargetFields, expectErr bool) {
-	out := test.ServiceDescribeWithJSONPath(r, serviceName, targetsJsonPath)
+	out := e2e.ServiceDescribeWithJSONPath(r, serviceName, targetsJsonPath)
 	assert.Check(r.T(), out != "")
 	actualTargets, err := splitTargets(out, targetsSeparator, len(expectedTargets))
 	if !expectErr {

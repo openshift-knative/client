@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -39,7 +40,7 @@ func TestSourceContainer(t *testing.T) {
 	r := test.NewKnRunResultCollector(t, it)
 	defer r.DumpIfFailed()
 
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 
 	t.Log("create container source with a sink to a service")
 	containerSourceCreate(r, "testsource0", "ksvc:testsvc0")
@@ -56,7 +57,7 @@ func TestSourceContainer(t *testing.T) {
 
 	t.Log("update container source sink service")
 	containerSourceCreate(r, "testsource3", "ksvc:testsvc0")
-	test.ServiceCreate(r, "testsvc1")
+	e2e.ServiceCreate(r, "testsvc1")
 	containerSourceUpdateSink(r, "testsource3", "ksvc:testsvc1")
 	jpSinkRefNameInSpec := "jsonpath={.spec.sink.ref.name}"
 	out, err := test.GetResourceFieldsWithJSONPath(t, it, "containersource.sources.knative.dev", "testsource3", jpSinkRefNameInSpec)

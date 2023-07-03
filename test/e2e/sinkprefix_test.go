@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -64,7 +65,7 @@ func TestSinkPrefixConfig(t *testing.T) {
 	assert.NilError(t, tc.setup(t))
 
 	t.Log("Creating a testservice")
-	test.ServiceCreate(r, "testsvc0")
+	e2e.ServiceCreate(r, "testsvc0")
 	t.Log("create Ping sources with a sink to hello:testsvc0")
 	pingSourceCreateWithConfig(r, "testpingsource0", "* * * * */1", "ping", "hello:testsvc0", tc.knConfigPath)
 

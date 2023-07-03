@@ -18,6 +18,7 @@
 package e2e
 
 import (
+	"knative.dev/client/lib/test/e2e"
 	"testing"
 
 	"gotest.tools/v3/assert"
@@ -39,13 +40,13 @@ func TestSubscriptions(t *testing.T) {
 
 	t.Log("Create a subscription with all the flags")
 	test.ChannelCreate(r, "c0")
-	test.ServiceCreate(r, "svc0")
-	test.ServiceCreate(r, "svc1")
-	test.ServiceCreate(r, "svc2")
+	e2e.ServiceCreate(r, "svc0")
+	e2e.ServiceCreate(r, "svc1")
+	e2e.ServiceCreate(r, "svc2")
 	test.SubscriptionCreate(r, "sub0", "--channel", "c0", "--sink", "ksvc:svc0", "--sink-reply", "ksvc:svc1", "--sink-dead-letter", "ksvc:svc2")
 
 	t.Log("Update a subscription")
-	test.ServiceCreate(r, "svc3")
+	e2e.ServiceCreate(r, "svc3")
 	test.SubscriptionUpdate(r, "sub0", "--sink", "ksvc:svc3")
 
 	t.Log("List subscriptions")
@@ -59,9 +60,9 @@ func TestSubscriptions(t *testing.T) {
 
 	t.Log("Delete subscription")
 	test.SubscriptionDelete(r, "sub0")
-	test.ServiceDelete(r, "svc0")
-	test.ServiceDelete(r, "svc1")
-	test.ServiceDelete(r, "svc2")
-	test.ServiceDelete(r, "svc3")
+	e2e.ServiceDelete(r, "svc0")
+	e2e.ServiceDelete(r, "svc1")
+	e2e.ServiceDelete(r, "svc2")
+	e2e.ServiceDelete(r, "svc3")
 	test.ChannelDelete(r, "c0")
 }

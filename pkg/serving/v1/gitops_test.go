@@ -16,6 +16,7 @@ package v1
 
 import (
 	"context"
+	libtest "knative.dev/client/lib/test/e2e"
 	"path/filepath"
 	"testing"
 	"time"
@@ -27,7 +28,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	servingtest "knative.dev/serving/pkg/testing/v1"
 
-	libtest "knative.dev/client/lib/test"
 	"knative.dev/pkg/ptr"
 	servingv1 "knative.dev/serving/pkg/apis/serving/v1"
 )
