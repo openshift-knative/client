@@ -135,7 +135,6 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 // indirect
 	github.com/senseyeio/duration v0.0.0-20180430131211-7c2a214ada46 // indirect
-	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/serverlessworkflow/sdk-go/v2 v2.2.3 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
@@ -171,11 +170,20 @@ require (
 	k8s.io/kube-openapi v0.0.0-20230501164219-8b0f38b5fd1f // indirect
 	k8s.io/utils v0.0.0-20230313181309-38a27ef9d749 // indirect
 	knative.dev/eventing-kafka v0.36.0 // indirect
+	knative.dev/kn-plugin-event v1.9.1
 	sigs.k8s.io/controller-runtime v0.15.0 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
+)
+
+require (
+	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-commandline v1.0.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+	github.com/wavesoftware/go-retcode v1.0.0 // indirect
 )
 
 replace (
@@ -191,6 +199,7 @@ replace (
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20230406095919-cefc018a310d
 	knative.dev/eventing => knative.dev/eventing v0.36.7
 	knative.dev/hack => knative.dev/hack v0.0.0-20230217102752-199139daec7e
+	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230427120022-04bcb0dfd6be
 	knative.dev/networking => knative.dev/networking v0.0.0-20230225001731-5e096d63b0cb
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20230224205330-75da922ef055
 	knative.dev/serving => knative.dev/serving v0.36.4
