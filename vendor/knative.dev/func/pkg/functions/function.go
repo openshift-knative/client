@@ -154,6 +154,12 @@ type DeploySpec struct {
 
 	// Health endpoints specified by the language pack
 	HealthEndpoints HealthEndpoints `yaml:"healthEndpoints,omitempty"`
+
+	// ServiceAccountName is the name of the service account used for the
+	// function pod. The service account must exist in the namespace to
+	// succeed.
+	// More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+	ServiceAccountName string `yaml:"serviceAccountName,omitempty"`
 }
 
 // HealthEndpoints specify the liveness and readiness endpoints for a Runtime
@@ -408,6 +414,12 @@ func (f Function) ImageWithDigest() string {
 	// Return image, if Digest is empty
 	if f.ImageDigest == "" {
 		return f.Image
+	}
+
+	// Return image with new Digest if image already contains SHA256 Digest
+	shaIndex := strings.Index(f.Image, "@sha256:")
+	if shaIndex > 0 {
+		return f.Image[:shaIndex] + "@" + f.ImageDigest
 	}
 
 	lastSlashIdx := strings.LastIndexAny(f.Image, "/")
