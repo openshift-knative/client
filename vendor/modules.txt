@@ -858,7 +858,7 @@ github.com/kelseyhightower/envconfig
 # github.com/kevinburke/ssh_config v1.2.0
 ## explicit
 github.com/kevinburke/ssh_config
-# github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.30.2
+# github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.30.3
 ## explicit; go 1.19
 github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/command
 github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/command/quarkus
