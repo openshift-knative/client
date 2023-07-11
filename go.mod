@@ -6,7 +6,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hashicorp/hcl v1.0.0
-	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.30.1
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.30.2
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.9.3 // indirect
 	github.com/spf13/cobra v1.6.1
