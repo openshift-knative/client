@@ -144,8 +144,11 @@ require (
 )
 
 require (
-	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2 // indirect
-	knative.dev/eventing-kafka v0.37.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0
+	github.com/hashicorp/go-cleanhttp v0.5.2
+	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2
 )
+
+require knative.dev/eventing-kafka v0.37.0 // indirect
 
 replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c
