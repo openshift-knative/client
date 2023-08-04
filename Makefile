@@ -14,8 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CGO_ENABLED=0
-GOOS=linux
+CGO_ENABLED=1
+GOOS ?=
+GOARCH ?=
 TEST_IMAGES=./test/test_images/helloworld ./vendor/knative.dev/serving/test/test_images/grpc-ping ./vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer ./vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 TEST=
 TEST_IMAGE_TAG ?= latest
@@ -27,6 +28,10 @@ install: build
 build:
 	./hack/build.sh -f
 .PHONY: build
+
+build-with-platform:
+	./hack/build.sh -p $(GOOS) $(GOARCH)
+.PHONY: build-with-platform
 
 build-cross:
 	./hack/build.sh -x
