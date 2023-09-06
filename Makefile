@@ -26,7 +26,7 @@ install: build
 .PHONY: install
 
 build:
-	./hack/build.sh -f
+	go build -ldflags "${KN_BUILD_LD_FLAGS:-}" -o kn ./cmd/...
 .PHONY: build
 
 build-with-platform:
