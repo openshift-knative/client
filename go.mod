@@ -303,7 +303,7 @@ replace (
 	//Pin Knative versions
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20230406095919-cefc018a310d
 	knative.dev/eventing => knative.dev/eventing v0.36.7
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20230824124012-905e631411b2
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20230926130513-4864fbd9ba18
 	knative.dev/hack => knative.dev/hack v0.0.0-20230217102752-199139daec7e
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230427120022-04bcb0dfd6be
 	knative.dev/networking => knative.dev/networking v0.0.0-20230225001731-5e096d63b0cb
