@@ -22,6 +22,7 @@ require (
 	k8s.io/code-generator v0.25.4
 	knative.dev/eventing v0.37.0
 	knative.dev/hack v0.0.0-20230417170854-f591fea109b3
+	knative.dev/kn-plugin-source-kafka v0.37.0
 	knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
 	knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
 	knative.dev/serving v0.37.0
@@ -134,4 +135,9 @@ require (
 	sigs.k8s.io/kustomize/api v0.12.1 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
+)
+
+require (
+	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2 // indirect
+	knative.dev/eventing-kafka v0.37.0 // indirect
 )
