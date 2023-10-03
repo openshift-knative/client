@@ -22,6 +22,7 @@ require (
 	k8s.io/code-generator v0.25.4
 	knative.dev/eventing v0.37.0
 	knative.dev/hack v0.0.0-20230417170854-f591fea109b3
+	knative.dev/kn-plugin-event v1.10.0
 	knative.dev/kn-plugin-source-kafka v0.37.0
 	knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
 	knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
@@ -52,6 +53,7 @@ require (
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
 	github.com/evanphx/json-patch/v5 v5.6.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
+	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
@@ -103,6 +105,10 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-commandline v1.0.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+	github.com/wavesoftware/go-retcode v1.0.0 // indirect
 	github.com/xlab/treeprint v1.1.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.starlark.net v0.0.0-20220817180228-f738f5508c12 // indirect
@@ -141,3 +147,5 @@ require (
 	knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2 // indirect
 	knative.dev/eventing-kafka v0.37.0 // indirect
 )
+
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c

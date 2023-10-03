@@ -90,6 +90,9 @@ github.com/evanphx/json-patch/v5
 # github.com/fsnotify/fsnotify v1.5.4
 ## explicit; go 1.16
 github.com/fsnotify/fsnotify
+# github.com/ghodss/yaml v1.0.0
+## explicit
+github.com/ghodss/yaml
 # github.com/go-errors/errors v1.4.2
 ## explicit; go 1.14
 github.com/go-errors/errors
@@ -324,6 +327,18 @@ github.com/spf13/viper/internal/encoding/yaml
 # github.com/subosito/gotenv v1.4.1
 ## explicit; go 1.18
 github.com/subosito/gotenv
+# github.com/thediveo/enumflag v0.10.0
+## explicit; go 1.13
+github.com/thediveo/enumflag
+# github.com/wavesoftware/go-commandline v1.0.0
+## explicit; go 1.18
+github.com/wavesoftware/go-commandline
+# github.com/wavesoftware/go-ensure v1.0.0
+## explicit; go 1.13
+github.com/wavesoftware/go-ensure
+# github.com/wavesoftware/go-retcode v1.0.0
+## explicit; go 1.18
+github.com/wavesoftware/go-retcode
 # github.com/xlab/treeprint v1.1.0
 ## explicit; go 1.13
 github.com/xlab/treeprint
@@ -679,6 +694,7 @@ k8s.io/apimachinery/pkg/util/managedfields
 k8s.io/apimachinery/pkg/util/mergepatch
 k8s.io/apimachinery/pkg/util/naming
 k8s.io/apimachinery/pkg/util/net
+k8s.io/apimachinery/pkg/util/rand
 k8s.io/apimachinery/pkg/util/runtime
 k8s.io/apimachinery/pkg/util/sets
 k8s.io/apimachinery/pkg/util/strategicpatch
@@ -1039,6 +1055,18 @@ knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1/
 # knative.dev/hack v0.0.0-20230417170854-f591fea109b3
 ## explicit; go 1.18
 knative.dev/hack
+# knative.dev/kn-plugin-event v1.10.0 => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c
+## explicit; go 1.18
+knative.dev/kn-plugin-event/internal/cli/cmd
+knative.dev/kn-plugin-event/pkg/cli
+knative.dev/kn-plugin-event/pkg/cli/ics
+knative.dev/kn-plugin-event/pkg/configuration
+knative.dev/kn-plugin-event/pkg/event
+knative.dev/kn-plugin-event/pkg/k8s
+knative.dev/kn-plugin-event/pkg/metadata
+knative.dev/kn-plugin-event/pkg/plugin
+knative.dev/kn-plugin-event/pkg/sender
+knative.dev/kn-plugin-event/pkg/system
 # knative.dev/kn-plugin-source-kafka v0.37.0
 ## explicit; go 1.18
 knative.dev/kn-plugin-source-kafka/pkg/client
@@ -1243,3 +1271,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
+# knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c
