@@ -6,8 +6,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/hashicorp/golang-lru v0.6.0
 	github.com/hashicorp/hcl v1.0.0
-	// Workflow plugin @ https://github.com/kiegroup/kie-tools/commit/d7d9c8f53e9525ad825d0910d5e1cb8b8e68b5d8
-	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.32.0
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
@@ -284,8 +283,9 @@ require (
 )
 
 replace (
-	// Workflow plugin replace
+	// Workflow plugin @ https://github.com/kiegroup/kie-tools/commit/d7d9c8f53e9525ad825d0910d5e1cb8b8e68b5d8
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
+	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95
 	// K8s version lock
 	k8s.io/api => k8s.io/api v0.25.4
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.25.4
