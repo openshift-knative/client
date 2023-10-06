@@ -39,8 +39,6 @@ require (
 )
 
 require (
-	cloud.google.com/go/compute v1.20.1 // indirect
-	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d // indirect
 	contrib.go.opencensus.io/exporter/prometheus v0.4.2 // indirect
 	github.com/AlecAivazis/survey/v2 v2.3.6 // indirect
@@ -287,13 +285,13 @@ replace (
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
 	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95
 	// K8s version lock
-	k8s.io/api => k8s.io/api v0.25.4
-	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.25.4
-	k8s.io/apimachinery => k8s.io/apimachinery v0.25.4
-	k8s.io/cli-runtime => k8s.io/cli-runtime v0.25.4
-	k8s.io/client-go => k8s.io/client-go v0.25.4
-	k8s.io/code-generator => k8s.io/code-generator v0.25.4
-	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20230308215209-15aac26d736a
+	k8s.io/api => k8s.io/api v0.26.9
+	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.26.9
+	k8s.io/apimachinery => k8s.io/apimachinery v0.26.9
+	k8s.io/cli-runtime => k8s.io/cli-runtime v0.26.9
+	k8s.io/client-go => k8s.io/client-go v0.26.9
+	k8s.io/code-generator => k8s.io/code-generator v0.26.9
+	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280
 	// Knative version lock
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2
 	knative.dev/eventing => knative.dev/eventing v0.37.0
@@ -303,5 +301,5 @@ replace (
 	knative.dev/networking => knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
 	knative.dev/serving => knative.dev/serving v0.37.0
-	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.13.0
+	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.14.6
 )
