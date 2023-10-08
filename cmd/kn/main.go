@@ -25,9 +25,6 @@ import (
 	"knative.dev/client/pkg/kn/config"
 	"knative.dev/client/pkg/kn/plugin"
 	"knative.dev/client/pkg/kn/root"
-
-	// Init test pkg early
-	_ "knative.dev/pkg/test"
 )
 
 func main() {
