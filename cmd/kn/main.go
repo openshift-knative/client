@@ -15,6 +15,9 @@
 package main
 
 import (
+	// Hack to init conflicting `--kubeconfig` flag early
+	_ "knative.dev/pkg/test"
+
 	"errors"
 	"fmt"
 	"os"
