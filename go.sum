@@ -617,8 +617,8 @@ github.com/kelseyhightower/envconfig v1.4.0 h1:Im6hONhd3pLkfDFsbRgu68RDNkGF1r3dv
 github.com/kelseyhightower/envconfig v1.4.0/go.mod h1:cccZRl6mQpaq41TPp5QxidR+Sa3axMbJDNb//FQX6Gg=
 github.com/kevinburke/ssh_config v1.2.0 h1:x584FjTGwHzMwvHx18PXxbBVzfnxogHaAReU4gf13a4=
 github.com/kevinburke/ssh_config v1.2.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF4nAY/ojJ6r6mM=
-github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95 h1:OkLknMd0mm2qmfFIYZd4Mj7PvKK2lgDsG50Tt2lTsjA=
-github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95/go.mod h1:gFeW4Dnz1g5WOXuISjFcAwHfY2gpCcVzr7ruWSp4zQk=
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.32.0 h1:271P1mUC/sqm8f+a2xyXI5byAEnVzGpgqrHklys+XCI=
+github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.32.0/go.mod h1:gFeW4Dnz1g5WOXuISjFcAwHfY2gpCcVzr7ruWSp4zQk=
 github.com/kiegroup/kogito-serverless-operator/api v1.44.1 h1:pRwSNVefulFgsN7McyipCVgnkZ80fDKbWs7gb0ZtyjY=
 github.com/kiegroup/kogito-serverless-operator/api v1.44.1/go.mod h1:5BDk81IC8ink9DAqBVlHm5CjWDuDhzxzYz27mf6144A=
 github.com/kiegroup/kogito-serverless-operator/workflowproj v1.44.1 h1:j85PVxJMF1RPD1gdmW3S9LOjFVgWXUzbvCeOAJUO2gA=
