@@ -283,7 +283,6 @@ require (
 replace (
 	// Workflow plugin @ https://github.com/kiegroup/kie-tools/commit/d7d9c8f53e9525ad825d0910d5e1cb8b8e68b5d8
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
-	github.com/kiegroup/kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v0.28.1-0.20231005204834-d7d9c8f53e95
 	// K8s version lock
 	k8s.io/api => k8s.io/api v0.26.9
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.26.9
