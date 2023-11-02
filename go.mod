@@ -20,14 +20,14 @@ require (
 	k8s.io/cli-runtime v0.25.9
 	k8s.io/client-go v1.5.2
 	k8s.io/code-generator v0.28.1
-	knative.dev/client-pkg v0.0.0-20230911133121-2bcbd97b17ec
+	knative.dev/client-pkg v0.0.0-20231012115824-bfbf86c8001c
 	knative.dev/eventing v0.38.0
 	knative.dev/func v1.11.1
 	knative.dev/hack v0.0.0-20230712131415-ddae80293c43
 	knative.dev/kn-plugin-event v1.10.0
 	knative.dev/kn-plugin-source-kafka v0.37.0
-	knative.dev/networking v0.0.0-20230718160410-75dcd54d9510
-	knative.dev/pkg v0.0.0-20230912052245-8d736b687bf4
+	knative.dev/networking v0.0.0-20231012063223-0b0f2107abef
+	knative.dev/pkg v0.0.0-20231023160942-0c39ce4b3a7f
 	knative.dev/serving v0.38.0
 	sigs.k8s.io/yaml v1.3.0
 )
@@ -296,9 +296,9 @@ replace (
 	knative.dev/eventing => knative.dev/eventing v0.37.0
 	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20231101182323-6aca37001905
 	knative.dev/hack => knative.dev/hack v0.0.0-20230417170854-f591fea109b3
-	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c
-	knative.dev/networking => knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
-	knative.dev/pkg => knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
+	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20231102133103-4d739024cce1
+	knative.dev/networking => knative.dev/networking v0.0.0-20231012063223-0b0f2107abef
+	knative.dev/pkg => knative.dev/pkg v0.0.0-20231023160942-0c39ce4b3a7f
 	knative.dev/serving => knative.dev/serving v0.37.0
 	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.14.6
 )
