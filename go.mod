@@ -294,7 +294,7 @@ replace (
 	// Knative version lock
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20230425201444-4f052f9ef2f2
 	knative.dev/eventing => knative.dev/eventing v0.37.0
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20231019114616-327ce2383229
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20231101182323-6aca37001905
 	knative.dev/hack => knative.dev/hack v0.0.0-20230417170854-f591fea109b3
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.33.1-0.20230821121340-be32652cdd6c
 	knative.dev/networking => knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
