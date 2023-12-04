@@ -221,9 +221,12 @@ install_serverless_operator_branch() {
   # environment as a switch to use CI built images, we want pre-built images of k-s-o and k-o-i
   unset OPENSHIFT_BUILD_NAMESPACE
   unset OPENSHIFT_CI
-
+  export ON_CLUSTER_BUILDS=true
+  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
+  
   # Install all components Serving,Eventing,Strimzi and Kafka
-  make install-all || failed=1
+  OPENSHIFT_CI="true" make generated-files images install-serving install-eventing install-kafka || failed=$?
+  
   subheader "Successfully installed serverless operator."
   
   # Workaround default 'https' scheme
