@@ -1,0 +1,32 @@
+# Copyright 2019 The OpenShift Knative Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Dockerfile to bootstrap build and test in openshift-ci
+FROM registry.ci.openshift.org/openshift/release:golang-1.21
+
+# Add kubernetes repository
+ADD openshift/ci-operator/build-image/kubernetes.repo /etc/yum.repos.d/
+
+RUN yum install -y kubectl httpd-tools
+
+
+RUN wget https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
+    chmod 700 ./get-helm-3 && \
+    ./get-helm-3 --version v3.11.3 --no-sudo && helm version
+
+RUN wget -q https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq &&\
+    chmod +x /usr/bin/yq
+
+# Allow runtime users to add entries to /etc/passwd
+RUN chmod g+rw /etc/passwd
