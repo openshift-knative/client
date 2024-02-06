@@ -23,6 +23,7 @@ require (
 	knative.dev/client-pkg v0.0.0-20231012115829-bcb06af7a827
 	knative.dev/eventing v0.38.4
 	knative.dev/hack v0.0.0-20230712131415-ddae80293c43
+	knative.dev/kn-plugin-event v1.11.1
 	knative.dev/kn-plugin-source-kafka v0.38.2
 	knative.dev/networking v0.0.0-20231012062757-a5958051caf8
 	knative.dev/pkg v0.0.0-20231023150739-56bfe0dd9626
@@ -31,6 +32,14 @@ require (
 )
 
 require k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2
+
+require (
+	github.com/ghodss/yaml v1.0.0 // indirect
+	github.com/thediveo/enumflag v0.10.0 // indirect
+	github.com/wavesoftware/go-commandline v1.0.0 // indirect
+	github.com/wavesoftware/go-ensure v1.0.0 // indirect
+	github.com/wavesoftware/go-retcode v1.0.0 // indirect
+)
 
 require (
 	contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d // indirect
@@ -95,7 +104,6 @@ require (
 	github.com/rickb777/plural v1.4.1 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/sergi/go-diff v1.2.0 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
@@ -133,3 +141,5 @@ require (
 	sigs.k8s.io/kustomize/kyaml v0.13.9 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
 )
+
+replace knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.38.1-0.20231017003653-5728b23e8bab
