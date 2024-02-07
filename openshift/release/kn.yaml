@@ -19,7 +19,7 @@ plugins:
       - module: knative.dev/func
         moduleSource: github.com/openshift-knative/kn-plugin-func
         version: serverless-1.32
-  # - name: kn-plugin-workflow
-  #   module: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow
-  #   pluginImportPath: github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/plugin
-  #   version: 0.32.0-prerelease
+  - name: kn-plugin-workflow
+    module: github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow
+    pluginImportPath: github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow/plugin
+    version: main
