@@ -292,7 +292,7 @@ replace (
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
 
 	// Forked manifistival to support newer controller-runtime
-	github.com/manifestival/client-go-client => github.com/dsimansk/client-go-client v0.5.1-0.20240212161543-12f295071e7c
+	github.com/manifestival/client-go-client => github.com/manifestival/client-go-client v0.5.1-0.20240212170846-db471987b889
 	// Knative deps
 	k8s.io/api => k8s.io/api v0.27.10
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.27.10
