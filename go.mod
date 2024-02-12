@@ -3,7 +3,6 @@ module knative.dev/client
 go 1.21
 
 require (
-	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow v0.33.0
 	github.com/google/go-cmp v0.6.0
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/hashicorp/hcl v1.0.0
@@ -20,7 +19,7 @@ require (
 	k8s.io/apimachinery v0.28.5
 	k8s.io/cli-runtime v0.28.5
 	k8s.io/client-go v0.28.5
-	k8s.io/code-generator v0.26.5
+	k8s.io/code-generator v0.27.10
 	knative.dev/client-pkg v0.0.0-20240124090003-67fca0ca8681
 	knative.dev/eventing v0.40.0
 	knative.dev/hack v0.0.0-20240123162936-f3f03ac0ab1a
@@ -33,6 +32,8 @@ require (
 )
 
 require (
+	// Override version for display only purposes
+	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow v0.33.0
 	github.com/hashicorp/errwrap v1.1.0
 	github.com/hashicorp/go-cleanhttp v0.5.2
 	k8s.io/utils v0.0.0-20230726121419-3b25d923346b
@@ -57,6 +58,8 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr/v4 v4.0.0-20230305170008-8188dc5388df // indirect
+	github.com/apache/incubator-kie-kogito-serverless-operator/api v0.0.0 // indirect
+	github.com/apache/incubator-kie-kogito-serverless-operator/workflowproj v0.0.0-20240126134605-2b5056d12bb9 // indirect
 	github.com/apex/log v1.9.0 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.18.1 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.18.27 // indirect
@@ -123,8 +126,6 @@ require (
 	github.com/jonboulle/clockwork v0.4.0 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/kiegroup/kogito-serverless-operator/api v1.44.1 // indirect
-	github.com/kiegroup/kogito-serverless-operator/workflowproj v1.44.1 // indirect
 	github.com/klauspost/compress v1.16.6 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
@@ -152,6 +153,7 @@ require (
 	github.com/ory/viper v1.7.5 // indirect
 	github.com/pb33f/libopenapi v0.10.1 // indirect
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
+	github.com/relvacode/iso8601 v1.3.0 // indirect
 	github.com/rivo/tview v0.0.0-20220307222120-9994674d60a8 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
@@ -159,7 +161,7 @@ require (
 	github.com/schollz/progressbar/v3 v3.13.1 // indirect
 	github.com/senseyeio/duration v0.0.0-20180430131211-7c2a214ada46 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
-	github.com/serverlessworkflow/sdk-go/v2 v2.2.4 // indirect
+	github.com/serverlessworkflow/sdk-go/v2 v2.2.5 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/skeema/knownhosts v1.2.1 // indirect
 	github.com/stoewer/go-strcase v1.2.1 // indirect
@@ -193,7 +195,7 @@ require (
 	github.com/cloudevents/sdk-go/sql/v2 v2.13.0 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.14.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
 	github.com/evanphx/json-patch/v5 v5.8.0 // indirect
@@ -284,17 +286,21 @@ require (
 )
 
 replace (
-	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow => github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow v0.28.1-0.20240207135809-b4ab570ecca7
+	github.com/apache/incubator-kie-kogito-serverless-operator/api v0.0.0 => github.com/apache/incubator-kie-kogito-serverless-operator/api v0.0.0-20240126134605-2b5056d12bb9
+	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v1.32.0
 	// Workflow plugin
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
 
-	k8s.io/api => k8s.io/api v0.26.5
-	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.26.5
-	k8s.io/apimachinery => k8s.io/apimachinery v0.26.5
-	k8s.io/cli-runtime => k8s.io/cli-runtime v0.26.6
-	k8s.io/client-go => k8s.io/client-go v0.26.5
-	k8s.io/code-generator => k8s.io/code-generator v0.26.5
-	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20221012153701-172d655c2280
+	// Forked manifistival to support newer controller-runtime
+	github.com/manifestival/client-go-client => github.com/dsimansk/client-go-client v0.5.1-0.20240212161543-12f295071e7c
+	// Knative deps
+	k8s.io/api => k8s.io/api v0.27.10
+	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.27.10
+	k8s.io/apimachinery => k8s.io/apimachinery v0.27.10
+	k8s.io/cli-runtime => k8s.io/cli-runtime v0.27.10
+	k8s.io/client-go => k8s.io/client-go v0.27.10
+	k8s.io/code-generator => k8s.io/code-generator v0.27.10
+	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20230501164219-8b0f38b5fd1f
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20231012115829-bcb06af7a827
 	knative.dev/eventing => knative.dev/eventing v0.38.4
 	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240124181517-9d69b122b7e1
@@ -303,7 +309,7 @@ replace (
 	knative.dev/networking => knative.dev/networking v0.0.0-20231012062757-a5958051caf8
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20231023150739-56bfe0dd9626
 	knative.dev/serving => knative.dev/serving v0.38.1
-	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.14.7
-	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.12.1
-	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.13.9
+	sigs.k8s.io/controller-runtime => sigs.k8s.io/controller-runtime v0.15.3
+	sigs.k8s.io/kustomize/api => sigs.k8s.io/kustomize/api v0.13.2
+	sigs.k8s.io/kustomize/kyaml => sigs.k8s.io/kustomize/kyaml v0.14.1
 )
