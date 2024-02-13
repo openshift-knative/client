@@ -2000,7 +2000,7 @@ knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
 knative.dev/eventing-kafka/pkg/client/clientset/versioned/scheme
 knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1/fake
-# knative.dev/func v1.13.0 => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240124181517-9d69b122b7e1
+# knative.dev/func v1.13.0 => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240213172456-3bd596fda969
 ## explicit; go 1.21
 knative.dev/func/cmd
 knative.dev/func/cmd/prompt
@@ -2305,7 +2305,7 @@ sigs.k8s.io/yaml/goyaml.v2
 # k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20230501164219-8b0f38b5fd1f
 # knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20231012115829-bcb06af7a827
 # knative.dev/eventing => knative.dev/eventing v0.38.4
-# knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240124181517-9d69b122b7e1
+# knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240213172456-3bd596fda969
 # knative.dev/hack => knative.dev/hack v0.0.0-20230712131415-ddae80293c43
 # knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.38.1-0.20231017003653-5728b23e8bab
 # knative.dev/networking => knative.dev/networking v0.0.0-20231012062757-a5958051caf8
