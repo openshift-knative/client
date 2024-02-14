@@ -6,6 +6,6 @@ readonly quarkus_platform_group_id="${LOGIC_QUARKUS_GROUP:-com.redhat.quarkus.pl
 readonly dev_mode_image="${LOGIC_DEV_MODE_IMAGE:-registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8:1.32}"
 
 export EXTERNAL_LD_FLAGS="${EXTERNAL_LD_FLAGS:-} \
--X github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/metadata.DevModeImage=${dev_mode_image} \
--X github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/metadata.QuarkusVersion=${quarkus_version} \
--X github.com/kiegroup/kie-tools/packages/kn-plugin-workflow/pkg/metadata.QuarkusPlatformGroupId=${quarkus_platform_group_id}"
+-X github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow/pkg/metadata.DevModeImage=${dev_mode_image} \
+-X github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow/pkg/metadata.QuarkusVersion=${quarkus_version} \
+-X github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow/pkg/metadata.QuarkusPlatformGroupId=${quarkus_platform_group_id}"
