@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Env variables can be injected to override values during build phase
-readonly quarkus_version="${LOGIC_QUARKUS_VERSION:-3.2.10.Final-redhat-00002}"
+readonly quarkus_version="${LOGIC_QUARKUS_VERSION:-3.2.9.Final-redhat-00004}"
 readonly quarkus_platform_group_id="${LOGIC_QUARKUS_GROUP:-com.redhat.quarkus.platform}"
 readonly dev_mode_image="${LOGIC_DEV_MODE_IMAGE:-registry.redhat.io/openshift-serverless-1-tech-preview/logic-swf-devmode-rhel8:1.32}"
 
