@@ -287,7 +287,7 @@ require (
 
 replace (
 	github.com/apache/incubator-kie-kogito-serverless-operator/api v0.0.0 => github.com/apache/incubator-kie-kogito-serverless-operator/api v0.0.0-20240126134605-2b5056d12bb9
-	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v1.32.0
+	github.com/apache/incubator-kie-tools/packages/kn-plugin-workflow => github.com/kiegroup/kie-tools/packages/kn-plugin-workflow v1.32.1
 	// Workflow plugin
 	github.com/imdario/mergo => github.com/imdario/mergo v0.3.16
 
