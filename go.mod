@@ -303,7 +303,7 @@ replace (
 	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20230501164219-8b0f38b5fd1f
 	knative.dev/client-pkg => knative.dev/client-pkg v0.0.0-20231012115829-bcb06af7a827
 	knative.dev/eventing => knative.dev/eventing v0.38.4
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240213172456-3bd596fda969
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240311172938-17ac97c98ca2
 	knative.dev/hack => knative.dev/hack v0.0.0-20230712131415-ddae80293c43
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.38.1-0.20231017003653-5728b23e8bab
 	knative.dev/networking => knative.dev/networking v0.0.0-20231012062757-a5958051caf8
