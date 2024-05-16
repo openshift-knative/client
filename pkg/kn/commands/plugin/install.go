@@ -16,7 +16,6 @@ package plugin
 
 import (
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -41,63 +40,77 @@ func NewPluginInstallCommand(p *commands.KnParams) *cobra.Command {
 		Aliases: []string{"ls"},
 		Long: `Install a plugin from URL.or local filesystem.
 
-Plugin is installed from a provided URL to ${XDG_HOME}/kn/plugins.
+Plugin is installed from a provided URL or local path to ${KN_CONFIG_DIR}/kn/plugins.
 
 Current: ` + config.GlobalConfig.PluginsDir(),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			var fileName, urlFile string
-			if localPath != "" {
-				segments := strings.Split(localPath, string(os.PathSeparator))
-				fileName = filepath.Join(config.GlobalConfig.PluginsDir(), segments[len(segments)-1])
-			} else {
-				if len(args) != 1 {
-					return errors.New("'kn plugin install' requires URL")
+			if len(args) != 1 {
+				if localPath == "" {
+					return errors.New("'kn plugin install' requires URL or local file parameter '-f' to be specified")
 				}
-				urlFile = args[0]
-
-				// Build fileName from fullPath
-				fileURL, err := url.Parse(urlFile)
-				if err != nil {
-					return err
-				}
-				path := fileURL.Path
-				segments := strings.Split(path, "/")
-				fileName = filepath.Join(config.GlobalConfig.PluginsDir(), segments[len(segments)-1])
+				println("Copying plugin from local path: " + localPath)
+				// Local plugin file to copy
+				return fetchLocal(localPath)
 			}
-
-			file, err := os.Create(fileName)
-			if err != nil {
-				return err
-			}
-			defer file.Close()
-
-			if urlFile != "" {
-				client := &http.Client{
-					CheckRedirect: func(req *http.Request, via []*http.Request) error {
-						return http.ErrUseLastResponse
-					},
-				}
-
-				// Download file
-				resp, err := client.Get(urlFile)
-				if err != nil {
-					println(err)
-				}
-				defer resp.Body.Close()
-				return installPlugin(fileName, file, resp.Body)
-
-			}
-			localFile, err := os.Open(localPath)
-			if err != nil {
-				return err
-			}
-			return installPlugin(fileName, file, localFile)
+			println("Downloading from URL: " + args[0])
+			// Download from provided external URL and copy to plugins dir
+			return fetchFromURL(args[0])
 		},
 	}
 
 	cmd.Flags().StringVarP(&localPath, "file", "f", "", "Path to install plugin from local filesystem")
 
 	return cmd
+}
+
+func parseFilePath(src, separator string) string {
+	segments := strings.Split(src, separator)
+	return filepath.Join(config.GlobalConfig.PluginsDir(), segments[len(segments)-1])
+}
+
+func fetchLocal(localPath string) error {
+	localFile, err := os.Open(localPath)
+	if err != nil {
+		return err
+	}
+	fileName := parseFilePath(localPath, string(os.PathSeparator))
+	dest, err := os.Create(fileName)
+	if err != nil {
+		return err
+	}
+	return installPlugin(fileName, dest, localFile)
+}
+
+func fetchFromURL(externalUrl string) error {
+	// Build fileName from fullPath
+	fileURL, err := url.Parse(externalUrl)
+	if err != nil {
+		return err
+	}
+	path := fileURL.Path
+	// Assuming URL, hence forward-slash separator
+	fileName := parseFilePath(path, "/")
+
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+
+	// Download file
+	resp, err := client.Get(fileURL.String())
+	if err != nil {
+		println(err)
+	}
+	defer resp.Body.Close()
+
+	file, err := os.Create(fileName)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	return installPlugin(fileName, file, resp.Body)
 }
 
 func installPlugin(fileName string, dst io.Writer, src io.Reader) error {
@@ -109,6 +122,6 @@ func installPlugin(fileName string, dst io.Writer, src io.Reader) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("Plugin installed to '%s'", fileName)
+	println("Plugin installed to '" + fileName + "'")
 	return nil
 }
