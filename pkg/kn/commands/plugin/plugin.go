@@ -32,7 +32,7 @@ Please refer to the documentation and examples for more information about how to
 	}
 
 	pluginCmd.AddCommand(NewPluginInstallCommand(p))
+	pluginCmd.AddCommand(NewPluginRemoveCommand(p))
 	pluginCmd.AddCommand(NewPluginListCommand(p))
-
 	return pluginCmd
 }
