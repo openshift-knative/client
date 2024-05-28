@@ -29,11 +29,12 @@ import (
 	"knative.dev/client/pkg/kn/config"
 )
 
+var updateFlag bool
+
 // NewPluginInstallCommand creates a new `kn plugin install` command
 func NewPluginInstallCommand(p *commands.KnParams) *cobra.Command {
 
 	var localPath string
-
 	cmd := &cobra.Command{
 		Use:     "install",
 		Short:   "Install a plugin from URL or local file",
@@ -57,9 +58,8 @@ Current: ` + config.GlobalConfig.PluginsDir(),
 			return fetchFromURL(args[0])
 		},
 	}
-
 	cmd.Flags().StringVarP(&localPath, "file", "f", "", "Path to install plugin from local filesystem")
-
+	cmd.Flags().BoolVarP(&updateFlag, "update", "u", false, "Update installed plugin")
 	return cmd
 }
 
@@ -74,6 +74,11 @@ func fetchLocal(localPath string) error {
 		return err
 	}
 	fileName := parseFilePath(localPath, string(os.PathSeparator))
+
+	if err := updatePluginCheck(fileName); err != nil {
+		return err
+	}
+
 	dest, err := os.Create(fileName)
 	if err != nil {
 		return err
@@ -104,6 +109,10 @@ func fetchFromURL(externalUrl string) error {
 	}
 	defer resp.Body.Close()
 
+	if err := updatePluginCheck(fileName); err != nil {
+		return err
+	}
+
 	file, err := os.Create(fileName)
 	if err != nil {
 		return err
@@ -111,6 +120,16 @@ func fetchFromURL(externalUrl string) error {
 	defer file.Close()
 
 	return installPlugin(fileName, file, resp.Body)
+}
+
+func updatePluginCheck(path string) error {
+	_, err := os.Stat(path)
+	if !os.IsNotExist(err) {
+		if !updateFlag {
+			return errors.New("plugin already exists, please use `--update` flag to replace it at '" + path + "'")
+		}
+	}
+	return nil
 }
 
 func installPlugin(fileName string, dst io.Writer, src io.Reader) error {
