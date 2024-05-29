@@ -45,7 +45,7 @@ Current: ` + config.GlobalConfig.PluginsDir(),
 			if _, err := os.Stat(filename); os.IsNotExist(err) {
 				return errors.New("plugin '" + name + "' does not exist")
 			}
-			println("Removed plugin: '" + filename + "'")
+			println("Removed plugin '" + filename + "'")
 			return os.Remove(filename)
 		},
 	}
