@@ -29,7 +29,7 @@ import (
 func NewPluginRemoveCommand(p *commands.KnParams) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "remove",
-		Short:   "remove a plugin from local config directory",
+		Short:   "remove a plugin",
 		Aliases: []string{"ls"},
 		Long: `Install a plugin from URL or local filesystem.
 
