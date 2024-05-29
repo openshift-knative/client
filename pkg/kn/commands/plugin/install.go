@@ -39,17 +39,17 @@ func NewPluginInstallCommand(p *commands.KnParams) *cobra.Command {
 		Use:     "install",
 		Short:   "Install a plugin from URL or local file",
 		Aliases: []string{"ls"},
-		Long: `Install a plugin from URL or local filesystem.
+		Long: `Install a plugin by downloading it from a URL or the local filesystem.
 
-Plugin is installed from a provided URL or local path to ${KN_CONFIG_DIR}/kn/plugins.
+Pick up a plugin from a URL or a local path and copy it to ${KN_CONFIG_DIR}/kn/plugins.
 
 Current: ` + config.GlobalConfig.PluginsDir(),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 1 {
 				if localPath == "" {
-					return errors.New("'kn plugin install' requires URL or local file parameter '-f' to be specified")
+					return errors.New("'kn plugin install' requires the URL as argument or local file specified via '-f'")
 				}
-				println("Copying plugin from local path: " + localPath)
+				println("Copying plugin from " + localPath)
 				// Local plugin file to copy
 				return fetchLocal(localPath)
 			}
