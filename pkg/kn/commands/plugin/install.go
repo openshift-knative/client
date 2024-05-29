@@ -36,9 +36,8 @@ func NewPluginInstallCommand(p *commands.KnParams) *cobra.Command {
 
 	var localPath string
 	cmd := &cobra.Command{
-		Use:     "install",
-		Short:   "Install a plugin from URL or local file",
-		Aliases: []string{"ls"},
+		Use:   "install",
+		Short: "Install a plugin from URL or local file",
 		Long: `Install a plugin by downloading it from a URL or the local filesystem.
 
 Pick up a plugin from a URL or a local path and copy it to ${KN_CONFIG_DIR}/kn/plugins.

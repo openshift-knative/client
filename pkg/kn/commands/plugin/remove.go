@@ -25,12 +25,11 @@ import (
 	"knative.dev/client/pkg/kn/config"
 )
 
-// NewPluginInstallCommand creates a new `kn plugin install` command
+// NewPluginRemoveCommand creates a new `kn plugin remove` command
 func NewPluginRemoveCommand(p *commands.KnParams) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "remove",
-		Short:   "remove a plugin",
-		Aliases: []string{"ls"},
+		Use:   "remove",
+		Short: "remove a plugin",
 		Long: `Remove a plugin.
 
 Plugin is removed from ${KN_CONFIG_DIR}/kn/plugins.
