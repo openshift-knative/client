@@ -31,7 +31,7 @@ func NewPluginRemoveCommand(p *commands.KnParams) *cobra.Command {
 		Use:     "remove",
 		Short:   "remove a plugin",
 		Aliases: []string{"ls"},
-		Long: `Install a plugin from URL or local filesystem.
+		Long: `Remove a plugin.
 
 Plugin is removed from ${KN_CONFIG_DIR}/kn/plugins.
 
