@@ -33,7 +33,7 @@ func NewPluginRemoveCommand(p *commands.KnParams) *cobra.Command {
 		Aliases: []string{"ls"},
 		Long: `Install a plugin from URL or local filesystem.
 
-Plugin is removed by name from a local directory ${KN_CONFIG_DIR}/kn/plugins.
+Plugin is removed from ${KN_CONFIG_DIR}/kn/plugins.
 
 Current: ` + config.GlobalConfig.PluginsDir(),
 		RunE: func(cmd *cobra.Command, args []string) error {
