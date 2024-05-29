@@ -53,7 +53,7 @@ Current: ` + config.GlobalConfig.PluginsDir(),
 				// Local plugin file to copy
 				return fetchLocal(localPath)
 			}
-			println("Downloading from URL: " + args[0])
+			println("Downloading from " + args[0])
 			// Download from provided external URL and copy to plugins dir
 			return fetchFromURL(args[0])
 		},
