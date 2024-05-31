@@ -294,4 +294,4 @@ replace (
 	knative.dev/serving => knative.dev/serving v0.40.0
 )
 
-replace knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240506003636-6035bad4e9e5
+replace knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20240530171615-4ab659933ad7
