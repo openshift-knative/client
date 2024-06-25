@@ -14,7 +14,7 @@ failed=0
 if [[ "${PULL_BASE_REF:-}" == "release-next" ]]; then
   # Midstream based setup to run on nightly versions of Serving & Eventing
   # Serving setup & tests
-  (( !failed )) && install_knative_serving_branch "${SERVING_BRANCH}" || failed=1
+  (( !failed )) && install_serverless_operator_release_next || failed=1
   (( !failed )) && run_client_e2e_tests serving || failed=1
   # Eventing setup & tests
   (( !failed )) && install_knative_eventing_branch "${EVENTING_BRANCH}" || failed=1
