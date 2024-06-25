@@ -162,27 +162,6 @@ create_knative_namespace(){
 	EOF
 }
 
-install_knative_serving_branch() {
-  local branch=$1
-  local failed=0
-  header "Installing Knative Serving from openshift/knative-serving branch $branch"
-  rm -rf /tmp/knative-serving
-  git clone --branch $branch https://github.com/openshift-knative/serving.git /tmp/knative-serving || return 1
-  pushd /tmp/knative-serving
-
-  source "openshift/e2e-common.sh"
-  IMAGE_FORMAT='registry.ci.openshift.org/openshift/knative-nightly:${component}' install_knative || failed=1
-  
-  # Workaround default 'https' scheme
-  oc patch knativeserving knative-serving \
-    --namespace knative-serving --type merge \
-    --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || return 1
-  
-  popd
-  return $failed
-}
-
-
 install_knative_eventing_branch() {
   local branch=$1
 
@@ -199,6 +178,35 @@ install_knative_eventing_branch() {
   timeout 900 '[[ $(oc get pods -n $EVENTING_NAMESPACE --no-headers | wc -l) -lt 5 ]]' || return 1
   wait_until_pods_running $EVENTING_NAMESPACE || return 1
   header "Knative Eventing installed successfully"
+  popd
+}
+
+install_serverless_operator_release_next() {
+  local branch=${1:-"main"}
+  local repository="https://github.com/openshift-knative/serverless-operator.git"
+
+  local operator_dir=/tmp/serverless-operator
+  header "Installing serverless operator from openshift-knative/serverless-operator branch $branch"
+  rm -rf $operator_dir
+  git clone --branch $branch --depth 1 $repository $operator_dir || failed=1
+  pushd $operator_dir
+
+  # Install
+  export SKIP_MESH_AUTH_POLICY_GENERATION=true
+  export USE_RELEASE_NEXT=true
+  export ON_CLUSTER_BUILDS=true
+  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
+  make release-files images install-serving || return 12
+  subheader "Successfully installed Serverless Operator."
+
+  # Workaround default 'https' scheme
+  oc patch knativeserving knative-serving \
+    --namespace knative-serving --type merge \
+    --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || return 1
+
+  oc delete cm config-openshift-trusted-cabundle \
+    --namespace knative-eventing
+
   popd
 }
 
