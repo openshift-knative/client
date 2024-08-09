@@ -194,9 +194,10 @@ install_serverless_operator_release_next() {
   # Install
   export SKIP_MESH_AUTH_POLICY_GENERATION=true
   export USE_RELEASE_NEXT=true
-  #export ON_CLUSTER_BUILDS=true
-  #export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
-  make generated-files-release-next install-serving || return 12
+  export USE_IMAGE_RELEASE_TAG="knative-nightly"
+  export ON_CLUSTER_BUILDS=true
+  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
+  make release-files images install-serving || return 12
   subheader "Successfully installed Serverless Operator."
 
   # Workaround default 'https' scheme
