@@ -228,8 +228,8 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0 h1:YBftPWNWd4WwGqtY2yeZL2ef8rH
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0/go.mod h1:YN5jB8ie0yfIUg6VvR9Kz84aCaG7AsGZnLjhHbUqwPg=
 github.com/hashicorp/go-cleanhttp v0.5.2 h1:035FKYIWjmULyFRBKPs8TBQoi0x6d9G4xc9neXJWAZQ=
 github.com/hashicorp/go-cleanhttp v0.5.2/go.mod h1:kO/YDlP8L1346E6Sodw+PrpBSV4/SoxCXGY6BqNFT48=
-github.com/hashicorp/go-retryablehttp v0.6.7 h1:8/CAEZt/+F7kR7GevNHulKkUjLht3CPmn7egmhieNKo=
-github.com/hashicorp/go-retryablehttp v0.6.7/go.mod h1:vAew36LZh98gCBJNLH42IQ1ER/9wtLZZ8meHqQvEYWY=
+github.com/hashicorp/go-retryablehttp v0.7.0 h1:eu1EI/mbirUgP5C8hVsTNaGZreBDlYiwC1FZWkvQPQ4=
+github.com/hashicorp/go-retryablehttp v0.7.0/go.mod h1:vAew36LZh98gCBJNLH42IQ1ER/9wtLZZ8meHqQvEYWY=
 github.com/hashicorp/golang-lru v0.5.0/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
 github.com/hashicorp/golang-lru v0.5.1/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
 github.com/hashicorp/golang-lru v1.0.2 h1:dV3g9Z/unq5DpblPpw+Oqcv4dU/1omnb4Ok8iPY6p1c=
@@ -833,8 +833,12 @@ knative.dev/client-pkg v0.0.0-20240424094157-2bc81392b680 h1:bLPKdA4mwA7ICb/C2vw
 knative.dev/client-pkg v0.0.0-20240424094157-2bc81392b680/go.mod h1:KK2I9/U/k24Y7l4OwmluGEtV5CWoccjewRauaTJLOr4=
 knative.dev/eventing v0.41.0 h1:e38nejJiwEpFQI5JgcaT8JRUGZsQn05h1vBWSwNkroY=
 knative.dev/eventing v0.41.0/go.mod h1:/DjKZGRcZtBx8FOSvOy3mhxzm1Wem7H3aofb6kHq/68=
+knative.dev/eventing-kafka-broker v0.41.0 h1:0/GS9ldmLYIh/0k8j5brMUkGvEpRjeGnn7hO7tu7BXw=
+knative.dev/eventing-kafka-broker v0.41.0/go.mod h1:ZMGwenDuB+TnbESkeBREIb57Al7RVcdN7SmpsE7c1Ys=
 knative.dev/hack v0.0.0-20240404013450-1133b37da8d7 h1:fkWYWvdHm1mVHevKW2vVJnZtxH0NzOlux8imesweKwE=
 knative.dev/hack v0.0.0-20240404013450-1133b37da8d7/go.mod h1:yk2OjGDsbEnQjfxdm0/HJKS2WqTLEFg/N6nUs6Rqx3Q=
+knative.dev/kn-plugin-source-kafka v0.41.0 h1:dDqqKYgl/HCvkvUXCvKl2MgD/84pWufunkE8x+CUGKs=
+knative.dev/kn-plugin-source-kafka v0.41.0/go.mod h1:c1PWcnViDbmig+20WM8rM/GVCdpE++b2c7tu4jP7xhU=
 knative.dev/networking v0.0.0-20240418213116-979f63728302 h1:TQwoh8K7RgPXU+5Z5SX385vYjgvQ0OzdFLHRRCeF5K4=
 knative.dev/networking v0.0.0-20240418213116-979f63728302/go.mod h1:bb3B1eNMNO827kErNDGKYYiBgtlaR6T1DEDnfEad3q4=
 knative.dev/pkg v0.0.0-20240416145024-0f34a8815650 h1:m2ahFUO0L2VrgGDYdyOUFdE6xBd3pLXAJozLJwqLRQM=
