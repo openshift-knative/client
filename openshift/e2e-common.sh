@@ -114,7 +114,7 @@ run_client_e2e_tests(){
 
   go test \
     ./test/e2e \
-    -v -timeout=$E2E_TIMEOUT -mod=vendor \
+    -v -timeout=$E2E_TIMEOUT \
     --imagetemplate "$TEST_IMAGE_TEMPLATE" \
     ${run_append} || failed=$?
 
