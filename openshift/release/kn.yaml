@@ -14,7 +14,7 @@ plugins:
   - name: kn-plugin-func
     module: knative.dev/func
     pluginImportPath: knative.dev/func/plugin
-    version: v1.15.0
+    version: v1.15.1
     replace:
       - module: knative.dev/func
         moduleSource: github.com/openshift-knative/kn-plugin-func

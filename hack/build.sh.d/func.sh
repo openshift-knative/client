@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # There no midstream image currently, fallback to upstream one.
-readonly func_util_image="${KN_PLUGIN_FUNC_UTIL_IMAGE:-quay.io/boson/alpine-socat:1.7.4.3-r1-non-root}"
+readonly func_util_image="${KN_PLUGIN_FUNC_UTIL_IMAGE:-ghcr.io/knative/func-utils:latest}"
 readonly func_repo_ref="${FUNC_REPO_REF:-openshift-knative/kn-plugin-func}"
 readonly func_repo_branch_ref="${FUNC_REPO_BRANCH_REF:-serverless-1.33}"
 readonly default_node_builder_image="${DEFAULT_NODE_BUILDER_IMAGE:-registry.access.redhat.com/ubi8/nodejs-20-minimal}"

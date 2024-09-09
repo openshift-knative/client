@@ -277,7 +277,7 @@ require (
 	k8s.io/gengo v0.0.0-20240129211411-f967bbeff4b4 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20240403164606-bc84c2ddaf99 // indirect
-	knative.dev/func v1.15.0
+	knative.dev/func v1.15.1
 	knative.dev/kn-plugin-event v1.14.0
 	knative.dev/kn-plugin-source-kafka v0.41.0
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
