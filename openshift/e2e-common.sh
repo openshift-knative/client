@@ -15,8 +15,9 @@
 # limitations under the License.
 
 readonly ROOT_DIR=$(dirname $0)/..
-source ${ROOT_DIR}/vendor/knative.dev/hack/library.sh
-source ${ROOT_DIR}/vendor/knative.dev/hack/e2e-tests.sh
+
+source "$(go run knative.dev/hack/cmd/script library.sh)"
+source "$(go run knative.dev/hack/cmd/script e2e-tests.sh)"
 
 readonly KN_DEFAULT_TEST_IMAGE="gcr.io/knative-samples/helloworld-go"
 readonly SERVING_NAMESPACE="knative-serving"
@@ -113,7 +114,7 @@ run_client_e2e_tests(){
 
   go test \
     ./test/e2e \
-    -v -timeout=$E2E_TIMEOUT -mod=vendor \
+    -v -timeout=$E2E_TIMEOUT \
     --imagetemplate "$TEST_IMAGE_TEMPLATE" \
     ${run_append} || failed=$?
 

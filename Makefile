@@ -16,7 +16,7 @@
 
 CGO_ENABLED=0
 GOOS=linux
-TEST_IMAGES=./test/test_images/helloworld ./vendor/knative.dev/serving/test/test_images/grpc-ping ./vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer ./vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
+TEST_IMAGES=./test/test_images/helloworld knative.dev/serving/test/test_images/grpc-ping knative.dev/serving/test/test_images/multicontainer/servingcontainer knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 TEST=
 TEST_IMAGE_TAG ?= latest
 
@@ -25,19 +25,19 @@ install: build
 .PHONY: install
 
 build:
-	./hack/build.sh -f
+	GOFLAGS='' ./hack/build.sh -f
 .PHONY: build
 
 build-cross:
-	./hack/build.sh -x
+	GOFLAGS='' ./hack/build.sh -x
 .PHONY: build-cross
 
 build-cross-package: build-cross
-	./package_cliartifacts.sh
+	GOFLAGS='' ./package_cliartifacts.sh
 .PHONY: build-cross-package
 
 test-install:
-	go install $(TEST_IMAGES)
+	GOFLAGS='' go install $(TEST_IMAGES)
 .PHONY: test-install
 
 test-images:
@@ -47,11 +47,11 @@ test-images:
 .PHONY: test-images
 
 test-unit:
-	./hack/build.sh -t
+	GOFLAGS='' ./hack/build.sh -t
 .PHONY: test-unit
 
 test-e2e:
-	./openshift/e2e-tests-openshift.sh
+	GOFLAGS='' ./openshift/e2e-tests-openshift.sh
 .PHONY: test-e2e
 
 # Run make DOCKER_REPO_OVERRIDE=<your_repo> test-e2e-local if test images are available
