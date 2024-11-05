@@ -15,7 +15,7 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/helloworld
+COPY --from=builder /usr/bin/main /usr/bin/helloworld
 
 USER 65532
 
@@ -30,4 +30,4 @@ LABEL \
       io.k8s.description="Red Hat OpenShift Serverless Eventing Test Test Images Helloworld" \
       io.openshift.tags="test-test-images-helloworld"
 
-ENTRYPOINT ["/ko-app/helloworld"]
+ENTRYPOINT ["/usr/bin/helloworld"]

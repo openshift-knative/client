@@ -15,7 +15,7 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/servingcontainer
+COPY --from=builder /usr/bin/main /usr/bin/servingcontainer
 
 USER 65532
 
@@ -30,4 +30,4 @@ LABEL \
       io.k8s.description="Red Hat OpenShift Serverless Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer"
 
-ENTRYPOINT ["/ko-app/servingcontainer"]
+ENTRYPOINT ["/usr/bin/servingcontainer"]
