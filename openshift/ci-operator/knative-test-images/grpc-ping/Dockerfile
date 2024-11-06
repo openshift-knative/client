@@ -16,7 +16,7 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /usr/bin/grpc-ping
+COPY --from=builder /usr/bin/main /ko-app/grpc-ping
 
 USER 65532
 
@@ -31,4 +31,4 @@ LABEL \
       io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-grpc-ping"
 
-ENTRYPOINT ["/usr/bin/grpc-ping"]
+ENTRYPOINT ["/ko-app/grpc-ping"]
