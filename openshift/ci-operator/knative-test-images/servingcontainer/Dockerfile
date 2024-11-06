@@ -4,6 +4,7 @@ ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
 
 FROM $GO_BUILDER as builder
 
+WORKDIR /go/src/vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer
 COPY . .
 
 ENV CGO_ENABLED=1
