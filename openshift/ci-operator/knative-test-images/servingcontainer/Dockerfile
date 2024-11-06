@@ -4,6 +4,7 @@ ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
 
 FROM $GO_BUILDER as builder
 
+WORKDIR /go/src/vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer
 COPY . .
 
 ENV CGO_ENABLED=1
@@ -20,14 +21,14 @@ COPY --from=builder /usr/bin/main /usr/bin/servingcontainer
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-eventing-vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer-rhel8-container" \
-      name="openshift-serverless-1/eventing-vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer-rhel8-container" \
+      name="openshift-serverless-1/client-vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
+      summary="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
-      io.k8s.description="Red Hat OpenShift Serverless Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
+      description="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer"
 
 ENTRYPOINT ["/usr/bin/servingcontainer"]
