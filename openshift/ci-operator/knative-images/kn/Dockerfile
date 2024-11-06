@@ -16,19 +16,19 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/kn
+COPY --from=builder /usr/bin/main /usr/bin/kn
 
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-eventing-kn-rhel8-container" \
-      name="openshift-serverless-1/eventing-kn-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-kn-rhel8-container" \
+      name="openshift-serverless-1/client-kn-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Eventing Kn" \
+      summary="Red Hat OpenShift Serverless 1 Client Kn" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Eventing Kn" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Eventing Kn" \
-      io.k8s.description="Red Hat OpenShift Serverless Eventing Kn" \
+      description="Red Hat OpenShift Serverless 1 Client Kn" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Kn" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Kn" \
       io.openshift.tags="kn"
 
-ENTRYPOINT ["/ko-app/kn"]
+ENTRYPOINT ["/usr/bin/kn"]

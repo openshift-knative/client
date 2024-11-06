@@ -16,19 +16,19 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/grpc-ping
+COPY --from=builder /usr/bin/main /usr/bin/grpc-ping
 
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-eventing-vendor-knative.dev-serving-test-test-images-grpc-ping-rhel8-container" \
-      name="openshift-serverless-1/eventing-vendor-knative.dev-serving-test-test-images-grpc-ping-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-vendor-knative.dev-serving-test-test-images-grpc-ping-rhel8-container" \
+      name="openshift-serverless-1/client-vendor-knative.dev-serving-test-test-images-grpc-ping-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
+      summary="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
-      io.k8s.description="Red Hat OpenShift Serverless Eventing Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
+      description="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-grpc-ping"
 
-ENTRYPOINT ["/ko-app/grpc-ping"]
+ENTRYPOINT ["/usr/bin/grpc-ping"]

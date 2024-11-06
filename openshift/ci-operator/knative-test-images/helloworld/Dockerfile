@@ -16,19 +16,19 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/helloworld
+COPY --from=builder /usr/bin/main /usr/bin/helloworld
 
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-eventing-test-test-images-helloworld-rhel8-container" \
-      name="openshift-serverless-1/eventing-test-test-images-helloworld-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-test-test-images-helloworld-rhel8-container" \
+      name="openshift-serverless-1/client-test-test-images-helloworld-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Eventing Test Test Images Helloworld" \
+      summary="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Eventing Test Test Images Helloworld" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Eventing Test Test Images Helloworld" \
-      io.k8s.description="Red Hat OpenShift Serverless Eventing Test Test Images Helloworld" \
+      description="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Test Test Images Helloworld" \
       io.openshift.tags="test-test-images-helloworld"
 
-ENTRYPOINT ["/ko-app/helloworld"]
+ENTRYPOINT ["/usr/bin/helloworld"]

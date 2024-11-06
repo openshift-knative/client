@@ -16,19 +16,19 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /ko-app/sidecarcontainer
+COPY --from=builder /usr/bin/main /usr/bin/sidecarcontainer
 
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-eventing-vendor-knative.dev-serving-test-test-images-multicontainer-sidecarcontainer-rhel8-container" \
-      name="openshift-serverless-1/eventing-vendor-knative.dev-serving-test-test-images-multicontainer-sidecarcontainer-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-vendor-knative.dev-serving-test-test-images-multicontainer-sidecarcontainer-rhel8-container" \
+      name="openshift-serverless-1/client-vendor-knative.dev-serving-test-test-images-multicontainer-sidecarcontainer-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
+      summary="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
-      io.k8s.description="Red Hat OpenShift Serverless Eventing Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
+      description="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Multicontainer Sidecarcontainer" \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-multicontainer-sidecarcontainer"
 
-ENTRYPOINT ["/ko-app/sidecarcontainer"]
+ENTRYPOINT ["/usr/bin/sidecarcontainer"]
