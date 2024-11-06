@@ -11,14 +11,14 @@ metadata:
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: serverless-operator-135
-    appstudio.openshift.io/component: kn-client-test-helloworld-115
+    appstudio.openshift.io/component: kn-client-test-e2e-image-115
     pipelines.appstudio.openshift.io/type: build
-  name: kn-client-test-helloworld-115-on-pull-request
+  name: kn-client-test-e2e-image-115-on-pull-request
   namespace: ocp-serverless-tenant
 spec:
   params:
     - name: dockerfile
-      value: openshift/ci-operator/knative-test-images/helloworld/Dockerfile
+      value: openshift/ci-operator/test-e2e-image/Dockerfile
     - name: build-args
       value:
         - VERSION=1.35.0
@@ -33,7 +33,7 @@ spec:
     - name: image-expires-after
       value: 5d
     - name: output-image
-      value: quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-client-test-helloworld:on-pr-{{revision}}
+      value: quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-client-test-e2e-image:on-pr-{{revision}}
     - name: build-platforms
       value:
         - linux/x86_64
