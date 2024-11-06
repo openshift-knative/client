@@ -16,7 +16,7 @@ FROM $GO_RUNTIME
 
 ARG VERSION=knative-v1.15
 
-COPY --from=builder /usr/bin/main /usr/bin/kn
+COPY --from=builder /usr/bin/main /ko-app/kn
 
 USER 65532
 
@@ -31,4 +31,4 @@ LABEL \
       io.k8s.description="Red Hat OpenShift Serverless Client Kn" \
       io.openshift.tags="kn"
 
-ENTRYPOINT ["/usr/bin/kn"]
+ENTRYPOINT ["/ko-app/kn"]
