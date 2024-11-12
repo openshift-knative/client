@@ -600,6 +600,7 @@ k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/typed/apiextensions/v1
 # k8s.io/apimachinery v0.29.2
 ## explicit; go 1.21
+k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
 k8s.io/apimachinery/pkg/api/meta
@@ -958,12 +959,38 @@ k8s.io/utils/strings/slices
 k8s.io/utils/trace
 # knative.dev/client-pkg v0.0.0-20240724091446-8393d69ad672
 ## explicit; go 1.22
+knative.dev/client-pkg/pkg/commands
+knative.dev/client-pkg/pkg/commands/flags
+knative.dev/client-pkg/pkg/config
+knative.dev/client-pkg/pkg/dynamic
+knative.dev/client-pkg/pkg/dynamic/fake
+knative.dev/client-pkg/pkg/errors
+knative.dev/client-pkg/pkg/eventing/v1
+knative.dev/client-pkg/pkg/eventing/v1beta1
+knative.dev/client-pkg/pkg/flags
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/client
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/commands/source
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/core
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/factories
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/types
+knative.dev/client-pkg/pkg/kn-source-pkg/pkg/types/typesfakes
+knative.dev/client-pkg/pkg/messaging/v1
 knative.dev/client-pkg/pkg/plugin
+knative.dev/client-pkg/pkg/printers
+knative.dev/client-pkg/pkg/serving
+knative.dev/client-pkg/pkg/serving/v1
+knative.dev/client-pkg/pkg/serving/v1beta1
+knative.dev/client-pkg/pkg/sources/v1
+knative.dev/client-pkg/pkg/sources/v1beta2
+knative.dev/client-pkg/pkg/util
+knative.dev/client-pkg/pkg/util/mock
+knative.dev/client-pkg/pkg/wait
 # knative.dev/eventing v0.42.0
 ## explicit; go 1.22
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/duck/v1
+knative.dev/eventing/pkg/apis/duck/v1alpha1
 knative.dev/eventing/pkg/apis/eventing
 knative.dev/eventing/pkg/apis/eventing/v1
 knative.dev/eventing/pkg/apis/eventing/v1alpha1
@@ -985,6 +1012,7 @@ knative.dev/eventing/pkg/apis/sources/v1beta2
 knative.dev/eventing/pkg/client/clientset/versioned/scheme
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1/fake
+knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1beta1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1beta2
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1beta2/fake
 knative.dev/eventing/pkg/client/clientset/versioned/typed/messaging/v1
@@ -994,9 +1022,29 @@ knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta2
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta2/fake
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
+# knative.dev/eventing-kafka-broker v0.42.0
+## explicit; go 1.22
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/eventing
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/eventing/v1alpha1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/messaging
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/messaging/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/sources/config
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/sources/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/scheme
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1/fake
 # knative.dev/hack v0.0.0-20240704013904-b9799599afcf
 ## explicit; go 1.18
 knative.dev/hack
+# knative.dev/kn-plugin-source-kafka v0.42.0
+## explicit; go 1.22
+knative.dev/kn-plugin-source-kafka/pkg/client
+knative.dev/kn-plugin-source-kafka/pkg/factories
+knative.dev/kn-plugin-source-kafka/pkg/root
+knative.dev/kn-plugin-source-kafka/pkg/types
+knative.dev/kn-plugin-source-kafka/plugin
 # knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
 ## explicit; go 1.22
 knative.dev/networking/pkg
@@ -1019,7 +1067,9 @@ knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
 knative.dev/pkg/apis/duck/ducktypes
 knative.dev/pkg/apis/duck/v1
+knative.dev/pkg/apis/duck/v1alpha1
 knative.dev/pkg/apis/duck/v1beta1
+knative.dev/pkg/apis/testing/fuzzer
 knative.dev/pkg/changeset
 knative.dev/pkg/client/injection/ducks/duck/v1/addressable
 knative.dev/pkg/client/injection/ducks/duck/v1/authstatus
@@ -1065,6 +1115,7 @@ knative.dev/pkg/tracing/config
 knative.dev/pkg/tracing/propagation
 knative.dev/pkg/tracing/propagation/tracecontextb3
 knative.dev/pkg/tracker
+knative.dev/pkg/webhook/resourcesemantics
 # knative.dev/serving v0.42.0
 ## explicit; go 1.22
 knative.dev/serving/pkg/apis/autoscaling
