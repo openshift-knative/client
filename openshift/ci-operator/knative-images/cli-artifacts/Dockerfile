@@ -1,5 +1,5 @@
 # This is not generated Dockerfile, yet!
-ARG CLI_ARTIFACTS=brew.registry.redhat.io/rh-osbs/openshift-serverless-1-kn-cli-artifacts-rhel8@sha256:c0376504edae12e7af6b6cce02ac53b6b374f5058ebefcbdbd32628b551bb0c4
+ARG CLI_ARTIFACTS=quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-client-cli-artifacts:latest
 
 FROM $CLI_ARTIFACTS
 
