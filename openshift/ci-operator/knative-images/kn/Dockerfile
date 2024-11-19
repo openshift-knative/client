@@ -6,7 +6,7 @@ ARG IMAGE_KN_PLUGIN_EVENT_SENDER=registry.redhat.io/openshift-serverless-1/kn-pl
 
 FROM $GO_BUILDER as builder
 
-WORKDIR /go/src/cmd/kn
+WORKDIR /workspace
 COPY . .
 
 ENV CGO_ENABLED=1
@@ -21,6 +21,7 @@ FROM $GO_RUNTIME
 ARG VERSION=knative-v1.15
 
 COPY --from=builder /usr/bin/main /ko-app/kn
+COPY LICENSE /licenses/
 
 USER 65532
 
