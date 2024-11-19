@@ -1,0 +1,22 @@
+diff --git a/openshift/ci-operator/knative-images/kn/Dockerfile b/openshift/ci-operator/knative-images/kn/Dockerfile
+index 5c338be8a..2b8bdf1b5 100755
+--- a/openshift/ci-operator/knative-images/kn/Dockerfile
++++ b/openshift/ci-operator/knative-images/kn/Dockerfile
+@@ -1,6 +1,8 @@
+ # DO NOT EDIT! Generated Dockerfile for cmd/kn.
+ ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.22-openshift-4.17
+ ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
++ARG IMAGE_KN_PLUGIN_FUNC_UTIL=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel8sha256:49087b51e8b97d30ff7db67e1983d4ee63665092009af20a2598d7410eb781fb
++ARG IMAGE_KN_PLUGIN_EVENT_SENDER=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel8@sha256:443162d16adcb0dbc5ddbff4de172b2e7e80cc17928e0d9bf0e723cb0e99ebaf
+ 
+ FROM $GO_BUILDER as builder
+ 
+@@ -9,6 +11,8 @@ COPY . .
+ 
+ ENV CGO_ENABLED=1
+ ENV GOEXPERIMENT=strictfipsruntime
++ENV KN_PLUGIN_FUNC_UTIL_IMAGE=$IMAGE_KN_PLUGIN_FUNC_UTIL
++ENV KN_PLUGIN_EVENT_SENDER_IMAGE=$IMAGE_KN_PLUGIN_EVENT_SENDER
+ 
+ RUN go build -tags strictfipsruntime -o /usr/bin/main ./cmd/kn
+ 
