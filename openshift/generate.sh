@@ -23,4 +23,4 @@ install_generate_hack_tool || exit 1
   --app-file-fmt "/ko-app/%s" \
   --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%s-openshift-4.17"
 
-git apply $repo_root_dir/openshift/patches/dockerfile.patch
+git apply $repo_root_dir/openshift/dockerfile.patch

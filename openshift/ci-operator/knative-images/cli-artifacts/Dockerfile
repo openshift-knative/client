@@ -3,6 +3,10 @@ ARG CLI_ARTIFACTS=quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless
 
 FROM $CLI_ARTIFACTS
 
+ARG VERSION=knative-v1.15
+
+COPY LICENSE /licenses/
+
 USER 65532
 
 LABEL \
@@ -13,4 +17,4 @@ LABEL \
       maintainer="serverless-support@redhat.com" \
       description="Red Hat OpenShift Serverless 1 kn Client artifacts" \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts"
-
+      io.openshift.tags="kn-client-cli-artifacts"
