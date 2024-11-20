@@ -1,7 +1,11 @@
 # This is not generated Dockerfile, yet!
-ARG CLI_ARTIFACTS=quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-client-cli-artifacts:latest
+ARG CLI_ARTIFACTS=registry.redhat.io/openshift-serverless-1/kn-cli-artifacts-rhel8:1.14
 
 FROM $CLI_ARTIFACTS
+
+ARG VERSION=knative-v1.15
+
+COPY LICENSE /licenses/
 
 USER 65532
 
@@ -12,5 +16,5 @@ LABEL \
       summary="Red Hat OpenShift Serverless 1 kn Client artifacts" \
       maintainer="serverless-support@redhat.com" \
       description="Red Hat OpenShift Serverless 1 kn Client artifacts" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts"
-
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts" \
+      io.openshift.tags="kn-client-cli-artifacts"
