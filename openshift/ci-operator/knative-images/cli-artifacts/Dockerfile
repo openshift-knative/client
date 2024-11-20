@@ -16,5 +16,5 @@ LABEL \
       summary="Red Hat OpenShift Serverless 1 kn Client artifacts" \
       maintainer="serverless-support@redhat.com" \
       description="Red Hat OpenShift Serverless 1 kn Client artifacts" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts"
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts" \
       io.openshift.tags="kn-client-cli-artifacts"
