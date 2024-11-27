@@ -1,8 +1,6 @@
 # DO NOT EDIT! Generated Dockerfile for cmd/kn.
 ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.22-openshift-4.17
 ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
-ARG IMAGE_KN_PLUGIN_FUNC_UTIL=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel8@sha256:134a07b2ecd8bb485d7f20bf23e863f5cec5620134c4a26b65e31d23c3076175
-ARG IMAGE_KN_PLUGIN_EVENT_SENDER=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel8@sha256:e2ea8370284a4807712849a0ec8c786bbf7cb6cd78dc2309c14e87470df235e6
 
 FROM $GO_BUILDER as builder
 
@@ -11,9 +9,9 @@ COPY . .
 
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=$IMAGE_KN_PLUGIN_FUNC_UTIL
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=$IMAGE_KN_PLUGIN_EVENT_SENDER
 
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel8@sha256:63fbd304ffb93e5883b987ac90a476cd9ff9946f164ca8acb9c1a95fee84bcb3
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel8@sha256:1d2a8b786bd09301530d37440ce6501527cfd511ba78d97da5eda952a6558ebe
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./cmd/kn
 
 FROM $GO_RUNTIME
