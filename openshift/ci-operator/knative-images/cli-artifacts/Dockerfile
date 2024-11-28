@@ -10,12 +10,12 @@ COPY LICENSE /licenses/
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-kn-cli-artifacts-rhel8-container" \
-      name="openshift-serverless-1/kn-cli-artifacts-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-cli-artifacts-rhel8-container" \
+      name="openshift-serverless-1/client-cli-artifacts-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 kn Client artifacts" \
+      summary="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 kn Client artifacts" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 kn Client artifacts" \
-      io.k8s.description="Red Hat OpenShift Serverless kn Client artifacts" \
-      io.openshift.tags="kn-client-cli-artifacts"
+      description="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Cli Artifacts" \
+      io.openshift.tags="cli-artifacts"
