@@ -20,7 +20,7 @@ set -o pipefail
 set -o errexit
 set -o nounset
 
-source_dirs="cmd pkg test tools"
+source_dirs="cmd pkg test lib tools"
 
 # Store for later
 if [ -z "${1-}" ]; then
@@ -72,6 +72,15 @@ run() {
     if has_flag --test -t; then
        go_test
     fi
+    exit 0
+  fi
+
+# platform mode: Only to build target platform for cross-compilation
+  if $(has_flag --platform -p); then
+  # Extract GOOS and GOARCH from command-line arguments
+    GOOS="${ARGS[1]}"
+    GOARCH="${ARGS[2]}"
+    go_build_with_goos_goarch "$GOOS" "$GOARCH"
     exit 0
   fi
 
@@ -139,9 +148,28 @@ source_lint() {
 go_build() {
   echo "🚧 Compile"
   # Env var exported by hack/build-flags.sh
-  go build -ldflags "${KN_BUILD_LD_FLAGS:-}" -o kn ./cmd/...
+  go build -mod=vendor -ldflags "${KN_BUILD_LD_FLAGS:-}" -o kn ./cmd/...
 
   if file kn | grep -q -i "Windows"; then
+    mv kn kn.exe
+  fi
+}
+
+go_build_with_goos_goarch() {
+  GOOS="${1}"
+  GOARCH="${2}"
+  
+  if [ -z "${GOOS}" ] || [ -z "${GOARCH}" ]; then
+    echo "❌ Missing GOOS or GOARCH. Please provide both GOOS and GOARCH as arguments."
+    exit 1
+  fi
+
+  echo "🚧 Compile for GOOS=${GOOS} GOARCH=${GOARCH}"
+
+  # Env var exported by hack/build-flags.sh
+  GOOS="${GOOS}" GOARCH="${GOARCH}" go build -mod=vendor -ldflags "${KN_BUILD_LD_FLAGS:-}" -o kn ./cmd/...
+
+  if $(file kn | grep -q -i "Windows"); then
     mv kn kn.exe
   fi
 }
@@ -179,7 +207,7 @@ check_license() {
   local check_output
   check_output="$(mktemp /tmp/kn-client-licence-check.XXXXXX)"
   for ext in "${extensions_to_check[@]}"; do
-    find . -name "*.$ext" -a \! -path "./.*" -a \! -path "./third_party/*" -print0 |
+    find . -name "*.$ext" -a \! -path "./vendor/*" -a \! -path "./.*" -a \! -path "./third_party/*" -print0 |
       while IFS= read -r -d '' path; do
         for rword in "${required_keywords[@]}"; do
           if ! grep -q "$rword" "$path"; then
@@ -287,19 +315,19 @@ cross_build() {
 
   export CGO_ENABLED=0
   echo "   🐧 kn-linux-amd64"
-  GOOS=linux GOARCH=amd64 go build -ldflags "${ld_flags}" -o ./kn-linux-amd64 ./cmd/... || failed=1
+  GOOS=linux GOARCH=amd64 go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-linux-amd64 ./cmd/... || failed=1
   echo "   💪 kn-linux-arm64"
-  GOOS=linux GOARCH=arm64 go build -ldflags "${ld_flags}" -o ./kn-linux-arm64 ./cmd/... || failed=1
+  GOOS=linux GOARCH=arm64 go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-linux-arm64 ./cmd/... || failed=1
   echo "   🍏 kn-darwin-amd64"
-  GOOS=darwin GOARCH=amd64 go build -ldflags "${ld_flags}" -o ./kn-darwin-amd64 ./cmd/... || failed=1
+  GOOS=darwin GOARCH=amd64 go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-darwin-amd64 ./cmd/... || failed=1
   echo "   🍎 kn-darwin-arm64"
-  GOOS=darwin GOARCH=arm64 go build -ldflags "${ld_flags}" -o ./kn-darwin-arm64 ./cmd/... || failed=1
+  GOOS=darwin GOARCH=arm64 go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-darwin-arm64 ./cmd/... || failed=1
   echo "   🎠 kn-windows-amd64.exe"
-  GOOS=windows GOARCH=amd64 go build -ldflags "${ld_flags}" -o ./kn-windows-amd64.exe ./cmd/... || failed=1
+  GOOS=windows GOARCH=amd64 go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-windows-amd64.exe ./cmd/... || failed=1
   echo "   Z  kn-linux-s390x"
-  GOOS=linux GOARCH=s390x go build -ldflags "${ld_flags}" -o ./kn-linux-s390x ./cmd/... || failed=1
+  GOOS=linux GOARCH=s390x go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-linux-s390x ./cmd/... || failed=1
   echo "   P  kn-linux-ppc64le"
-  GOOS=linux GOARCH=ppc64le go build -ldflags "${ld_flags}" -o ./kn-linux-ppc64le ./cmd/... || failed=1
+  GOOS=linux GOARCH=ppc64le go build -mod=vendor -ldflags "${ld_flags}" -o ./kn-linux-ppc64le ./cmd/... || failed=1
 
   return ${failed}
 }
@@ -336,6 +364,7 @@ Usage: $(basename "${BASH_SOURCE[0]}") [... options ...]
 with the following options:
 
 -f  --fast                    Only compile (without dep update, formatting, testing, doc gen)
+-p  --platform                Specify the target platform for cross-compilation (e.g., linux amd64, darwin amd64)"
 -t  --test                    Run tests when used with --fast or --watch
 -c  --codegen                 Runs formatting, doc gen and update without compiling/testing
 -w  --watch                   Watch for source changes and recompile in fast mode
@@ -353,12 +382,13 @@ ln -s $(basedir)/hack/build.sh /usr/local/bin/kn_build.sh
 Examples:
 
 * Update deps, format, license check,
-  gen docs, compile, test: ........... build.sh
-* Compile only: ...................... build.sh --fast
-* Run only tests: .................... build.sh --test
-* Compile with tests: ................ build.sh -f -t
-* Automatic recompilation: ........... build.sh --watch
-* Build cross platform binaries: ..... build.sh --all
+  gen docs, compile, test: ........................ build.sh
+* Compile only: ................................... build.sh --fast
+* Build cross platform binaries for a platform: ... build.sh -p linux amd64
+* Run only tests: ................................. build.sh --test
+* Compile with tests: ............................. build.sh -f -t
+* Automatic recompilation: ........................ build.sh --watch
+* Build cross platform binaries: .................. build.sh --all
 EOT
 }
 
@@ -368,8 +398,7 @@ if has_flag --debug; then
 fi
 
 # Shared funcs from hack repo
-# shellcheck disable=SC1090
-source "$(go run knative.dev/hack/cmd/script library.sh)"
+source "$(basedir)"/vendor/knative.dev/hack/library.sh
 
 # Shared funcs with CI
 while IFS= read -r -d '' file; do

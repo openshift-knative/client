@@ -15,7 +15,8 @@
 # limitations under the License.
 
 CGO_ENABLED=0
-GOOS=linux
+GOOS ?=
+GOARCH ?=
 TEST_IMAGES=./test/test_images/helloworld knative.dev/serving/test/test_images/grpc-ping knative.dev/serving/test/test_images/multicontainer/servingcontainer knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 TEST=
 TEST_IMAGE_TAG ?= latest
@@ -27,6 +28,10 @@ install: build
 build:
 	GOFLAGS='' ./hack/build.sh -f
 .PHONY: build
+
+build-with-platform:
+	GOFLAGS='' ./hack/build.sh -p $(GOOS) $(GOARCH)
+.PHONY: build-with-platform
 
 build-cross:
 	GOFLAGS='' ./hack/build.sh -x
