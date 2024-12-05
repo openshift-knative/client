@@ -21,6 +21,9 @@ install_generate_hack_tool || exit 1
   --root-dir "${repo_root_dir}" \
   --generators dockerfile \
   --app-file-fmt "/ko-app/%s" \
+  --excludes ".*k8s\\.io.*" \
+  --excludes ".*knative.dev/pkg/codegen.*" \
+  --excludes ".*knative.dev/hack/cmd/script.*" \
   --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%s-openshift-4.17"
 
 #git apply $repo_root_dir/openshift/dockerfile.patch
