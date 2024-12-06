@@ -17,7 +17,7 @@
 CGO_ENABLED=0
 GOOS ?=
 GOARCH ?=
-TEST_IMAGES=./test/test_images/helloworld knative.dev/serving/test/test_images/grpc-ping knative.dev/serving/test/test_images/multicontainer/servingcontainer knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
+TEST_IMAGES=./test/test_images/helloworld ./vendor/knative.dev/serving/test/test_images/grpc-ping ./vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer ./vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 TEST=
 TEST_IMAGE_TAG ?= latest
 
