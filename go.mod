@@ -12,7 +12,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.18.2
 	golang.org/x/mod v0.19.0
-	golang.org/x/term v0.22.0
+	golang.org/x/term v0.27.0
 	gotest.tools/v3 v3.5.1
 	k8s.io/api v0.29.3
 	k8s.io/apiextensions-apiserver v0.29.3
@@ -178,7 +178,7 @@ require (
 	go.opentelemetry.io/otel v1.27.0 // indirect
 	go.opentelemetry.io/otel/metric v1.27.0 // indirect
 	go.opentelemetry.io/otel/trace v1.27.0 // indirect
-	golang.org/x/crypto v0.25.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	k8s.io/gengo/v2 v2.0.0-20240228010128-51d4e06bde70 // indirect
@@ -259,9 +259,9 @@ require (
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/oauth2 v0.21.0 // indirect
-	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.22.0 // indirect
-	golang.org/x/text v0.16.0 // indirect
+	golang.org/x/sync v0.10.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
@@ -290,7 +290,7 @@ require (
 replace (
 	k8s.io/client-go => k8s.io/client-go v0.29.3
 	knative.dev/eventing => knative.dev/eventing v0.42.0
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20241119190051-ca1d8a6db97e
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20241217132449-76eb15645e75
 	knative.dev/hack => knative.dev/hack v0.0.0-20240404013450-1133b37da8d7
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.41.1-0.20241108212750-2300a1bb5230
 	knative.dev/networking => knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
