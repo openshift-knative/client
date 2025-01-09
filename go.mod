@@ -292,7 +292,7 @@ replace (
 	knative.dev/eventing => knative.dev/eventing v0.42.0
 	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250107132903-af1715fbd2b2
 	knative.dev/hack => knative.dev/hack v0.0.0-20240404013450-1133b37da8d7
-	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.41.1-0.20241108212750-2300a1bb5230
+	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.41.1-0.20250109102108-726991e8ad3d
 	knative.dev/networking => knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20240716082220-4355f0c73608
 	knative.dev/serving => knative.dev/serving v0.42.0
