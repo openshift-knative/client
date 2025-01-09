@@ -1480,8 +1480,8 @@ github.com/opencontainers/runtime-spec v1.2.0 h1:z97+pHb3uELt/yiAWD691HNHQIF07bE
 github.com/opencontainers/runtime-spec v1.2.0/go.mod h1:jwyrGlmzljRJv/Fgzds9SsS/C5hL+LL3ko9hs6T5lQ0=
 github.com/opencontainers/selinux v1.11.0 h1:+5Zbo97w3Lbmb3PeqQtpmTkMwsW5nRI3YaLpt7tQ7oU=
 github.com/opencontainers/selinux v1.11.0/go.mod h1:E5dMC3VPuVvVHDYmi78qvhJp8+M586T4DlDRYpFkyec=
-github.com/openshift-knative/kn-plugin-event v0.41.1-0.20241108212750-2300a1bb5230 h1:vGOjCXK7XR1ZMkRzXDyuaYsCJ9grGqPzMviHOREbw6E=
-github.com/openshift-knative/kn-plugin-event v0.41.1-0.20241108212750-2300a1bb5230/go.mod h1:7K/pWIaEjrpKUdfr7dandNAVgi+2h1NJeyDJk2aigL8=
+github.com/openshift-knative/kn-plugin-event v0.41.1-0.20250109102108-726991e8ad3d h1:wBBpeiIgLUr6vyCSzyLMeQW+WKJg5HoZLdyVveUuqVQ=
+github.com/openshift-knative/kn-plugin-event v0.41.1-0.20250109102108-726991e8ad3d/go.mod h1:JRxpo+L8u8KNEU+2SCOMyIak7hLtvgnHUKQM89jQMto=
 github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250107132903-af1715fbd2b2 h1:kXk6kK+YdHP3rWEVoyvzrUfJIFNgyyQSsdYHoZDWDpk=
 github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250107132903-af1715fbd2b2/go.mod h1:h522iI5CbRtIB+6BK4nEAXlfhLNx7QOUTLDnYVD0jT4=
 github.com/openshift-pipelines/pipelines-as-code v0.27.0 h1:uxpva7/Ad/QEvc40BCBFEWrmYlAjCZ9dZCFYPYWW61c=
