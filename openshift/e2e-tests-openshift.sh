@@ -17,7 +17,7 @@ if [[ "${PULL_BASE_REF:-}" == "release-next" ]]; then
   (( !failed )) && install_serverless_operator_release_next || failed=1
   (( !failed )) && run_client_e2e_tests serving || failed=1
   # Eventing setup & tests
-  (( !failed )) && install_knative_eventing_branch "${EVENTING_BRANCH}" || failed=1
+  # (( !failed )) && install_knative_eventing_branch "${EVENTING_BRANCH}" || failed=1
   (( !failed )) && run_client_e2e_tests eventing || failed=1
 else
   # Serverless operator based setup for release branches
