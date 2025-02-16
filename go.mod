@@ -29,7 +29,7 @@ require (
 	sigs.k8s.io/yaml v1.4.0
 )
 
-require k8s.io/utils v0.0.0-20240310230437-4693a0247e57
+require k8s.io/utils v0.0.0-20241210054802-24370beab758
 
 require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
