@@ -26,46 +26,7 @@ readonly EVENTING_NAMESPACE="knative-eventing"
 readonly E2E_TIMEOUT="60m"
 readonly OLM_NAMESPACE="openshift-marketplace"
 
-# if you want to setup the nightly serving/eventing, set `release-next` OR
-# set release branch name for example: release-v0.19.1
-readonly SERVING_BRANCH="release-next"
-readonly EVENTING_BRANCH="release-next"
-
-# The value should be updated once S-O release branch is cut
-readonly SERVERLESS_BRANCH="serverless-1.33"
-
-# Determine if we're running locally or in CI.
-if [ -n "$OPENSHIFT_BUILD_NAMESPACE" ]; then
-  readonly TEST_IMAGE_TEMPLATE=$(cat <<-END
-{{- with .Name }}
-{{- if eq . "helloworld"}}$KNATIVE_CLIENT_TEST_HELLOWORLD{{end -}}
-{{- if eq . "grpc-ping"}}$KNATIVE_CLIENT_TEST_GRPC_PING{{end -}}
-{{- if eq . "servingcontainer"}}$KNATIVE_CLIENT_TEST_SERVINGCONTAINER{{end -}}
-{{- if eq . "sidecarcontainer"}}$KNATIVE_CLIENT_TEST_SIDECARCONTAINER{{end -}}
-{{end -}}
-END
-)
-elif [ -n "$DOCKER_REPO_OVERRIDE" ]; then
-  readonly TEST_IMAGE_TEMPLATE="${DOCKER_REPO_OVERRIDE}/{{.Name}}"
-elif [ -n "$BRANCH" ]; then
-  readonly TEST_IMAGE_TEMPLATE="registry.ci.openshift.org/openshift/${BRANCH}:knative-client-test-{{.Name}}"
-elif [ -n "$TEMPLATE" ]; then
-  readonly TEST_IMAGE_TEMPLATE="$TEMPLATE"
-else
-  readonly TEST_IMAGE_TEMPLATE="registry.ci.openshift.org/openshift/knative-nightly:knative-client-test-{{.Name}}"
-fi
-
 env
-
-# Loops until duration (car) is exceeded or command (cdr) returns non-zero
-timeout() {
-  SECONDS=0; TIMEOUT=$1; shift
-  while eval $*; do
-    sleep 5
-    [[ $SECONDS -gt $TIMEOUT ]] && echo "ERROR: Timed out" && return 1
-  done
-  return 0
-}
 
 build_knative_client() {
   failed=0
@@ -85,7 +46,47 @@ run_unit_tests() {
   return $failed
 }
 
+resolve_test_images() {
+  local serving_test_base="registry.ci.openshift.org/openshift/knative-eventing-test"
+  local project_tag
+  project_tag=$(yq r "${ROOT_DIR}/openshift/project.yaml" project.tag)
+
+  export KNATIVE_CLIENT_TEST_GRPC_PING="${serving_test_base}-grpc-ping:${project_tag}"
+  export KNATIVE_CLIENT_TEST_SERVINGCONTAINER="${serving_test_base}-servingcontainer:${project_tag}"
+  export NATIVE_CLIENT_TEST_SIDECARCONTAINER="${serving_test_base}-sidecarcontainer:${project_tag}"
+
+  # Determine if we're running locally or in CI.
+  if [ -n "$OPENSHIFT_BUILD_NAMESPACE" ]; then
+    readonly TEST_IMAGE_TEMPLATE=$(cat <<-END
+{{- with .Name }}
+{{- if eq . "helloworld"}}$KNATIVE_CLIENT_TEST_HELLOWORLD{{end -}}
+{{- if eq . "grpc-ping"}}$KNATIVE_CLIENT_TEST_GRPC_PING{{end -}}
+{{- if eq . "servingcontainer"}}$KNATIVE_CLIENT_TEST_SERVINGCONTAINER{{end -}}
+{{- if eq . "sidecarcontainer"}}$KNATIVE_CLIENT_TEST_SIDECARCONTAINER{{end -}}
+{{end -}}
+END
+  )
+  elif [ -n "$DOCKER_REPO_OVERRIDE" ]; then
+    readonly TEST_IMAGE_TEMPLATE="${DOCKER_REPO_OVERRIDE}/{{.Name}}"
+  elif [ -n "$BRANCH" ]; then
+    readonly TEST_IMAGE_TEMPLATE="registry.ci.openshift.org/openshift/${BRANCH}:knative-client-test-{{.Name}}"
+  elif [ -n "$TEMPLATE" ]; then
+    readonly TEST_IMAGE_TEMPLATE="$TEMPLATE"
+  else
+    readonly TEST_IMAGE_TEMPLATE="registry.ci.openshift.org/openshift/knative-nightly:knative-client-test-{{.Name}}"
+  fi
+
+  echo "${TEST_IMAGE_TEMPLATE}"
+}
+
+run_sobranch() {
+  go run github.com/openshift-knative/hack/cmd/sobranch@latest "$@"
+}
+
 run_client_e2e_tests(){
+
+  resolve_test_images
+
   local tags=$1
   local test_name=${2:-}
 
@@ -121,119 +122,32 @@ run_client_e2e_tests(){
   return $failed
 }
 
-# Waits until all pods are running in the given namespace.
-# Parameters: $1 - namespace.
-wait_until_pods_running() {
-  echo -n "Waiting until all pods in namespace $1 are up"
-  for i in {1..150}; do  # timeout after 5 minutes
-    local pods="$(kubectl get pods --no-headers -n $1 2>/dev/null)"
-    # All pods must be running
-    local not_running=$(echo "${pods}" | grep -v Running | grep -v Completed | wc -l)
-    if [[ -n "${pods}" && ${not_running} -eq 0 ]]; then
-      local all_ready=1
-      while read pod ; do
-        local status=(`echo -n ${pod} | cut -f2 -d' ' | tr '/' ' '`)
-        # All containers must be ready
-        [[ -z ${status[0]} ]] && all_ready=0 && break
-        [[ -z ${status[1]} ]] && all_ready=0 && break
-        [[ ${status[0]} -lt 1 ]] && all_ready=0 && break
-        [[ ${status[1]} -lt 1 ]] && all_ready=0 && break
-        [[ ${status[0]} -ne ${status[1]} ]] && all_ready=0 && break
-      done <<< "$(echo "${pods}" | grep -v Completed)"
-      if (( all_ready )); then
-        echo -e "\nAll pods are up:\n${pods}"
-        return 0
-      fi
-    fi
-    echo -n "."
-    sleep 2
-  done
-  echo -e "\n\nERROR: timeout waiting for pods to come up\n${pods}"
-  return 1
-}
-
-create_knative_namespace(){
-  local COMPONENT="knative-$1"
-
-  cat <<-EOF | oc apply -f -
-	apiVersion: v1
-	kind: Namespace
-	metadata:
-	  name: ${COMPONENT}
-	EOF
-}
-
-install_knative_eventing_branch() {
-  local branch=$1
-
-  header "Installing Knative Eventing from openshift/knative-eventing branch $branch"
-  rm -rf /tmp/knative-eventing
-  git clone --branch $branch https://github.com/openshift-knative/eventing.git /tmp/knative-eventing || return 1
-  pushd /tmp/knative-eventing/
-
-  create_knative_namespace eventing
-
-  oc apply -R -f openshift/release/artifacts
-
-  # Wait for 5 pods to appear first
-  timeout 900 '[[ $(oc get pods -n $EVENTING_NAMESPACE --no-headers | wc -l) -lt 5 ]]' || return 1
-  wait_until_pods_running $EVENTING_NAMESPACE || return 1
-  header "Knative Eventing installed successfully"
-  popd
-}
-
-install_serverless_operator_release_next() {
-  local branch=${1:-"main"}
+install_serverless_operator() {
   local repository="https://github.com/openshift-knative/serverless-operator.git"
+  local project_tag release so_branch
+  project_tag=$(yq r "${ROOT_DIR}/openshift/project.yaml" project.tag)
+  release=${project_tag/knative-/}
+  so_branch=$(run_sobranch --upstream-version "${release}")
 
-  local operator_dir=/tmp/serverless-operator
-  header "Installing serverless operator from openshift-knative/serverless-operator branch $branch"
-  rm -rf $operator_dir
-  git clone --branch $branch --depth 1 $repository $operator_dir || failed=1
-  pushd $operator_dir
-
-  # Install
-  export SKIP_MESH_AUTH_POLICY_GENERATION=true
-  export USE_RELEASE_NEXT=true
-  export USE_IMAGE_RELEASE_TAG="knative-nightly"
-  export ON_CLUSTER_BUILDS=true
-  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
-  make release-files images install-serving || return 12
-  subheader "Successfully installed Serverless Operator."
-
-  # Workaround default 'https' scheme
-  oc patch knativeserving knative-serving \
-    --namespace knative-serving --type merge \
-    --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || return 1
-
-  oc delete cm config-openshift-trusted-cabundle \
-    --namespace knative-eventing
-
-  popd
-}
-
-install_serverless_operator_branch() {
-  local branch=$1
-  local repository="https://github.com/openshift-knative/serverless-operator.git"
-  
-  if ! git ls-remote --heads --exit-code "$repository" "$branch" &>/dev/null; then
+  if ! git ls-remote --heads --exit-code "$repository" "$so_branch" &>/dev/null; then
       echo "Release branch doesn't exist yet, using main"
-      branch="main"
+      so_branch="main"
   fi
 
   local operator_dir=/tmp/serverless-operator
   local failed=0
   header "Installing serverless operator from openshift-knative/serverless-operator branch $branch"
   rm -rf $operator_dir
-  git clone --branch $branch $repository $operator_dir || failed=1
+  git clone --branch "${so_branch}" $repository $operator_dir || failed=1
   pushd $operator_dir
-  # unset OPENSHIFT_BUILD_NAMESPACE (old CI) and OPENSHIFT_CI (new CI) as its used in serverless-operator's CI
-  # environment as a switch to use CI built images, we want pre-built images of k-s-o and k-o-i
-  unset OPENSHIFT_BUILD_NAMESPACE
-  unset OPENSHIFT_CI
 
-  # Install all components Serving,Eventing,Strimzi and Kafka
-  make install-all || failed=1
+  export SKIP_MESH_AUTH_POLICY_GENERATION=true
+  USE_IMAGE_RELEASE_TAG="${project_tag}"
+  export USE_IMAGE_RELEASE_TAG
+  export ON_CLUSTER_BUILDS=true
+  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
+
+  make generated-files images install-serving install-eventing || failed=1
   subheader "Successfully installed serverless operator."
   
   # Workaround default 'https' scheme
@@ -241,32 +155,6 @@ install_serverless_operator_branch() {
     --namespace knative-serving --type merge \
     --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || return 1
 
-  header "Applying Strimzi Topic CR"
-  cat <<-EOF | oc apply -n kafka -f - || failed=1
-apiVersion: kafka.strimzi.io/v1beta1
-kind: KafkaTopic
-metadata:
-  name: test-topic
-  labels:
-    strimzi.io/cluster: my-cluster
-spec:
-  partitions: 100
-  replicas: 1
-EOF
-
   popd
   return $failed
-}
-
-# Add to exec script if needed
-resources_debug() {
-  echo ">> Check resources"
-  echo ">> - meminfo:"
-  cat /proc/meminfo
-  echo ">> - memory.limit_in_bytes"
-  cat /sys/fs/cgroup/memory/memory.limit_in_bytes
-  echo ">> - cpu.cfs_period_us"
-  cat /sys/fs/cgroup/cpu/cpu.cfs_period_us
-  echo ">> - cpu.cfs_quota_us"
-  cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us
 }
