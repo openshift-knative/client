@@ -47,7 +47,7 @@ run_unit_tests() {
 }
 
 resolve_test_images() {
-  local serving_test_base="registry.ci.openshift.org/openshift/knative-eventing-test"
+  local serving_test_base="registry.ci.openshift.org/openshift/knative-serving-test"
   local project_tag
   project_tag=$(yq r "${ROOT_DIR}/openshift/project.yaml" project.tag)
 
@@ -65,7 +65,7 @@ resolve_test_images() {
 {{- if eq . "sidecarcontainer"}}$KNATIVE_CLIENT_TEST_SIDECARCONTAINER{{end -}}
 {{end -}}
 END
-  )
+)
   elif [ -n "$DOCKER_REPO_OVERRIDE" ]; then
     readonly TEST_IMAGE_TEMPLATE="${DOCKER_REPO_OVERRIDE}/{{.Name}}"
   elif [ -n "$BRANCH" ]; then
@@ -136,7 +136,7 @@ install_serverless_operator() {
 
   local operator_dir=/tmp/serverless-operator
   local failed=0
-  header "Installing serverless operator from openshift-knative/serverless-operator branch $branch"
+  header "Installing serverless operator from openshift-knative/serverless-operator branch $so_branch"
   rm -rf $operator_dir
   git clone --branch "${so_branch}" $repository $operator_dir || failed=1
   pushd $operator_dir
