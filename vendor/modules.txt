@@ -1243,7 +1243,7 @@ knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1/fake
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/hack v0.0.0-20250116150306-c142b4835bc5
+# knative.dev/hack v0.0.0-20250219013704-306ce745e077
 ## explicit; go 1.21
 knative.dev/hack
 knative.dev/hack/cmd/script

@@ -9,7 +9,7 @@ require (
 	k8s.io/apimachinery v0.31.4
 	k8s.io/code-generator v0.31.4
 	knative.dev/client/pkg v0.0.0-00010101000000-000000000000
-	knative.dev/hack v0.0.0-20250116150306-c142b4835bc5
+	knative.dev/hack v0.0.0-20250219013704-306ce745e077
 	knative.dev/networking v0.0.0-20250117155906-67d1c274ba6a
 	knative.dev/pkg v0.0.0-20250117084104-c43477f0052b
 	knative.dev/serving v0.44.0
