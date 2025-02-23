@@ -1045,7 +1045,7 @@ k8s.io/utils/trace
 # knative.dev/client-pkg v0.0.0-20241022130700-7b4bb48ac250
 ## explicit; go 1.22.0
 knative.dev/client-pkg/pkg/plugin
-# knative.dev/client/pkg v0.0.0-00010101000000-000000000000 => ./pkg
+# knative.dev/client/pkg v0.0.0-20250219014457-a051025a49ee => ./pkg
 ## explicit; go 1.22.0
 # knative.dev/eventing v0.43.0
 ## explicit; go 1.22.0
