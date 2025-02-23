@@ -5,9 +5,9 @@ go 1.22.0
 require (
 	github.com/spf13/cobra v1.7.0
 	gotest.tools/v3 v3.3.0
-	k8s.io/api v0.30.3
-	k8s.io/apimachinery v0.30.3
-	k8s.io/code-generator v0.30.3
+	k8s.io/api v0.32.2
+	k8s.io/apimachinery v0.32.2
+	k8s.io/code-generator v0.32.2
 	knative.dev/client/pkg v0.0.0-00010101000000-000000000000
 	knative.dev/hack v0.0.0-20241010131451-05b2fb30cb4d
 	knative.dev/networking v0.0.0-20241022012959-60e29ff520dc
