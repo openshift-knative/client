@@ -56,6 +56,12 @@ build_knative_client() {
   return $failed
 }
 
+run_unit_tests() {
+  failed=0
+  go test -v ./cmd/... ./pkg/... || failed=1
+  return $failed
+}
+
 run_sobranch() {
   go run github.com/openshift-knative/hack/cmd/sobranch@latest "$@"
 }
