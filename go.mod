@@ -13,7 +13,7 @@ require (
 	github.com/spf13/viper v1.18.2
 	golang.org/x/mod v0.19.0
 	golang.org/x/term v0.28.0
-	gotest.tools/v3 v3.5.1
+	gotest.tools/v3 v3.5.2
 	k8s.io/api v0.29.3
 	k8s.io/apiextensions-apiserver v0.29.3
 	k8s.io/apimachinery v0.29.3
