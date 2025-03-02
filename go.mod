@@ -24,7 +24,7 @@ require (
 	knative.dev/eventing v0.42.0
 	knative.dev/hack v0.0.0-20240704013904-b9799599afcf
 	knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
-	knative.dev/pkg v0.0.0-20240716082220-4355f0c73608
+	knative.dev/pkg 0372c089c78f
 	knative.dev/serving v0.42.0
 	sigs.k8s.io/yaml v1.4.0
 )
@@ -294,6 +294,6 @@ replace (
 	knative.dev/hack => knative.dev/hack v0.0.0-20240404013450-1133b37da8d7
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.41.1-0.20250109102108-726991e8ad3d
 	knative.dev/networking => knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
-	knative.dev/pkg => knative.dev/pkg v0.0.0-20240716082220-4355f0c73608
+	knative.dev/pkg => knative.dev/pkg 0372c089c78f
 	knative.dev/serving => knative.dev/serving v0.42.0
 )
