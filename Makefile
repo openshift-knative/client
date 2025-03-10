@@ -52,11 +52,11 @@ test-images:
 .PHONY: test-images
 
 test-unit:
-	GOFLAGS='' ./hack/build.sh -t
+	GOPATH=/tmp/go GOFLAGS='' ./hack/build.sh -t
 .PHONY: test-unit
 
 test-e2e:
-	GOFLAGS='' ./openshift/e2e-tests-openshift.sh
+	GOPATH=/tmp/go GOFLAGS='' ./openshift/e2e-tests-openshift.sh
 .PHONY: test-e2e
 
 # Run make DOCKER_REPO_OVERRIDE=<your_repo> test-e2e-local if test images are available
