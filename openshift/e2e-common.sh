@@ -47,7 +47,7 @@ env
 build_knative_client() {
   failed=0
   # run this cross platform build to ensure all the checks pass (as this is done while building artifacts)
-  ./hack/build.sh -x || failed=1
+  GOFLAGS='' ./hack/build.sh -x || failed=1
 
   if [[ $failed -eq 0 ]]; then
     mv kn-linux-$(go env GOARCH) kn
@@ -105,9 +105,12 @@ run_client_e2e_tests(){
 install_serverless_operator() {
   local repository="https://github.com/openshift-knative/serverless-operator.git"
   local project_tag release so_branch
+  so_branch="main"
   project_tag=$(yq r "${ROOT_DIR}/openshift/project.yaml" project.tag)
-  release=${project_tag/knative-/}
-  so_branch=$(run_sobranch --upstream-version "${release}")
+  if [ "${project_tag}" != "knative-nightly" ]; then
+    release=${project_tag/knative-/}
+    so_branch=$(run_sobranch --upstream-version "${release}")
+  fi
 
   if ! git ls-remote --heads --exit-code "$repository" "$so_branch" &>/dev/null; then
       echo "Release branch doesn't exist yet, using main"
@@ -121,12 +124,20 @@ install_serverless_operator() {
   git clone --branch "${so_branch}" $repository $operator_dir || failed=1
   pushd $operator_dir
 
+  # Install tools used in S-O generators
+  make install-tools
+
+  # Add our temp binaries to path
+  export PATH="$GOPATH/bin:$PATH"
+
   export SKIP_MESH_AUTH_POLICY_GENERATION=true
   export ON_CLUSTER_BUILDS=true
   export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
   if [ "${project_tag}" == "knative-nightly" ]; then
     USE_IMAGE_RELEASE_TAG="${project_tag}"
     export USE_IMAGE_RELEASE_TAG
+    export USE_RELEASE_NEXT="true"
+    export SKIP_MESH_AUTH_POLICY_GENERATION="true"
     make generated-files
   fi
 
