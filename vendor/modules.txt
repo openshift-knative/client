@@ -10,6 +10,8 @@ contrib.go.opencensus.io/exporter/prometheus
 emperror.dev/errors
 # github.com/Azure/go-ansiterm v0.0.0-20210617225240-d185dfc1b5a1
 ## explicit; go 1.16
+# github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161
+## explicit; go 1.16
 github.com/Azure/go-ansiterm
 github.com/Azure/go-ansiterm/winterm
 # github.com/antlr/antlr4/runtime/Go/antlr v1.4.10
@@ -83,7 +85,7 @@ github.com/cloudevents/sdk-go/v2/types
 # github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81
 ## explicit; go 1.13
 github.com/containerd/console
-# github.com/cpuguy83/go-md2man/v2 v2.0.2
+# github.com/cpuguy83/go-md2man/v2 v2.0.4
 ## explicit; go 1.11
 github.com/cpuguy83/go-md2man/v2/md2man
 # github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
@@ -107,6 +109,9 @@ github.com/evanphx/json-patch/v5/internal/json
 # github.com/fsnotify/fsnotify v1.7.0
 ## explicit; go 1.17
 github.com/fsnotify/fsnotify
+# github.com/ghodss/yaml v1.0.0
+## explicit
+github.com/ghodss/yaml
 # github.com/go-errors/errors v1.4.2
 ## explicit; go 1.14
 github.com/go-errors/errors
@@ -140,14 +145,13 @@ github.com/golang/groupcache/lru
 # github.com/golang/protobuf v1.5.4
 ## explicit; go 1.17
 github.com/golang/protobuf/proto
-github.com/golang/protobuf/ptypes
-github.com/golang/protobuf/ptypes/any
-github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 # github.com/google/btree v1.1.2
 ## explicit; go 1.18
 github.com/google/btree
 # github.com/google/gnostic-models v0.6.8
+## explicit; go 1.18
+# github.com/google/gnostic-models v0.6.9-0.20230804172637-c7be7c783f49
 ## explicit; go 1.18
 github.com/google/gnostic-models/compiler
 github.com/google/gnostic-models/extensions
@@ -164,8 +168,12 @@ github.com/google/go-cmp/cmp/internal/function
 github.com/google/go-cmp/cmp/internal/value
 # github.com/google/go-containerregistry v0.13.0
 ## explicit; go 1.18
+# github.com/google/go-containerregistry v0.19.1
+## explicit; go 1.18
 github.com/google/go-containerregistry/pkg/name
 # github.com/google/gofuzz v1.2.0
+## explicit; go 1.12
+# github.com/google/gofuzz v1.2.1-0.20210504230335-f78f29fc09ea
 ## explicit; go 1.12
 github.com/google/gofuzz
 github.com/google/gofuzz/bytesource
@@ -245,6 +253,8 @@ github.com/mitchellh/go-homedir
 github.com/mitchellh/mapstructure
 # github.com/moby/term v0.0.0-20221205130635-1aeaba878587
 ## explicit; go 1.18
+# github.com/moby/term v0.5.0
+## explicit; go 1.18
 github.com/moby/term
 github.com/moby/term/windows
 # github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
@@ -282,6 +292,8 @@ github.com/opencontainers/go-digest
 ## explicit; go 1.20
 github.com/openzipkin/zipkin-go/model
 # github.com/pelletier/go-toml/v2 v2.0.9
+## explicit; go 1.16
+# github.com/pelletier/go-toml/v2 v2.2.0
 ## explicit; go 1.16
 github.com/pelletier/go-toml/v2
 github.com/pelletier/go-toml/v2/internal/characters
@@ -333,28 +345,47 @@ github.com/robfig/cron/v3
 # github.com/russross/blackfriday/v2 v2.1.0
 ## explicit
 github.com/russross/blackfriday/v2
+# github.com/sagikazarmark/locafero v0.4.0
+## explicit; go 1.20
+github.com/sagikazarmark/locafero
+# github.com/sagikazarmark/slog-shim v0.1.0
+## explicit; go 1.20
+github.com/sagikazarmark/slog-shim
 # github.com/sergi/go-diff v1.2.0
 ## explicit; go 1.12
+# github.com/sourcegraph/conc v0.3.0
+## explicit; go 1.19
+github.com/sourcegraph/conc
+github.com/sourcegraph/conc/internal/multierror
+github.com/sourcegraph/conc/iter
+github.com/sourcegraph/conc/panics
 # github.com/spf13/afero v1.10.0
-## explicit; go 1.16
+## explicit; go 1.19
+# github.com/spf13/afero v1.11.0
+## explicit; go 1.19
 github.com/spf13/afero
 github.com/spf13/afero/internal/common
 github.com/spf13/afero/mem
 # github.com/spf13/cast v1.5.1
-## explicit; go 1.18
+## explicit; go 1.19
+# github.com/spf13/cast v1.6.0
+## explicit; go 1.19
 github.com/spf13/cast
 # github.com/spf13/cobra v1.7.0
+## explicit; go 1.15
+# github.com/spf13/cobra v1.8.1
 ## explicit; go 1.15
 github.com/spf13/cobra
 github.com/spf13/cobra/doc
 # github.com/spf13/jwalterweatherman v1.1.0
 ## explicit
-github.com/spf13/jwalterweatherman
 # github.com/spf13/pflag v1.0.5
 ## explicit; go 1.12
 github.com/spf13/pflag
 # github.com/spf13/viper v1.16.0
-## explicit; go 1.17
+## explicit; go 1.18
+# github.com/spf13/viper v1.18.2
+## explicit; go 1.18
 github.com/spf13/viper
 github.com/spf13/viper/internal/encoding
 github.com/spf13/viper/internal/encoding/dotenv
@@ -364,11 +395,24 @@ github.com/spf13/viper/internal/encoding/javaproperties
 github.com/spf13/viper/internal/encoding/json
 github.com/spf13/viper/internal/encoding/toml
 github.com/spf13/viper/internal/encoding/yaml
+github.com/spf13/viper/internal/features
 # github.com/stretchr/objx v0.5.2
 ## explicit; go 1.20
 # github.com/subosito/gotenv v1.6.0
 ## explicit; go 1.18
 github.com/subosito/gotenv
+# github.com/thediveo/enumflag v0.10.0
+## explicit; go 1.13
+github.com/thediveo/enumflag
+# github.com/wavesoftware/go-commandline v1.1.0
+## explicit; go 1.22.0
+github.com/wavesoftware/go-commandline
+# github.com/wavesoftware/go-ensure v1.0.0
+## explicit; go 1.13
+github.com/wavesoftware/go-ensure
+# github.com/wavesoftware/go-retcode v1.0.0
+## explicit; go 1.18
+github.com/wavesoftware/go-retcode
 # github.com/xlab/treeprint v1.2.0
 ## explicit; go 1.13
 github.com/xlab/treeprint
@@ -420,6 +464,13 @@ go.uber.org/zap/internal/stacktrace
 go.uber.org/zap/internal/ztest
 go.uber.org/zap/zapcore
 go.uber.org/zap/zaptest
+# golang.org/x/exp v0.0.0-20240808152545-0cdaa3abc0fa
+## explicit; go 1.20
+golang.org/x/exp/constraints
+golang.org/x/exp/slices
+golang.org/x/exp/slog
+golang.org/x/exp/slog/internal
+golang.org/x/exp/slog/internal/buffer
 # golang.org/x/mod v0.21.0
 ## explicit; go 1.22.0
 golang.org/x/mod/internal/lazyregexp
@@ -614,7 +665,9 @@ gopkg.in/yaml.v2
 ## explicit
 gopkg.in/yaml.v3
 # gotest.tools/v3 v3.3.0
-## explicit; go 1.13
+## explicit; go 1.17
+# gotest.tools/v3 v3.5.1
+## explicit; go 1.17
 gotest.tools/v3/assert
 gotest.tools/v3/assert/cmp
 gotest.tools/v3/internal/assert
@@ -622,6 +675,8 @@ gotest.tools/v3/internal/difflib
 gotest.tools/v3/internal/format
 gotest.tools/v3/internal/source
 # k8s.io/api v0.30.3
+## explicit; go 1.22.0
+# k8s.io/api v0.30.10
 ## explicit; go 1.22.0
 k8s.io/api/admissionregistration/v1
 k8s.io/api/admissionregistration/v1alpha1
@@ -687,6 +742,8 @@ k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/typed/apiextensions/v1
 # k8s.io/apimachinery v0.30.3
 ## explicit; go 1.22.0
+# k8s.io/apimachinery v0.30.10
+## explicit; go 1.22.0
 k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
@@ -750,6 +807,8 @@ k8s.io/cli-runtime/pkg/genericiooptions
 k8s.io/cli-runtime/pkg/printers
 k8s.io/cli-runtime/pkg/resource
 # k8s.io/client-go v0.30.3
+## explicit; go 1.22.0
+# k8s.io/client-go v0.30.10
 ## explicit; go 1.22.0
 k8s.io/client-go/applyconfigurations/admissionregistration/v1
 k8s.io/client-go/applyconfigurations/admissionregistration/v1alpha1
@@ -1071,7 +1130,7 @@ knative.dev/client-pkg/pkg/sources/v1beta2
 knative.dev/client-pkg/pkg/util
 knative.dev/client-pkg/pkg/util/mock
 knative.dev/client-pkg/pkg/wait
-# knative.dev/client/pkg v0.0.0-00010101000000-000000000000 => ./pkg
+# knative.dev/client/pkg v0.0.0-20241016014431-dbb49e603ce2 => ./pkg
 ## explicit; go 1.22.0
 # knative.dev/eventing v0.43.0
 ## explicit; go 1.22.0
@@ -1134,6 +1193,17 @@ knative.dev/hack/cmd/script
 knative.dev/hack/pkg/inflator/cli
 knative.dev/hack/pkg/inflator/extract
 knative.dev/hack/pkg/retcode
+# knative.dev/kn-plugin-event v0.0.0-00010101000000-000000000000 => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250407071452-b0df0c63e93c
+## explicit; go 1.22.0
+knative.dev/kn-plugin-event/internal/cli
+knative.dev/kn-plugin-event/pkg/binding
+knative.dev/kn-plugin-event/pkg/cli
+knative.dev/kn-plugin-event/pkg/event
+knative.dev/kn-plugin-event/pkg/ics
+knative.dev/kn-plugin-event/pkg/k8s
+knative.dev/kn-plugin-event/pkg/metadata
+knative.dev/kn-plugin-event/pkg/plugin
+knative.dev/kn-plugin-event/pkg/sender
 # knative.dev/kn-plugin-source-kafka v0.0.0-00010101000000-000000000000 => knative.dev/kn-plugin-source-kafka v0.43.1-0.20250127110937-791037c0a018
 ## explicit; go 1.22.0
 knative.dev/kn-plugin-source-kafka/pkg/client
