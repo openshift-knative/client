@@ -9,7 +9,7 @@ require (
 	k8s.io/apimachinery v0.30.3
 	k8s.io/code-generator v0.30.3
 	knative.dev/client/pkg v0.0.0-00010101000000-000000000000
-	knative.dev/hack v0.0.0-20241010131451-05b2fb30cb4d
+	knative.dev/hack v0.0.0-20250114120502-30344aeba756
 	knative.dev/networking v0.0.0-20241022012959-60e29ff520dc
 	knative.dev/pkg v0.0.0-20241021183759-9b9d535af5ad
 	knative.dev/serving v0.43.0
@@ -128,8 +128,16 @@ require (
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8 // indirect
 	knative.dev/client-pkg v0.0.0-20241022130700-7b4bb48ac250 // indirect
 	knative.dev/eventing v0.43.0 // indirect
+	knative.dev/eventing-kafka-broker v0.43.1 // indirect
+	knative.dev/kn-plugin-source-kafka v0.0.0-00010101000000-000000000000 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.13.5-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.14.3-0.20230601165947-6ce0bf390ce3 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
+)
+
+replace (
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250407071345-eb03a7fd7372
+	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250407071452-b0df0c63e93c
+	knative.dev/kn-plugin-source-kafka => knative.dev/kn-plugin-source-kafka v0.43.1-0.20250127110937-791037c0a018
 )
