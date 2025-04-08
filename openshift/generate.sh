@@ -27,8 +27,8 @@ install_generate_hack_tool || exit 1
   --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%s-openshift-4.17"
 
 #git apply $repo_root_dir/openshift/dockerfile.patch
-FUNC_UTIL=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-plugin-func-func-util:1.35.0 --override-os linux --override-arch amd64)
-EVENT_SENDER=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-135/kn-plugin-event-sender:1.35.0 --override-os linux --override-arch amd64)
+FUNC_UTIL=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-136/kn-plugin-func-func-util:1.36.0 --override-os linux --override-arch amd64)
+EVENT_SENDER=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-136/kn-plugin-event-sender:1.36.0 --override-os linux --override-arch amd64)
 
 echo "func-util sha: ${FUNC_UTIL}"
 echo "event-sender sha: ${EVENT_SENDER}"
