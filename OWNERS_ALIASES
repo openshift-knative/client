@@ -1,12 +1,10 @@
 aliases:
   knative-client-approvers:
   - dsimansk
-  - rhuss
   - Kaustubh-pande
   - mgencur
   - pierdipi
   - creydr
   knative-client-reviewers:
   - dsimansk
-  - rhuss
   - Kaustubh-pande
