@@ -24,7 +24,7 @@ install_generate_hack_tool || exit 1
   --excludes ".*k8s\\.io.*" \
   --excludes ".*knative.dev/pkg/codegen.*" \
   --excludes ".*knative.dev/hack/cmd/script.*" \
-  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%s-openshift-4.17"
+  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.23-openshift-4.19"
 
 #git apply $repo_root_dir/openshift/dockerfile.patch
 FUNC_UTIL=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-136/kn-plugin-func-func-util:1.36.0 --override-os linux --override-arch amd64)
