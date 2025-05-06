@@ -397,8 +397,11 @@ if has_flag --debug; then
     set -x
 fi
 
-# Shared funcs from hack repo
-source "$(basedir)"/vendor/knative.dev/hack/library.sh
+# Don't source hack/library.sh for platform builds
+if ! has_flag --platform -p; then
+  # Shared funcs from hack repo
+  source "$(basedir)"/vendor/knative.dev/hack/library.sh
+fi
 
 # Shared funcs with CI
 while IFS= read -r -d '' file; do
