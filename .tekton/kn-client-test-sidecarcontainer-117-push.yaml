@@ -20,6 +20,7 @@ spec:
       value: openshift/ci-operator/knative-test-images/sidecarcontainer/Dockerfile
     - name: build-args
       value:
+        - CLI_ARTIFACTS=brew.registry.redhat.io/rh-osbs/openshift-serverless-1-kn-cli-artifacts-rhel8:1.16.0
         - GO_BUILDER=brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.23
         - GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
         - JAVA_BUILDER=registry.access.redhat.com/ubi8/openjdk-21
