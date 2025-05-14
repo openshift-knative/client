@@ -277,9 +277,9 @@ require (
 	knative.dev/client-pkg v0.0.0-20241022130700-7b4bb48ac250 // indirect
 	knative.dev/eventing v0.43.0 // indirect
 	knative.dev/eventing-kafka-broker v0.43.1 // indirect
-	knative.dev/func v0.0.0-00010101000000-000000000000 // indirect
-	knative.dev/kn-plugin-event v0.0.0-00010101000000-000000000000 // indirect
-	knative.dev/kn-plugin-source-kafka v0.0.0-00010101000000-000000000000 // indirect
+	knative.dev/func v0.43.2 // indirect
+	knative.dev/kn-plugin-event v1.16.0 // indirect
+	knative.dev/kn-plugin-source-kafka v0.43.0 // indirect
 	sigs.k8s.io/controller-runtime v0.12.3 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/kustomize/api v0.13.5-0.20230601165947-6ce0bf390ce3 // indirect
@@ -290,7 +290,6 @@ require (
 replace (
 	k8s.io/client-go => k8s.io/client-go v0.30.10
 
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250407071345-eb03a7fd7372
-	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250407071452-b0df0c63e93c
-	knative.dev/kn-plugin-source-kafka => knative.dev/kn-plugin-source-kafka v0.43.1-0.20250127110937-791037c0a018
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250512110814-d92b9abc8ead
+	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250505073738-1d80299d87eb
 )
