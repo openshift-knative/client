@@ -9,7 +9,7 @@ COPY . .
 
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
-ENV GOFLAGS='-mod=mod'
+ENV GOFLAGS=''
 
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer
 
