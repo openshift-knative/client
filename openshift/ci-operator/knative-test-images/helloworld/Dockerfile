@@ -11,6 +11,7 @@ ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
 ENV GOFLAGS=''
 
+RUN go mod vendor
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./test/test_images/helloworld
 
 FROM $GO_RUNTIME
