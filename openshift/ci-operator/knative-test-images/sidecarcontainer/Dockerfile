@@ -11,7 +11,7 @@ ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
 ENV GOFLAGS=''
 
-RUN go mod vendor
+RUN GOWORK=off go mod vendor
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 
 FROM $GO_RUNTIME
