@@ -9,12 +9,13 @@ COPY . .
 
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
+ENV GOFLAGS='-mod=mod'
 
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./test/test_images/helloworld
 
 FROM $GO_RUNTIME
 
-ARG VERSION=
+ARG VERSION=knative-v1.18
 
 COPY --from=builder /usr/bin/main /ko-app/helloworld
 COPY LICENSE /licenses/
@@ -22,14 +23,14 @@ COPY LICENSE /licenses/
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-test-test-images-helloworld-rhel8-container" \
-      name="openshift-serverless-1/test-test-images-helloworld-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-test-test-images-helloworld-rhel8-container" \
+      name="openshift-serverless-1/client-test-test-images-helloworld-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Test Test Images Helloworld" \
+      summary="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Test Test Images Helloworld" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Test Test Images Helloworld" \
-      io.k8s.description="Red Hat OpenShift Serverless Test Test Images Helloworld" \
+      description="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Test Test Images Helloworld" \
+      io.k8s.description="Red Hat OpenShift Serverless Client Test Test Images Helloworld" \
       io.openshift.tags="test-test-images-helloworld"
 
 ENTRYPOINT ["/ko-app/helloworld"]
