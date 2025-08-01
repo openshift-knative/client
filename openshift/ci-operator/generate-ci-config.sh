@@ -39,7 +39,7 @@ build_root:
     dockerfile_path: openshift/ci-operator/build-image/Dockerfile
 canonical_go_repository: github.com/knative/client
 images:
-- dockerfile_path: openshift/ci-operator/knative-images/client/Dockerfile
+- dockerfile_path: openshift/ci-operator/knative-images/kn/Dockerfile
   from: base
   inputs:
     bin:
@@ -47,7 +47,7 @@ images:
       - destination_dir: .
         source_path: /go/bin/kn
   to: knative-client
-- dockerfile_path: openshift/ci-operator/knative-images/client/Dockerfile.cliartifacts
+- dockerfile_path: openshift/ci-operator/knative-images/cli-artifact/Dockerfile
   inputs:
     bin:
       paths:
