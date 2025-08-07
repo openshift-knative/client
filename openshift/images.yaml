@@ -1,0 +1,2 @@
+knative.dev/client/cmd/kn: 'registry.ci.openshift.org/openshift/-kn:'
+knative.dev/client/test/test_images/helloworld: 'registry.ci.openshift.org/openshift/-test-helloworld:'
