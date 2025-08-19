@@ -9,15 +9,15 @@ COPY . .
 
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
-ENV GOFLAGS=''
+ENV GOFLAGS='-mod=mod'
 
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel8@sha256:0ae40d26e834e208d0909b90fb3a37c3feb38a299034b5086f1bec69d6719eb2
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel8@sha256:58e3ccea5c558575fe4adc6f5f6d570ebec0934de1ba1110bc32fe76fb379c7e
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel8@sha256:d5f49cc564427e52c796d1ed64b00d2f62ce6c47b1624a2e06e658b87c3ac3dd
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel8@sha256:3f6b47431a38ca5c518c0105ad2f79b92f3067f5c7e56c5e46bd13eb1e9982de
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./cmd/kn
 
 FROM $GO_RUNTIME
 
-ARG VERSION=knative-v1.19
+ARG VERSION=
 
 COPY --from=builder /usr/bin/main /ko-app/kn
 COPY LICENSE /licenses/
@@ -25,14 +25,14 @@ COPY LICENSE /licenses/
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-client-kn-rhel8-container" \
-      name="openshift-serverless-1/client-kn-rhel8" \
+      com.redhat.component="openshift-serverless-1-kn-rhel8-container" \
+      name="openshift-serverless-1/kn-rhel8" \
       version=$VERSION \
-      summary="Red Hat OpenShift Serverless 1 Client Kn" \
+      summary="Red Hat OpenShift Serverless 1 Kn" \
       maintainer="serverless-support@redhat.com" \
-      description="Red Hat OpenShift Serverless 1 Client Kn" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Kn" \
-      io.k8s.description="Red Hat OpenShift Serverless Client Kn" \
+      description="Red Hat OpenShift Serverless 1 Kn" \
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Kn" \
+      io.k8s.description="Red Hat OpenShift Serverless Kn" \
       io.openshift.tags="kn"
 
 ENTRYPOINT ["/ko-app/kn"]
