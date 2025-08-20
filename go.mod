@@ -290,6 +290,6 @@ require (
 replace (
 	k8s.io/client-go => k8s.io/client-go v0.30.10
 
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250512110814-d92b9abc8ead
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20250820114648-23f4490237ad
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250505073738-1d80299d87eb
 )
