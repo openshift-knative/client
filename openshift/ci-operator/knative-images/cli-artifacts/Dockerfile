@@ -1,5 +1,5 @@
 # This is not generated Dockerfile, yet!
-ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
+ARG GO_RUNTIME=registry.access.redhat.com/ubi9/ubi-minimal
 ARG CLI_ARTIFACTS=registry.redhat.io/openshift-serverless-1/kn-client-cli-artifacts-rhel8:1.36.0
 
 FROM $CLI_ARTIFACTS as builder
@@ -16,12 +16,13 @@ COPY LICENSE /licenses/
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-client-cli-artifacts-rhel8-container" \
-      name="openshift-serverless-1/client-cli-artifacts-rhel8" \
+      com.redhat.component="openshift-serverless-1-client-cli-artifacts-rhel9-container" \
+      name="openshift-serverless-1/kn-client-cli-artifacts-rhel9" \
       version=$VERSION \
       summary="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       maintainer="serverless-support@redhat.com" \
       description="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       io.k8s.description="Red Hat OpenShift Serverless Client Cli Artifacts" \
-      io.openshift.tags="cli-artifacts"
+      io.openshift.tags="cli-artifacts" \
+      cpe="cpe:/a:redhat:openshift_serverless:1.37::el9"
