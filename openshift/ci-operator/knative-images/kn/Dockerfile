@@ -25,7 +25,7 @@ USER 65532
 
 LABEL \
       com.redhat.component="openshift-serverless-1-client-kn-rhel9-container" \
-      name="openshift-serverless-1/client-kn-rhel9" \
+      name="openshift-serverless-1/kn-client-kn-rhel9" \
       version=$VERSION \
       summary="Red Hat OpenShift Serverless 1 Client Kn" \
       maintainer="serverless-support@redhat.com" \
