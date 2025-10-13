@@ -279,7 +279,7 @@ require (
 	knative.dev/client-pkg v0.0.0-20250123181933-2a69ed741513 // indirect
 	knative.dev/eventing v0.44.0 // indirect
 	knative.dev/eventing-kafka-broker v0.43.1-0.20250123171534-badf6669333e // indirect
-	knative.dev/func v0.0.0-00010101000000-000000000000 // indirect
+	knative.dev/func v1.17.0 // indirect
 	knative.dev/kn-plugin-event v0.0.0-00010101000000-000000000000 // indirect
 	knative.dev/kn-plugin-source-kafka v0.44.0 // indirect
 	sigs.k8s.io/controller-runtime v0.12.3 // indirect
