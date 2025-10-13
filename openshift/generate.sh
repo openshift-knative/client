@@ -24,7 +24,7 @@ install_generate_hack_tool || exit 1
   --excludes ".*knative.dev/pkg/codegen.*" \
   --excludes ".*knative.dev/hack/cmd/script.*" \
   --app-file-fmt "/ko-app/%s" \
-  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.23-openshift-4.19"
+  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.23-openshift-4.19"
 
 
 #git apply $repo_root_dir/openshift/dockerfile.patch
