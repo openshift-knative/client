@@ -1,6 +1,6 @@
 # This is not generated Dockerfile, yet!
 ARG GO_RUNTIME=registry.access.redhat.com/ubi9/ubi-minimal
-ARG CLI_ARTIFACTS=registry.redhat.io/openshift-serverless-1/kn-client-cli-artifacts-rhel8:1.36.0
+ARG CLI_ARTIFACTS=registry.redhat.io/openshift-serverless-1/kn-client-cli-artifacts-rhel8:1.37.0
 
 FROM $CLI_ARTIFACTS as builder
 
