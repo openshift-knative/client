@@ -6,7 +6,7 @@ ARG GO_RUNTIME=registry.access.redhat.com/ubi9/ubi-minimal
 FROM $GO_BUILDER AS builder
 WORKDIR /workspace
 # Allow copying from higher directory when context is limited
-COPY . /workspace/
+COPY . .
 
 # Build with FIPS-compliant Go
 ENV CGO_ENABLED=0
@@ -25,34 +25,31 @@ RUN ./hack/build.sh -p windows amd64
 
 RUN chmod +x kn-linux-amd64 kn-linux-ppc64le kn-linux-s390x kn-windows-amd64.exe kn-darwin-amd64 kn-linux-arm64 kn-darwin-arm64
 
-# ---------- PACKAGING STAGE ----------
-FROM $GO_RUNTIME AS packager
-WORKDIR /workspace
-COPY --from=builder /workspace/kn-* .
-COPY --from=builder /workspace/LICENSE .
+## ---------- PACKAGING STAGE ----------
 
 RUN dnf install -y tar zip
-RUN tar --transform='flags=r;s|kn-linux-amd64|kn|' -zcf kn-linux-amd64.tar.gz kn-linux-amd64 LICENSE \
-&& tar --transform='flags=r;s|kn-linux-ppc64le|kn|' -zcf kn-linux-ppc64le.tar.gz kn-linux-ppc64le LICENSE \
-&& tar --transform='flags=r;s|kn-linux-s390x|kn|' -zcf kn-linux-s390x.tar.gz kn-linux-s390x LICENSE \
-&& tar --transform='flags=r;s|kn-darwin-amd64|kn|' -zcf kn-macos-amd64.tar.gz kn-darwin-amd64 LICENSE \
-&& tar --transform='flags=r;s|kn-linux-arm64|kn|' -zcf kn-linux-arm64.tar.gz kn-linux-arm64 LICENSE \
-&& tar --transform='flags=r;s|kn-darwin-arm64|kn|' -zcf kn-macos-arm64.tar.gz kn-darwin-arm64 LICENSE
 
-RUN mkdir "windows" && mv kn-windows-amd64.exe /windows/kn.exe && cp LICENSE /windows/ && zip --quiet --junk-path - /windows/* > kn-windows-amd64.zip
+RUN tar --transform='flags=r;s|kn-linux-amd64|kn|' -zcf kn-linux-amd64.tar.gz kn-linux-amd64 LICENSE \
+  && tar --transform='flags=r;s|kn-linux-ppc64le|kn|' -zcf kn-linux-ppc64le.tar.gz kn-linux-ppc64le LICENSE \
+  && tar --transform='flags=r;s|kn-linux-s390x|kn|' -zcf kn-linux-s390x.tar.gz kn-linux-s390x LICENSE \
+  && tar --transform='flags=r;s|kn-darwin-amd64|kn|' -zcf kn-macos-amd64.tar.gz kn-darwin-amd64 LICENSE \
+  && tar --transform='flags=r;s|kn-linux-arm64|kn|' -zcf kn-linux-arm64.tar.gz kn-linux-arm64 LICENSE \
+  && tar --transform='flags=r;s|kn-darwin-arm64|kn|' -zcf kn-macos-arm64.tar.gz kn-darwin-arm64 LICENSE
+
+RUN mkdir "windows" && mv kn-windows-amd64.exe ./windows/kn.exe && cp LICENSE ./windows/ && zip --quiet --junk-path - windows/* > kn-windows-amd64.zip
 
 # ---------- FINAL RUNTIME IMAGE ----------
 FROM $GO_RUNTIME
 RUN  mkdir -p /usr/share/kn/{linux_amd64,linux_arm64,linux_ppc64le,linux_s390x,macos_amd64,macos_arm64,windows}
 
-COPY --from=packager /workspace/kn-linux-amd64.tar.gz /usr/share/kn/linux_amd64/
-COPY --from=packager /workspace/kn-linux-ppc64le.tar.gz /usr/share/kn/linux_ppc64le/
-COPY --from=packager /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
-COPY --from=packager /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
-COPY --from=packager /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
-COPY --from=packager /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
-COPY --from=packager /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
-COPY --from=packager /workspace/LICENSE /licenses/
+COPY --from=builder /workspace/kn-linux-amd64.tar.gz /usr/share/kn/linux_amd64/
+COPY --from=builder /workspace/kn-linux-ppc64le.tar.gz /usr/share/kn/linux_ppc64le/
+COPY --from=builder /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
+COPY --from=builder /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
+COPY --from=builder /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
+COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
+COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
+COPY --from=builder /workspace/LICENSE /licenses/
 
 USER 65532
 
