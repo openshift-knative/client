@@ -167,10 +167,10 @@ go_build_with_goos_goarch() {
   echo "🚧 Compile for GOOS=${GOOS} GOARCH=${GOARCH}"
 
   # Env var exported by hack/build-flags.sh
-  GOOS="${GOOS}" GOARCH="${GOARCH}" go build -ldflags "${KN_BUILD_LD_FLAGS:-}" -o kn ./cmd/...
+  GOOS="${GOOS}" GOARCH="${GOARCH}" go build -ldflags "${KN_BUILD_LD_FLAGS:-}" -o "kn-${GOOS}-${GOARCH}" ./cmd/...
 
-  if $(file kn | grep -q -i "Windows"); then
-    mv kn kn.exe
+  if $(file "kn-${GOOS}-${GOARCH}" | grep -q -i "Windows"); then
+    mv "kn-${GOOS}-${GOARCH}" "kn-${GOOS}-${GOARCH}.exe"
   fi
 }
 
