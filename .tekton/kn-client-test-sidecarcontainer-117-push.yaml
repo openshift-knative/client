@@ -41,6 +41,10 @@ spec:
         - $(context.pipelineRun.uid)-{{revision}}
         - 1.37.0
         - latest
+    - name: prefetch-input
+      value: '[{"type":"rpm"}]'
+    - name: prefetch-input-dev-package-managers
+      value: 'true'
   taskRunSpecs:
     - pipelineTaskName: sast-shell-check
       stepSpecs:
