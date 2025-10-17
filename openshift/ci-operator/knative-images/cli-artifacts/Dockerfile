@@ -44,7 +44,7 @@ COPY --from=builder /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
 COPY --from=builder /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
 COPY --from=builder /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
 COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
-COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
+COPY --from=builder /workspace/kn-macos-arm64.tar.gz /usr/share/kn/macos_arm64/
 COPY --from=builder /workspace/LICENSE /licenses/
 
 USER 65532
@@ -59,4 +59,6 @@ LABEL \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       io.k8s.description="Red Hat OpenShift Serverless Client Cli Artifacts" \
       io.openshift.tags="cli-artifacts" \
+      release=$VERSION \
+      vendor="Red Hat, Inc." \
       cpe="cpe:/a:redhat:openshift_serverless:1.37::el9"
