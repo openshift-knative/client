@@ -44,7 +44,7 @@ COPY --from=builder /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
 COPY --from=builder /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
 COPY --from=builder /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
 COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
-COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
+COPY --from=builder /workspace/kn-macos-arm64.tar.gz /usr/share/kn/macos_arm64/
 COPY --from=builder /workspace/LICENSE /licenses/
 
 USER 65532
