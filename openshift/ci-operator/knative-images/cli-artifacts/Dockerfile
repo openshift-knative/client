@@ -23,11 +23,7 @@ RUN ./hack/build.sh -p windows amd64
 RUN chmod +x kn-linux-amd64 kn-linux-ppc64le kn-linux-s390x kn-windows-amd64.exe kn-darwin-amd64 kn-linux-arm64 kn-darwin-arm64
 
 ## ---------- PACKAGING STAGE ----------
-FROM $GO_RUNTIME as packager
-
-RUN microdnf install -y tar zip
-COPY --from=builder /workspace/kn-* /workspace/
-COPY --from=builder /workspace/LICENSE /workspace/
+RUN dnf install -y tar zip
 
 RUN tar --transform='flags=r;s|kn-linux-amd64|kn|' -zcf kn-linux-amd64.tar.gz kn-linux-amd64 LICENSE \
   && tar --transform='flags=r;s|kn-linux-ppc64le|kn|' -zcf kn-linux-ppc64le.tar.gz kn-linux-ppc64le LICENSE \
@@ -42,14 +38,14 @@ RUN mkdir "windows" && mv kn-windows-amd64.exe ./windows/kn.exe && cp LICENSE ./
 FROM $GO_RUNTIME
 RUN  mkdir -p /usr/share/kn/{linux_amd64,linux_arm64,linux_ppc64le,linux_s390x,macos_amd64,macos_arm64,windows}
 
-COPY --from=packager /workspace/kn-linux-amd64.tar.gz /usr/share/kn/linux_amd64/
-COPY --from=packager /workspace/kn-linux-ppc64le.tar.gz /usr/share/kn/linux_ppc64le/
-COPY --from=packager /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
-COPY --from=packager /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
-COPY --from=packager /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
-COPY --from=packager /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
-COPY --from=packager /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
-COPY --from=packager /workspace/LICENSE /licenses/
+COPY --from=builder /workspace/kn-linux-amd64.tar.gz /usr/share/kn/linux_amd64/
+COPY --from=builder /workspace/kn-linux-ppc64le.tar.gz /usr/share/kn/linux_ppc64le/
+COPY --from=builder /workspace/kn-linux-s390x.tar.gz /usr/share/kn/linux_s390x/
+COPY --from=builder /workspace/kn-macos-amd64.tar.gz /usr/share/kn/macos_amd64/
+COPY --from=builder /workspace/kn-windows-amd64.zip  /usr/share/kn/windows/
+COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/linux_arm64/
+COPY --from=builder /workspace/kn-linux-arm64.tar.gz /usr/share/kn/macos_arm64/
+COPY --from=builder /workspace/LICENSE /licenses/
 
 USER 65532
 
