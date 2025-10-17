@@ -24,6 +24,7 @@ install_generate_hack_tool || exit 1
   --excludes ".*knative.dev/pkg/codegen.*" \
   --excludes ".*knative.dev/hack/cmd/script.*" \
   --app-file-fmt "/ko-app/%s" \
+  --generate-rpms-lock-file \
   --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.23-openshift-4.19"
 
 
