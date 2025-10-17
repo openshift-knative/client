@@ -8,7 +8,7 @@ WORKDIR /workspace
 # Allow copying from higher directory when context is limited
 COPY . .
 ENV GO_COMPLIANCE_DEBUG=1
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:a181b639a19b3c36367eec41e5ac0e030bcfcb247b96e6843ff60a9561ead85d
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:a181b639a19b3c36367eec41e5ac0e030bcfcb247b96e6843ff60a9561ead85dn
 ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:d28cd64bfc1d0978d6f95e8b70d5bf7c36d6b92c0d60460f7ac6fa2b2ba0a15b
 # Build binaries
 # RUN make build-cross-package
@@ -25,7 +25,7 @@ RUN chmod +x kn-linux-amd64 kn-linux-ppc64le kn-linux-s390x kn-windows-amd64.exe
 ## ---------- PACKAGING STAGE ----------
 FROM $GO_RUNTIME as packager
 
-RUN dnf install -y tar zip
+RUN microdnf install -y tar zip
 COPY --from=builder /workspace/kn-* /workspace/
 COPY --from=builder /workspace/LICENSE /workspace/
 
