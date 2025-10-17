@@ -59,4 +59,6 @@ LABEL \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Cli Artifacts" \
       io.k8s.description="Red Hat OpenShift Serverless Client Cli Artifacts" \
       io.openshift.tags="cli-artifacts" \
+      release=$VERSION \
+      vendor= "Red Hat, Inc." \
       cpe="cpe:/a:redhat:openshift_serverless:1.37::el9"
