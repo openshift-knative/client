@@ -38,3 +38,7 @@ echo "event-sender sha: ${EVENT_SENDER}"
 sed -i "/RUN go build.*/ i \
 ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@${FUNC_UTIL}\n\
 ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@${EVENT_SENDER}" openshift/ci-operator/knative-images/kn/Dockerfile
+
+sed -i "/RUN go build.*/ i \
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@${FUNC_UTIL}\n\
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@${EVENT_SENDER}" openshift/ci-operator/knative-images/cli-artifacts/Dockerfile

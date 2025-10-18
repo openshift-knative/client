@@ -108,6 +108,12 @@ Learn more about Knative at: https://knative.dev`, cfg.Name),
 			},
 		},
 		{
+			Header: "MCP Commands:",
+			Commands: []*cobra.Command{
+				NewMCPServerCmd(),
+			},
+		},
+		{
 			Header: "Other Commands:",
 			Commands: []*cobra.Command{
 				NewCompletionCmd(),
@@ -303,7 +309,7 @@ func mergeEnvs(envs []fn.Env, envToUpdate *util.OrderedMap, envToRemove []string
 
 	errMsg := fn.ValidateEnvs(envs)
 	if len(errMsg) > 0 {
-		return []fn.Env{}, 0, fmt.Errorf(strings.Join(errMsg, "\n"))
+		return []fn.Env{}, 0, fmt.Errorf("error(s) while validating envs: %s", strings.Join(errMsg, "\n"))
 	}
 
 	return envs, counter, nil
