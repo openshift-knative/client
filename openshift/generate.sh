@@ -35,10 +35,12 @@ EVENT_SENDER=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-
 echo "func-util sha: ${FUNC_UTIL}"
 echo "event-sender sha: ${EVENT_SENDER}"
 
+echo "Update kn image refs"
 sed -i "/RUN go build.*/ i \
 ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@${FUNC_UTIL}\n\
 ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@${EVENT_SENDER}" openshift/ci-operator/knative-images/kn/Dockerfile
 
-sed -i "/RUN go build.*/ i \
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@${FUNC_UTIL}\n\
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@${EVENT_SENDER}" openshift/ci-operator/knative-images/cli-artifacts/Dockerfile
+echo "Update cli-artifacts image refs"
+sed -i "s|ENV KN_PLUGIN_FUNC_UTIL_IMAGE.*|ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@${FUNC_UTIL}|g" openshift/ci-operator/knative-images/cli-artifacts/Dockerfile
+sed -i "s|ENV KN_PLUGIN_EVENT_SENDER_IMAGE.*|ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@${EVENT_SENDER}|g" openshift/ci-operator/knative-images/cli-artifacts/Dockerfile
+
