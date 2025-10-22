@@ -297,11 +297,10 @@ require (
 )
 
 replace (
-
 	// this is required bacause of bad dep in github.com/openshift-pipelines/pipelines-as-code
 	github.com/imdario/mergo => dario.cat/mergo v1.0.1
 	k8s.io/client-go => k8s.io/client-go v0.31.4
 
-	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20251014203810-38f804ee68a5
+	knative.dev/func => github.com/openshift-knative/kn-plugin-func v1.1.3-0.20251021182055-efe011186788
 	knative.dev/kn-plugin-event => github.com/openshift-knative/kn-plugin-event v0.43.1-0.20250909142807-417eafe6248c
 )
