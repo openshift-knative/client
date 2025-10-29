@@ -7,7 +7,7 @@ FROM $GO_BUILDER AS builder
 WORKDIR /workspace
 # Allow copying from higher directory when context is limited
 COPY . .
-
+ENV TAG=$TAG
 ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:919aed0783ee6e333f619a7fee1c8ea67b6184c19d0ba1ff75f56eec6cb9042b
 ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:2d8cfab33f1c46b2d4510ea4b56a09e12b8bcf07c0eb055e84ebc077ec730145
 # Build binaries
