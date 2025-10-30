@@ -10,8 +10,8 @@ COPY . .
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
 
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:919aed0783ee6e333f619a7fee1c8ea67b6184c19d0ba1ff75f56eec6cb9042b
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:2d8cfab33f1c46b2d4510ea4b56a09e12b8bcf07c0eb055e84ebc077ec730145
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:3271e1f6001354fa01382f1fb1ba8cb5a3a6335ccc932c243678747689c4ce04
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:e03e39f6a44c0e6a5e48a42b67dc2f25916bc03521aafa10726b153d36f0c398
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./cmd/kn
 
 FROM $GO_RUNTIME
@@ -24,8 +24,8 @@ COPY LICENSE /licenses/
 USER 65532
 
 LABEL \
-      com.redhat.component="openshift-serverless-1-client-kn-rhel9-container" \
-      name="openshift-serverless-1/client-kn-rhel9" \
+      com.redhat.component="openshift-serverless-1-kn-client-kn-rhel9-container" \
+      name="openshift-serverless-1/kn-client-kn-rhel9" \
       version=$VERSION \
       summary="Red Hat OpenShift Serverless 1 Client Kn" \
       maintainer="serverless-support@redhat.com" \
@@ -33,6 +33,8 @@ LABEL \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Kn" \
       io.k8s.description="Red Hat OpenShift Serverless Client Kn" \
       io.openshift.tags="kn" \
+      vendor="Red Hat, Inc." \
+      release=$VERSION \
       cpe="cpe:/a:redhat:openshift_serverless:1.37::el9"
 
 ENTRYPOINT ["/ko-app/kn"]
