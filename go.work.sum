@@ -1599,6 +1599,7 @@ github.com/opencontainers/selinux v1.8.0/go.mod h1:RScLhm78qiWa2gbVCcGkC7tCGdgk3
 github.com/opencontainers/selinux v1.9.1/go.mod h1:2i0OySw99QjzBBQByd1Gr9gSjvuho1lHsJxIJ3gGbJI=
 github.com/openshift-knative/kn-plugin-func v1.1.3-0.20251014203810-38f804ee68a5/go.mod h1:ldTw8OItgpxWhxxAsqt/RgWvdrtE/iegOI3K4/prNso=
 github.com/openshift-knative/kn-plugin-func v1.1.3-0.20251021182055-efe011186788/go.mod h1:ldTw8OItgpxWhxxAsqt/RgWvdrtE/iegOI3K4/prNso=
+github.com/openshift-knative/kn-plugin-func v1.1.3-0.20251106233508-e3f900d358a0/go.mod h1:M5k5F3TdKGbja0RHhhPwEdJ/fAFV0A+F8WuyovbepMw=
 github.com/opentracing/opentracing-go v1.1.0/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
 github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
 github.com/openzipkin/zipkin-go v0.2.2/go.mod h1:NaW6tEwdmWMaCDZzg8sh+IBNOxHMPnhQw8ySjnjRyN4=
