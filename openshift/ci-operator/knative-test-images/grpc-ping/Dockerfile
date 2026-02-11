@@ -33,6 +33,6 @@ LABEL \
       io.openshift.tags="vendor-knative.dev-serving-test-test-images-grpc-ping" \
       vendor="Red Hat, Inc." \
       release=$VERSION \
-      cpe="cpe:/a:redhat:openshift_serverless:1.37::el9"
+      cpe="cpe:/a:redhat:openshift_serverless:1.38::el9"
 
 ENTRYPOINT ["/ko-app/grpc-ping"]
