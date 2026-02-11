@@ -4,10 +4,10 @@ metadata:
   annotations:
     image-controller.appstudio.redhat.com/update-component-image: "true"
   labels:
-    appstudio.redhat.com/application: serverless-operator-138
-    appstudio.redhat.com/component: kn-client-client-118
-  name: kn-client-client-118
+    appstudio.redhat.com/application: serverless-operator-137
+    appstudio.redhat.com/component: kn-client-kn-118
+  name: kn-client-kn-118
 spec:
   image:
-    name: serverless-operator-138/kn-client-client
+    name: serverless-operator-137/kn-client-kn
     visibility: public

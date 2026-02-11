@@ -4,14 +4,14 @@ metadata:
   annotations:
     build.appstudio.openshift.io/pipeline: '{"name":"docker-build","bundle":"latest"}'
     build.appstudio.openshift.io/request: configure-pac-no-mr
-  name: kn-client-test-servingcontainer-118
+  name: kn-client-kn-118
 spec:
-  componentName: kn-client-test-servingcontainer-118
-  application: serverless-operator-138
+  componentName: kn-client-kn-118
+  application: serverless-operator-137
    
   source:
     git:
       url: https://github.com/openshift-knative/client.git
       context: 
-      dockerfileUrl: openshift/ci-operator/knative-test-images/servingcontainer/Dockerfile
+      dockerfileUrl: openshift/ci-operator/knative-images/kn/Dockerfile
       revision: release-v1.18
