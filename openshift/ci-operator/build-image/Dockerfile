@@ -1,6 +1,6 @@
 # DO NOT EDIT! Generated Dockerfile.
 
-FROM registry.ci.openshift.org/ocp/4.20:cli-artifacts as tools
+FROM registry.ci.openshift.org/ocp/4.19:cli-artifacts as tools
 
 # Dockerfile to bootstrap build and test in openshift-ci
 FROM registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.20 as builder
