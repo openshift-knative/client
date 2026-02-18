@@ -1,5 +1,5 @@
 # DO NOT EDIT! Generated Dockerfile for cmd/kn.
-ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.20
+ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.21
 ARG GO_RUNTIME=registry.access.redhat.com/ubi9/ubi-minimal
 
 FROM $GO_BUILDER as builder
@@ -11,8 +11,8 @@ ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
 ENV GOFLAGS='-mod=mod'
 
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:7213f40b00c34011a2abfe834d52902305f86d8c76be0143d8d9ac9ba1300c59
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:51844c9f14680b29b072e2b26bba0f5cc2fb9206adc207a2e1d3e5330d512f6d
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:0204175383d951f1d2160756b5d85a72b21ad58def704833e84cfee57d93ebb1
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:720c9d42f5af97557f01be26f84515489f3cbe5c34c87fd40a123c1a7c2b627b
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./cmd/kn
 
 FROM $GO_RUNTIME

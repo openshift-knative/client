@@ -25,12 +25,12 @@ install_generate_hack_tool || exit 1
   --excludes ".*knative.dev/hack/cmd/script.*" \
   --app-file-fmt "/ko-app/%s" \
   --generate-rpms-lock-file \
-  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.20"
+  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.21"
 
 
 #git apply $repo_root_dir/openshift/dockerfile.patch
-FUNC_UTIL=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-137/kn-plugin-func-func-util:1.37.1 --override-os linux --override-arch amd64)
-EVENT_SENDER=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-137/kn-plugin-event-sender:1.37.1 --override-os linux --override-arch amd64)
+FUNC_UTIL=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-138/kn-plugin-func-func-util:latest --override-os linux --override-arch amd64)
+EVENT_SENDER=$(skopeo inspect -n --format '{{.Digest}}' docker://quay.io/redhat-user-workloads/ocp-serverless-tenant/serverless-operator-138/kn-plugin-event-sender:latest --override-os linux --override-arch amd64)
 
 echo "func-util sha: ${FUNC_UTIL}"
 echo "event-sender sha: ${EVENT_SENDER}"
