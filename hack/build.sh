@@ -399,7 +399,12 @@ fi
 
 # Shared funcs from hack repo
 # shellcheck disable=SC1090
-source "$(go run knative.dev/hack/cmd/script library.sh)"
+# Don't source hack/library.sh for platform builds
+if ! has_flag --platform -p; then
+  # Shared funcs from hack repo
+  # shellcheck disable=SC1090
+  source "$(go run knative.dev/hack/cmd/script library.sh)"
+fi
 
 # Shared funcs with CI
 while IFS= read -r -d '' file; do
