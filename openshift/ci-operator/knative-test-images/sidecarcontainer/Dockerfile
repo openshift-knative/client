@@ -1,5 +1,5 @@
 # DO NOT EDIT! Generated Dockerfile for vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer.
-ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.20
+ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.25-openshift-4.22
 ARG GO_RUNTIME=registry.access.redhat.com/ubi9/ubi-minimal
 
 FROM $GO_BUILDER as builder
@@ -9,7 +9,8 @@ COPY . .
 
 ENV CGO_ENABLED=1
 ENV GOEXPERIMENT=strictfipsruntime
-
+ENV GOFLAGS='-mod=mod'
+ENV GOWORK='off'
 RUN go build -tags strictfipsruntime -o /usr/bin/main ./vendor/knative.dev/serving/test/test_images/multicontainer/sidecarcontainer
 
 FROM $GO_RUNTIME
