@@ -30,6 +30,9 @@ LABEL \
       description="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
       io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Grpc Ping" \
-      io.openshift.tags="vendor-knative.dev-serving-test-test-images-grpc-ping"
-
+      io.openshift.tags="vendor-knative.dev-serving-test-test-images-grpc-ping" \
+      vendor="Red Hat, Inc." \
+      release=$VERSION \
+      cpe="cpe:/a:redhat:openshift_serverless:1.36::el8"
+      
 ENTRYPOINT ["/ko-app/grpc-ping"]
