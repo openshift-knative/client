@@ -1,5 +1,5 @@
 # DO NOT EDIT! Generated Dockerfile for vendor/knative.dev/serving/test/test_images/multicontainer/servingcontainer.
-ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-8-release-golang-1.22-openshift-4.17
+ARG GO_BUILDER=registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%!s(*string=0xc0006c8650)-openshift-4.17
 ARG GO_RUNTIME=registry.access.redhat.com/ubi8/ubi-minimal
 
 FROM $GO_BUILDER as builder
@@ -30,6 +30,9 @@ LABEL \
       description="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
       io.k8s.display-name="Red Hat OpenShift Serverless 1 Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
       io.k8s.description="Red Hat OpenShift Serverless Client Vendor Knative.Dev Serving Test Test Images Multicontainer Servingcontainer" \
-      io.openshift.tags="vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer"
-
+      io.openshift.tags="vendor-knative.dev-serving-test-test-images-multicontainer-servingcontainer" \
+      vendor="Red Hat, Inc." \
+      release=$VERSION \
+      cpe="cpe:/a:redhat:openshift_serverless:1.35::el8"
+      
 ENTRYPOINT ["/ko-app/servingcontainer"]
