@@ -123,20 +123,26 @@ install_serverless_operator() {
 
   export SKIP_MESH_AUTH_POLICY_GENERATION=true
   export ON_CLUSTER_BUILDS=true
-  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-marketplace
+  export DOCKER_REPO_OVERRIDE=image-registry.openshift-image-registry.svc:5000/openshift-serverless-builds
   if [ "${project_tag}" == "knative-nightly" ]; then
     USE_IMAGE_RELEASE_TAG="${project_tag}"
     export USE_IMAGE_RELEASE_TAG
     make generated-files
   fi
 
+  # Install required tools (including sobranch) before running make commands
+  make install-tools || failed=1
+
   make images install-serving install-eventing || failed=1
-  subheader "Successfully installed serverless operator."
-  
-  # Workaround default 'https' scheme
-  oc patch knativeserving knative-serving \
-    --namespace knative-serving --type merge \
-    --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || return 1
+
+  if (( !failed )); then
+    subheader "Successfully installed serverless operator."
+
+    # Workaround default 'https' scheme
+    oc patch knativeserving knative-serving \
+      --namespace knative-serving --type merge \
+      --patch '{"spec":{"config":{"network":{"default-external-scheme":"http"}}}}' || failed=1
+  fi
 
   popd
   return $failed
