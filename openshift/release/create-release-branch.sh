@@ -42,9 +42,12 @@ rm -rf .github/workflows
 git commit -sm ":fire: remove unneeded workflows" .github/
 
 # Update openshift's main and take all needed files from there.
+tag=${target/release-/}
 git fetch openshift main
 git checkout openshift/main $custom_files
-git add $custom_files
+yq write --inplace openshift/project.yaml project.tag "knative-$tag"
+make generate-release
+git add .
 git commit -m "Add openshift specific files."
 
 # Apply patches .
