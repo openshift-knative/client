@@ -31,7 +31,7 @@ RUN tar --transform='flags=r;s|kn-linux-amd64|kn|' -zcf kn-linux-amd64.tar.gz kn
   && tar --transform='flags=r;s|kn-darwin-amd64|kn|' -zcf kn-macos-amd64.tar.gz kn-darwin-amd64 LICENSE \
   && tar --transform='flags=r;s|kn-linux-arm64|kn|' -zcf kn-linux-arm64.tar.gz kn-linux-arm64 LICENSE \
   && tar --transform='flags=r;s|kn-darwin-arm64|kn|' -zcf kn-macos-arm64.tar.gz kn-darwin-arm64 LICENSE \
-  && tar --transform='flags=r;s|kn-windows-amd64\.exe|kn.exe|' -zcf kn-windows-amd64.tar.gz kn-windows-amd64.exe LICENSE
+  && tar --transform='flags=r;s|kn-windows-amd64.exe|kn.exe|' -zcf kn-windows-amd64.tar.gz kn-windows-amd64.exe LICENSE
 
 # ---------- FINAL RUNTIME IMAGE ----------
 FROM $GO_RUNTIME
