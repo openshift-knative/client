@@ -8,8 +8,8 @@ WORKDIR /workspace
 # Allow copying from higher directory when context is limited
 COPY . .
 ENV TAG="v1.17.0"
-ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:beddd74c1b4a6cbe9a79231040abc1ce239e01ca8f234ec1e7c89cc7455d4c39
-ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:1e3bf7c707a8783ca499f883dc9ea78fdfdd3027b182c2f92f8a5105a133d3c2
+ENV KN_PLUGIN_FUNC_UTIL_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-func-func-util-rhel9@sha256:6c946206ed05e451462a2976b3edc91764e47738a769fd79eb4df3e671f49506
+ENV KN_PLUGIN_EVENT_SENDER_IMAGE=registry.redhat.io/openshift-serverless-1/kn-plugin-event-sender-rhel9@sha256:491c00a5dbaed3e490eef7dbd09b50dd5d3366699e1133aba4759ac7aeff95a4
 # Build binaries
 # RUN make build-cross-package
 RUN ./hack/build.sh -p linux amd64
